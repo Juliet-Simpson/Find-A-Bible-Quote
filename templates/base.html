@@ -18,17 +18,18 @@
   <header>
     <nav class="nav-extended">
       <div class="nav-wrapper">
-        <a href="{{ url_for('render_homepage') }}" class="brand-logo">Bible Quotes 4 U</a>
+        <a href="{{ url_for('render_homepage') }}" class="brand-logo">Bible Quotes 4U</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 
         <ul class="right hide-on-med-and-down">
           <li><a href="#">Home</a></li>
           <li><a href="#">Add A Quote</a></li>
           <li><a href="#">My Quotes</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <li><a href="#">My Comments</a></li>
+          <li><a class="modal-trigger" href="#modal2">Login</a></li>
+          <li><a class="modal-trigger" href="#modal1">Register</a></li>
           <li><a href="#">Logout</a></li>
-        </ul>
+        </ul><br>
       </div>
     </nav>
 
@@ -36,10 +37,79 @@
       <li><a href="#">Home</a></li>
       <li><a href="#">Add A Quote</a></li>
       <li><a href="#">My Quotes</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Register</a></li>
+      <li><a href="#">My Comments</a></li>
+      <li><a class="modal-trigger" href="#modal2">Login</a></li>
+      <li><a class="modal-trigger" href="#modal1">Register</a></li>
       <li><a href="#">Logout</a></li>
     </ul>
+    <!-- Search Bar -->
+    <form>
+      <div class="input-field">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </form>
+
+    <!-- Register Modal -->
+    <div id="modal1" class="modal modal-height">
+      <div class="modal-content">
+        <h3 class="center-align">Register</h3>
+
+        <div class="row">
+          <form class="col s12 m8 offset-m2" method="POST" action="">
+            <div class="card-panel">
+              <!-- username -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
+                  <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  <label for="username">Username</label>
+                </div>
+              </div>
+              <!-- passowrd -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
+                  <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <!-- confirm passowrd -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fas fa-user-check prefix light-blue-text text-darken-4"></i>
+                  <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  <label for="password">Confirm Password</label>
+                </div>
+              </div>
+              <!-- register -->
+              <div class="row">
+                <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                  Register <i class="fas fa-sign-in-alt"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close"><i class="fas fa-times"></i>Cancel</a>
+        </div>
+      </div>
+
+      <!-- Login Modal -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4>
+          <p>A form</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
 
   </header>
   <main class="container">

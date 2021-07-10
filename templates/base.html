@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-  <title>Bible Quotes 4 U</title>
+  <title>Bible Quotes 4U</title>
 </head>
 
 <body>
@@ -38,8 +38,9 @@
       <li><a href="#">Add A Quote</a></li>
       <li><a href="#">My Quotes</a></li>
       <li><a href="#">My Comments</a></li>
-      <li><a class="modal-trigger" href="#modal2">Login</a></li>
+      
       <li><a class="modal-trigger" href="#modal1">Register</a></li>
+      <li><a class="modal-trigger" href="#modal2">Login</a></li>
       <li><a href="#">Logout</a></li>
     </ul>
     <!-- Search Bar -->
@@ -52,13 +53,13 @@
     </form>
 
     <!-- Register Modal -->
-    <div id="modal1" class="modal modal-height">
+    <div id="modal1" class="modal">
       <div class="modal-content">
         <h3 class="center-align">Register</h3>
 
-        <div class="row">
-          <form class="col s12 m8 offset-m2" method="POST" action="">
-            <div class="card-panel">
+        <div class="row no-bottom-margin">
+          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+            <div class="card-panel no-bottom-margin">
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
@@ -86,7 +87,7 @@
                   <label for="password">Confirm Password</label>
                 </div>
               </div>
-              <!-- register -->
+              <!-- register button-->
               <div class="row">
                 <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
                   Register <i class="fas fa-sign-in-alt"></i>
@@ -96,22 +97,38 @@
           </form>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close"><i class="fas fa-times"></i>Cancel</a>
+          <a href="#!" class="modal-close waves-effect waves-light btn-small red"><i class="fas fa-times"></i>Cancel</a>
         </div>
       </div>
-
-      <!-- Login Modal -->
-      <div id="modal2" class="modal">
-        <div class="modal-content">
-          <h4>Login</h4>
-          <p>A form</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
       </div>
 
+      <!-- login modal -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+          
   </header>
+
+  <section>
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row flashes">
+                    <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</section>
+
+
   <main class="container">
     {% block content %}
     {% endblock %}

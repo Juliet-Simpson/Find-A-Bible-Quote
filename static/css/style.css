@@ -2,6 +2,14 @@ body{
     background-color: aqua;
 }
 
-.modal-height{
-    height:fit-content;
+.modal{
+    max-height: 100% !important;
+}
+
+.no-bottom-margin{
+    margin-bottom: 0;
+}
+
+.modal-close{
+    margin-right:50px;
 }

@@ -155,8 +155,10 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
-                <div class="row flashes">
+                <div class="row flashes" id="flash">
+                <!-- <div class="row flashes alert alert-warning alert-dismissible" role="alert"> -->
                     <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                    <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> -->
                 </div>
             {% endfor %}
         {% endif %}

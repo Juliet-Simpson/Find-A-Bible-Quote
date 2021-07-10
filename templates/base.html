@@ -57,7 +57,7 @@
       <div class="modal-content">
         <h3 class="center-align">Register</h3>
 
-        <div class="row no-bottom-margin">
+        <div class="row">
           <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel no-bottom-margin">
               <!-- username -->
@@ -105,11 +105,41 @@
       <!-- login modal -->
   <div id="modal2" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+      <h3 class="center-align">Log In</h3>
+
+    <div class="row no-bottom-margin">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel no-bottom-margin">
+                <!-- username -->
+                <div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-cog prefix light-blue-text text-darken-4"></i>
+						<input id="username" name="username" type="text" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+						<label for="username">Username</label>
+					</div>
+                </div>
+                <!-- passowrd -->
+                <div class="row">
+                    <div class="input-field col s12">
+						<i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
+                        <input id="password" name="password" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- login -->
+                <div class="row">
+                    <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                        Log In <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class="modal-close waves-effect waves-light btn-small red"><i class="fas fa-times"></i>Cancel</a>
     </div>
   </div>
           

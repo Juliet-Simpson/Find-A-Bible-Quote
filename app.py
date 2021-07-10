@@ -72,8 +72,17 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return render_template("base.html")
-
+# HERE
     return render_template("base.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+# HERE
+    return redirect(url_for("render_homepage"))
 
 
 if __name__ == "__main__":

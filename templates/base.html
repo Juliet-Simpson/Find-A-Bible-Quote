@@ -28,7 +28,7 @@
           <li><a href="#">My Comments</a></li>
           <li><a class="modal-trigger" href="#modal2">Login</a></li>
           <li><a class="modal-trigger" href="#modal1">Register</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul><br>
       </div>
     </nav>
@@ -41,7 +41,7 @@
       
       <li><a class="modal-trigger" href="#modal1">Register</a></li>
       <li><a class="modal-trigger" href="#modal2">Login</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
     </ul>
     <!-- Search Bar -->
     <form>

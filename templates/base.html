@@ -23,25 +23,30 @@
 
         <ul class="right hide-on-med-and-down">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Add A Quote</a></li>
-          <li><a href="#">My Quotes</a></li>
-          <li><a href="#">My Comments</a></li>
-          <li><a class="modal-trigger" href="#modal2">Login</a></li>
-          <li><a class="modal-trigger" href="#modal1">Register</a></li>
-          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% if session.user %}
+        <li><a href="#">Add A Quote</a></li>
+        <li><a href="#">My Quotes</a></li>
+        <li><a href="#">My Comments</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
+        <li><a class="modal-trigger" href="#modal2">Login</a></li>
+        <li><a class="modal-trigger" href="#modal1">Register</a></li>
+      {% endif %}
         </ul><br>
       </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
       <li><a href="#">Home</a></li>
-      <li><a href="#">Add A Quote</a></li>
-      <li><a href="#">My Quotes</a></li>
-      <li><a href="#">My Comments</a></li>
-      
-      <li><a class="modal-trigger" href="#modal1">Register</a></li>
+      {% if session.user %}
+        <li><a href="#">Add A Quote</a></li>
+        <li><a href="#">My Quotes</a></li>
+        <li><a href="#">My Comments</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
       <li><a class="modal-trigger" href="#modal2">Login</a></li>
-      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      <li><a class="modal-trigger" href="#modal1">Register</a></li>
+      {% endif %}
     </ul>
     <!-- Search Bar -->
     <form>

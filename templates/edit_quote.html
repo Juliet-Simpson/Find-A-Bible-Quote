@@ -10,7 +10,11 @@
                     <option value="" disabled selected>Choose a Theme</option>
                     
                     {% for _theme in themes %}
-                    <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
+                        {% if _theme.theme == quote.theme %}
+                            <option value="{{ _theme.theme }}" selected>{{ _theme.theme }}</option>
+                        {% else %}
+                        <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
+                        {% endif %}
                     {% endfor %}
                     
                     <option value="">
@@ -37,7 +41,7 @@
             <div class="input-field col s12">
                 <i class="fas fa-book-open prefix"></i>
                 <input id="book" name="book" minlength="3" maxlength="50"
-                    type="text" class="validate" required>
+                    type="text" class="validate"  value="{{ quote.book }}"required>
                 <label for="book">Book</label>
             </div>
         </div>
@@ -47,7 +51,7 @@
             <div class="input-field col s12">
                 <i class="fas fa-scroll prefix"></i>
                 <input id="chapter" name="chapter" minlength="1" maxlength="3"
-                    type="text" class="validate" required>
+                    type="text" class="validate" value="{{ quote.chapter }}"required>
                 <label for="chapter">Chapter</label>
             </div>
         </div>
@@ -57,7 +61,7 @@
             <div class="input-field col s12">
                 <i class="fas fa-quote-left prefix"></i>
                 <input id="start_verse" name="start_verse" minlength="1" maxlength="3"
-                    type="text" class="validate" required>
+                    type="text" class="validate" value="{{ quote.start_verse }}"required>
                 <label for="start_verse">Start Verse</label>
             </div>
         </div>
@@ -67,7 +71,7 @@
             <div class="input-field col s12">
                 <i class="fas fa-quote-right prefix"></i>
                 <input id="end_verse" name="end_verse" minlength="1" maxlength="3"
-                    type="text" >
+                    type="text" value="{{ quote.end_verse }}" >
                 <label for="end">End Verse (if longer than a single verse) </label>
             </div>
         </div>
@@ -76,7 +80,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix"></i>
-                <textarea id="text" name="text" class="materialize-textarea validate" required></textarea>
+                <textarea id="text" name="text" class="materialize-textarea validate" required>{{- quote.text -}}</textarea>
                 <label for="text">Text</label>
             </div>
         </div>

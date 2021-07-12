@@ -109,7 +109,6 @@ def add_quote():
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
 def edit_quote(quote_id):
     themes = mongo.db.themes.find().sort("theme", 1)
-    quotes = list(mongo.db.quotes.find())
     if request.method == "POST":
         submit = {
             "theme": request.form.get("theme"),
@@ -122,7 +121,7 @@ def edit_quote(quote_id):
         }
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
-        return redirect(url_for("my_quotes.html", quotes=quotes))
+        return my_quotes()
 
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     return render_template("edit_quote.html", quote=quote, themes=themes)

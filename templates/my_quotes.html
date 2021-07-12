@@ -10,17 +10,17 @@
             <div class="card-panel collapsible-card">
             <div class="row">
                 <div class="col s8">
-                    <h5 class="justify-left">{{ quote.gospel }} {{ quote.chapter }} :
-                        {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h5>
+                    <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
+                        {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                 </div>
                 <div class="col s4 btn-col">
-                    <a href="#" class="btn-small"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i class="fas fa-pencil-alt"></i></a>
                     <a href="#" class="btn-small"><i class="far fa-trash-alt"></i></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
-                    <h4>"{{quote.text}}"</h4>
+                    <h5>"{{quote.text}}"</h5>
                 </div>
             </div>
             <div class="row">

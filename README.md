@@ -18,14 +18,14 @@ Once added, must also be selected for that quote
 Defensive.. alert.. are you sure you want to add this theme.. please check spelling .. ok
 
 6. Dropdown number pickers for chapter and verse
-Capitalize gospel
+Dropdown select for book
 
 7.  Editing themes.. spelling mistake? only edit My themes.. other users added quotes to that theme: don't delete the theme. PROFILE PAGE: my quotes and my themes.  Delete a quote, only edit a theme.
 
 8. My Quotes: if session.user|lower == quote.added_by|lower == ZERO then show h4 message <!-- <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4>
     {% endif %} -->
 
-9. Collapsible header format BOOOHOOOO WHat???
+9. Collapsible header overlayed with card panel to enable formatting
 
 CODE FOR LATER
 

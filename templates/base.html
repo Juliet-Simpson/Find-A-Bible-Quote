@@ -25,7 +25,7 @@
           <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
           {% if session.user %}
         <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
-        <li><a href="#">My Quotes</a></li>
+        <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
         <li><a href="#">My Comments</a></li>
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}
@@ -40,7 +40,7 @@
       <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
       {% if session.user %}
         <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
-        <li><a href="#">My Quotes</a></li>
+        <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
         <li><a href="#">My Comments</a></li>
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}

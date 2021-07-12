@@ -13,3 +13,28 @@ body{
 .modal-close{
     margin-right:50px;
 }
+
+/* My quotes page */
+
+.collapsible-header{
+    padding:0;
+    margin:0;
+}
+
+.collapsible-card{
+    width:100%;
+    margin:0;
+    padding:1rem;
+}
+
+.collapsible-header .row{
+    margin:0;
+}
+
+.collapsible-header i{
+    margin-right: 0;
+}
+
+.btn-col{
+    text-align: right !important;
+}

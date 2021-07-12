@@ -91,12 +91,12 @@ def add_quote():
     if request.method == "POST":
         quote = {
             "theme": request.form.get("theme"),
-            "gospel": request.form.get("gospel"),
+            "gospel": request.form.get("gospel").capitalize(),
             "chapter": request.form.get("chapter"),
             "start_verse": request.form.get("start_verse"),
             "end_verse": request.form.get("end_verse"),
-            "text": request.form.get("text"),
-            "created_by": session["user"]
+            "text": request.form.get("text").capitalize(),
+            "added_by": session["user"]
         }
         mongo.db.quotes.insert_one(quote)
         flash("Quote Successfully Added")
@@ -109,6 +109,12 @@ def add_quote():
 @app.route("/add_theme")
 def add_theme():
     return
+
+
+@app.route("/my_quotes")
+def my_quotes():
+    quotes = list(mongo.db.quotes.find())
+    return render_template("my_quotes.html", quotes=quotes)
 
 
 if __name__ == "__main__":

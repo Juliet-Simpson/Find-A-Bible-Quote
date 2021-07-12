@@ -35,7 +35,7 @@
         <!-- Gospel -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-book-open prefix"></i>
+                <i class="fas fa-scroll prefix"></i>
                 <input id="gospel" name="gospel" minlength="3" maxlength="50"
                     type="text" class="validate" required>
                 <label for="gospel">Gospel</label>
@@ -45,7 +45,7 @@
         <!-- Chapter -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-scroll prefix"></i>
+                <i class="fas fa-book-open prefix"></i>
                 <input id="chapter" name="chapter" minlength="1" maxlength="3"
                     type="text" class="validate" required>
                 <label for="chapter">Chapter</label>
@@ -80,7 +80,16 @@
                 <label for="text">Text</label>
             </div>
         </div>
-        
+
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large">
+                    Add Quote <i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
     </form>
+
 </div>
 {% endblock %}

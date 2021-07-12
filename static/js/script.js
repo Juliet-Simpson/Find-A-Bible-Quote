@@ -1,10 +1,9 @@
 $(document).ready(function(){
   $('.sidenav').sidenav({edge: "right"});
   $('.modal').modal();
+  $("select").formSelect();
 });
 
 $(function() {
-  $('#flash').delay(0).fadeIn('normal', function() {
-     $(this).delay(2500).fadeOut();
-  });
+  $('#flash').delay(2500).fadeOut();
 });

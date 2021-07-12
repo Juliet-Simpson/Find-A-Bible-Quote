@@ -36,7 +36,7 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                         session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
+                        flash("Welcome {}".format(
                             request.form.get("username")))
                         return render_template("base.html")
             else:
@@ -83,6 +83,17 @@ def logout():
     session.pop("user")
 # HERE
     return redirect(url_for("render_homepage"))
+
+
+@app.route("/add_quote")
+def add_quote():
+    themes = mongo.db.themes.find().sort("theme", 1)
+    return render_template("add_quote.html", themes=themes)
+
+
+@app.route("/add_theme")
+def add_theme():
+    return
 
 
 if __name__ == "__main__":

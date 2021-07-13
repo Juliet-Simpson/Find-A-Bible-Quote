@@ -122,7 +122,7 @@ def edit_quote(quote_id):
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
         return my_quotes()
-
+        
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     return render_template("edit_quote.html", quote=quote, themes=themes)
 
@@ -136,6 +136,13 @@ def add_theme():
 def my_quotes():
     quotes = list(mongo.db.quotes.find())
     return render_template("my_quotes.html", quotes=quotes)
+
+
+@app.route("/delete_quote/<quote_id>")
+def delete_quote(quote_id):
+    mongo.db.quotes.remove({"_id": ObjectId(quote_id)})
+    flash("Quote Successfully Deleted")
+    return my_quotes()
 
 
 if __name__ == "__main__":

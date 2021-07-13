@@ -38,3 +38,8 @@ body{
 .btn-col{
     text-align: right !important;
 }
+
+/* Confirm delete modal */
+#modal3 .modal-footer{
+    text-align: center !important;
+}

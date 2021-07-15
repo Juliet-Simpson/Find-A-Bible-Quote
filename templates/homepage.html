@@ -2,21 +2,21 @@
 {% block content %}
 
 <!-- Search Bar -->
-<div class="card-panel">
-  <form>
+<br><div class="card-panel">
+  <form method="POST" action="{{ url_for('search') }}">
     <div class="input-field">
-      <input id="search" type="search" required>
-      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-      <i class="material-icons">close</i>
+      <input name="query" id="query" minlength="3" type="text">
+      <label for="query"><i class="fas fa-search search-label"></i> Search for a Bible quote by theme</label>
     </div>
   </form>
-</div>
+</div><br>
+
 <section>
   <p>Search for a bible quote relevant to a chosen theme by typing the theme into the search bar. Alternatively browse
     all themes using the dropdown below and click on a theme to view associated quotes. You can comment on quotes or add
     and edit your own chosen bible quotes but you must first be registered and logged in to do so.
   </p>
-</section>
+</section><br>
 
 <ul class="collapsible">
   <li>

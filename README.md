@@ -28,6 +28,11 @@ Dropdown select for book
 
 10.  No quotes on my quotes page.. show message not empty collapsible
 
+11. MOBILE LAYOUT.. logo.. edit and delete quotes
+
+12.  refreshing page adds quote again
+
+
 CODE FOR LATER
 
 {{ url_for('add_theme') }}
@@ -60,6 +65,8 @@ _theme = {
 DON'T FORGET
 
 CHANGE DUBUG TO FALSE
+
+Validate Dropdown
 
 FEATURES TO ADD.. 
 Defensive programming.. empty themes?  Values in add a quote

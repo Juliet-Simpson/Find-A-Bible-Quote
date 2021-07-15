@@ -25,6 +25,13 @@ def render_homepage():
     return render_template("homepage.html", themes=themes)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
+    return render_template("search_results.html", quotes=quotes)
+
+
 @app.route("/browse_themes")
 def browse_themes():
     return render_template("browse_results.html")

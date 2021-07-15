@@ -43,8 +43,8 @@ _theme = {
             <a href="#" class="btn-small"><i class="far fa-trash-alt"></i>Delete</a>
   -->
 
-  <!-- 8. <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4>
-   -->
+  <!-- 8. <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4> -->
+  
 
    <!-- <form method="POST" action="">
                             <div class="input-field">
@@ -64,5 +64,11 @@ CHANGE DUBUG TO FALSE
 FEATURES TO ADD.. 
 Defensive programming.. empty themes?  Values in add a quote
 
-Editing themes? Maybe.. the edited theme needs to then update in the quote documents for all with that theme..could change meaning of theme.. not ok for others who have now used that theme
-Problem if just correcting spelling mistake
+MAJOR ISSUES 
+Add theme.. send to themes and quotes collection
+my_quotes need new variable fo quotes matching username, like search resuts, load that in page.. better do before starting comments
+browse results page needs to pick up browse results: browsed from themes collection, need to match to quotes collection
+Modals closing, what to render/return
+
+comments will be difficult.. own collection.. comment, comment_author, relevant quote
+

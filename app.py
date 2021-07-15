@@ -141,7 +141,8 @@ def add_theme():
 @app.route("/my_quotes")
 def my_quotes():
     quotes = list(mongo.db.quotes.find())
-    return render_template("my_quotes.html", quotes=quotes)
+    my_quotes = list(mongo.db.quotes.find({"added_by": session["user"]}))
+    return render_template("my_quotes.html", my_quotes=my_quotes)
 
 
 @app.route("/delete_quote/<quote_id>")

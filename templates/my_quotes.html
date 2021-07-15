@@ -2,10 +2,11 @@
 {% block content %}
 <h3 class="center">My Quotes</h3>
 
-<ul class="collapsible">
-    {% for quote in quotes %}
-    {% if session.user|lower == quote.added_by|lower %}
+<!-- NEW IDEA -->
+{% if my_quotes|length > 0 %}
 
+<ul class="collapsible">
+    {% for quote in my_quotes %}
     <li>
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">
@@ -45,7 +46,7 @@
                 <li>Comments</li>
             </ul>
         </div>
-        <!-- Modal Structure -->
+        <!-- Modal Structure-->
         <div id="modal{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>
@@ -60,8 +61,11 @@
             </div>
         </div>
     </li>
-    {% endif %}
     {% endfor %}
 </ul>
+
+{% else %}
+<h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4>
+{% endif %}
 
 {% endblock %}

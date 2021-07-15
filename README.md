@@ -22,10 +22,11 @@ Dropdown select for book
 
 7.  Editing themes.. spelling mistake? only edit My themes.. other users added quotes to that theme: don't delete the theme. PROFILE PAGE: my quotes and my themes.  Delete a quote, only edit a theme.
 
-8. My Quotes: if session.user|lower == quote.added_by|lower == ZERO then show h4 message <!-- <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4>
-    {% endif %} -->
+
 
 9. Collapsible header overlayed with card panel to enable formatting
+
+10.  No quotes on my quotes page.. show message not empty collapsible
 
 CODE FOR LATER
 
@@ -37,10 +38,23 @@ _theme = {
 {{ url_for('edit_quote', quote_id=quote._id) }}
 {{ url_for('delete_quote', quote_id=quote._id) }}
 
+
  <!-- <a href="#" class="btn-small"><i class="fas fa-pencil-alt"></i>Edit</a>
             <a href="#" class="btn-small"><i class="far fa-trash-alt"></i>Delete</a>
   -->
 
+  <!-- 8. <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4>
+   -->
+
+   <!-- <form method="POST" action="">
+                            <div class="input-field">
+                                <i class="far fa-plus-square prefix"></i>
+                            <input type="text" id="new_theme" name="new_theme">
+                            <label for="new_theme">Or add a New Theme</label>
+                        </div>
+                        </form> -->
+
+<!-- {{ url_for('add_theme') }} -->
 
 
 DON'T FORGET

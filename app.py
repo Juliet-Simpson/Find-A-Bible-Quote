@@ -21,7 +21,13 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/render_homepage")
 def render_homepage():
-    return render_template("homepage.html")
+    themes = mongo.db.themes.find().sort("theme", 1)
+    return render_template("homepage.html", themes=themes)
+
+
+@app.route("/browse_themes")
+def browse_themes():
+    return render_template("browse_results.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -101,7 +107,7 @@ def add_quote():
         mongo.db.quotes.insert_one(quote)
         flash("Quote Successfully Added")
         # return render_template("add_quote.html", themes=themes)
-        return redirect(url_for("add_quote"))
+        return my_quotes()
 
     return render_template("add_quote.html", themes=themes)
 

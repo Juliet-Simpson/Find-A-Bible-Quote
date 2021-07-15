@@ -16,4 +16,23 @@
     </p>
 </section>
 
+<ul class="collapsible">
+  <li>
+    <div class="collapsible-header">
+      <i class="fas fa-caret-down"></i>Browse Themes
+    </div>
+    <div class="collapsible-body">
+      <ul>
+        {% for _theme in themes %}
+        <li><a href="{{ url_for('browse_themes') }}">{{ _theme.theme }}</a></li>
+        {% endfor %}
+          
+      </ul>
+  </div>
+
+    </li>
+
+
+</ul>
+
 {% endblock %}

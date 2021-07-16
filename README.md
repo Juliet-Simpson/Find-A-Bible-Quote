@@ -23,11 +23,6 @@ Dropdown select for book
 7.  Editing themes.. spelling mistake? only edit My themes.. other users added quotes to that theme: don't delete the theme. PROFILE PAGE: my quotes and my themes.  Delete a quote, only edit a theme.
 
 
-
-9. Collapsible header overlayed with card panel to enable formatting
-
-10.  No quotes on my quotes page.. show message not empty collapsible
-
 11. MOBILE LAYOUT.. logo.. edit and delete quotes
 
 12.  refreshing page adds quote again
@@ -48,7 +43,6 @@ _theme = {
             <a href="#" class="btn-small"><i class="far fa-trash-alt"></i>Delete</a>
   -->
 
-  <!-- 8. <h4 class="red-text text-darken-4 center-align">You have not added any quotes yet.  Click <a href="{{ url_for('add_quote') }}">here</a>to add a quote.</h4> -->
   
 
    <!-- <form method="POST" action="">
@@ -75,7 +69,9 @@ MAJOR ISSUES
 Add theme.. send to themes and quotes collection
 my_quotes need new variable fo quotes matching username, like search resuts, load that in page.. better do before starting comments
 browse results page needs to pick up browse results: browsed from themes collection, need to match to quotes collection
-Modals closing, what to render/return
+Modals closing, what to render/return.. WANT TO REFRESH WEBSITE
 
 comments will be difficult.. own collection.. comment, comment_author, relevant quote
 
+BUGS/FIXES
+Collapsible header overlayed with card panel to enable formatting

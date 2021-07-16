@@ -34,7 +34,11 @@ def search():
 
 @app.route("/browse_themes")
 def browse_themes():
-    return render_template("browse_results.html")
+    _theme = {
+            "theme": request.form.get("theme")
+        }
+    quotes = list(mongo.db.quotes.find({"theme": "_theme.themes"}))
+    return render_template("browse_results.html", quotes=quotes)
 
 
 @app.route("/login", methods=["GET", "POST"])

@@ -56,6 +56,10 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     text-align: right !important;
 }
 
+.collapsible-body{
+    padding:5px 15px;
+}
+
 /* Confirm delete modal */
 #modal3 .modal-footer{
     text-align: center !important;

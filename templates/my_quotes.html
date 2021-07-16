@@ -39,17 +39,42 @@
         </div>
         <div class="collapsible-body">
             <ul>
+              
                 <li>
                     <div class="card-panel">
                         <div class="row">
-                                Have I got a card?
+                            Comment + user
+                         
                         </div>
                     </div>
                 </li>
-                <li>user_id</li>
-                <li>Comments</li>
-                <li>Comments</li>
-                <li>Comments</li>
+               
+                    
+                
+             
+
+                <li>There are no comments about this quote yet. {% if not session.user %} <a href="#modal2"
+                        class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
+                    Comment.</li>
+                {% endif %}
+               
+                {% if session.user %}
+                <li>
+                    <div class="card-panel">
+                        <div class="row">
+                           
+                                <form method="POST" action="">
+                                <div class="input-field">
+                                    <input name="comment" id="comment" minlength="3" type="text">
+                                    <label for="comment"><i class="fas fa-search search-label"></i> Make a
+                                        comment</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+                
             </ul>
         </div>
         <!-- Modal Structure-->

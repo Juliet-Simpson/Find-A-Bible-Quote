@@ -151,9 +151,25 @@ def add_theme():
 
 @app.route("/my_quotes")
 def my_quotes():
-    quotes = list(mongo.db.quotes.find())
+    # make a variable of each quotes object id to use for relating quote to comment
+    # quote_id = mongo.db.quote.find({"_id": ObjectId(quote_id)})
+    # **MATCH quote._id from quotes to quote_id value in comments
+    # quote_comment = list(mongo.db.comments.find())
     my_quotes = list(mongo.db.quotes.find({"added_by": session["user"]}))
     return render_template("my_quotes.html", my_quotes=my_quotes)
+
+
+# @app.route("/comment")
+# def comment():
+#     if request.method == "POST":
+#         comment = {
+#             "comment": request.form.get("comment").capitalize(),
+#             "quote_id": How DO WE GET THAT,
+#             "comment_by": session["user"]
+#         }
+#         mongo.db.comments.insert_one(comment)
+
+#     return (current template how???)
 
 
 @app.route("/delete_quote/<quote_id>")

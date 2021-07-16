@@ -32,6 +32,8 @@ CODE FOR LATER
 
 {{ url_for('add_theme') }}
 
+{{ url_for('comment') }}
+
 _theme = {
             "theme": request.form.get("theme")
         }
@@ -75,3 +77,46 @@ comments will be difficult.. own collection.. comment, comment_author, relevant 
 
 BUGS/FIXES
 Collapsible header overlayed with card panel to enable formatting
+
+
+ <div class="collapsible-body">
+            <ul>
+                {% if quote_comments|length > 0%}
+                {for _comment in quote_comments}
+
+                <li>
+                    <div class="card-panel">
+                        <div class="row">
+                            Comment + user
+                            Comment {{ _comment.comment }} + user {{ _comment.user }}
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                    
+                
+                {% else %} 
+
+                <li>There are no comments about this quote yet. {% if not session.user %} <a href="#modal2"
+                        class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
+                    Comment.</li>
+                {% endif %}
+                {% endif %}
+                {% if session.user %}
+                <li>
+                    <div class="card-panel">
+                        <div class="row">
+                            <form method="POST" action="">
+                                <div class="input-field">
+                                    <input name="comment" id="comment" minlength="3" type="text">
+                                    <label for="comment"><i class="far fa-comment search-label"></i> Make a
+                                        comment</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+                
+            </ul>
+        </div>

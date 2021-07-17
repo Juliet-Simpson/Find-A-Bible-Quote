@@ -112,22 +112,22 @@ def add_quote():
     themes = mongo.db.themes.find().sort("theme", 1)
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None)
-    if new_theme:
-        mongo.db.themes.insert_one({"theme": new_theme})
-        theme = new_theme or request.form.get("theme")
-        quote = {
-            "theme": theme,
-            "book": request.form.get("book").capitalize(),
-            "chapter": request.form.get("chapter"),
-            "start_verse": request.form.get("start_verse"),
-            "end_verse": request.form.get("end_verse"),
-            "text": request.form.get("text").capitalize(),
-            "added_by": session["user"]
-        }
-        mongo.db.quotes.insert_one(quote)
-        flash("Quote Successfully Added")
-        # return render_template("add_quote.html", themes=themes)
-        return my_quotes()
+        if new_theme:
+            mongo.db.themes.insert_one({"theme": new_theme})
+            theme = new_theme or request.form.get("theme")
+            quote = {
+                "theme": theme,
+                "book": request.form.get("book").capitalize(),
+                "chapter": request.form.get("chapter"),
+                "start_verse": request.form.get("start_verse"),
+                "end_verse": request.form.get("end_verse"),
+                "text": request.form.get("text").capitalize(),
+                "added_by": session["user"]
+            }
+            mongo.db.quotes.insert_one(quote)
+            flash("Quote Successfully Added")
+            # return render_template("add_quote.html", themes=themes)
+            return my_quotes()
 
     return render_template("add_quote.html", themes=themes)
 
@@ -136,18 +136,22 @@ def add_quote():
 def edit_quote(quote_id):
     themes = mongo.db.themes.find().sort("theme", 1)
     if request.method == "POST":
-        submit = {
-            "theme": request.form.get("theme"),
-            "book": request.form.get("book").capitalize(),
-            "chapter": request.form.get("chapter"),
-            "start_verse": request.form.get("start_verse"),
-            "end_verse": request.form.get("end_verse"),
-            "text": request.form.get("text").capitalize(),
-            "added_by": session["user"]
-        }
-        mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
-        flash("Quote Successfully Updated")
-        return my_quotes()
+        new_theme = request.form.get("new_theme", None)
+        if new_theme:
+            mongo.db.themes.insert_one({"theme": new_theme})
+            theme = new_theme or request.form.get("theme")
+            submit = {
+                "theme": theme,
+                "book": request.form.get("book").capitalize(),
+                "chapter": request.form.get("chapter"),
+                "start_verse": request.form.get("start_verse"),
+                "end_verse": request.form.get("end_verse"),
+                "text": request.form.get("text").capitalize(),
+                "added_by": session["user"]
+            }
+            mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
+            flash("Quote Successfully Updated")
+            return my_quotes()
         
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     return render_template("edit_quote.html", quote=quote, themes=themes)

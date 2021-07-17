@@ -12,10 +12,9 @@
                     {% for _theme in themes %}
                     <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                     {% endfor %}
-                    <option>
-                    <input type="text" id="new_theme" placeholder="Add a New Theme">
-                </option>
+                    
                 </select>
+                <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme">
                 <label for="theme">Theme</label>
             </div>
         </div>

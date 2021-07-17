@@ -20,12 +20,10 @@ Defensive.. alert.. are you sure you want to add this theme.. please check spell
 6. Dropdown number pickers for chapter and verse
 Dropdown select for book
 
-7.  Editing themes.. spelling mistake? only edit My themes.. other users added quotes to that theme: don't delete the theme. PROFILE PAGE: my quotes and my themes.  Delete a quote, only edit a theme.
-
 
 11. MOBILE LAYOUT.. logo.. edit and delete quotes
 
-12.  refreshing page adds quote again
+12.  refreshing page adds quote again??
 
 
 CODE FOR LATER

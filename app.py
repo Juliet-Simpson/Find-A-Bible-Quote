@@ -29,7 +29,7 @@ def render_homepage():
 def search():
     query = request.form.get("query")
     quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
-    return render_template("search_results.html", quotes=quotes)
+    return render_template("search_results.html", quotes=quotes, query=query)
 
 
 @app.route("/browse_themes")
@@ -72,6 +72,11 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm-password")
+        if password != confirm_password:
+            flash("Passwords do not match.")
+            return render_template("base.html")
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -106,8 +111,12 @@ def logout():
 def add_quote():
     themes = mongo.db.themes.find().sort("theme", 1)
     if request.method == "POST":
+        new_theme = request.form.get("new_theme", None)
+    if new_theme:
+        mongo.db.themes.insert_one({"theme": new_theme})
+        theme = new_theme or request.form.get("theme")
         quote = {
-            "theme": request.form.get("theme"),
+            "theme": theme,
             "book": request.form.get("book").capitalize(),
             "chapter": request.form.get("chapter"),
             "start_verse": request.form.get("start_verse"),
@@ -177,6 +186,11 @@ def delete_quote(quote_id):
     mongo.db.quotes.remove({"_id": ObjectId(quote_id)})
     flash("Quote Successfully Deleted")
     return my_quotes()
+
+
+@app.route("/my_comments")
+def my_comments():
+    return render_template("my_comments.html")
 
 
 if __name__ == "__main__":

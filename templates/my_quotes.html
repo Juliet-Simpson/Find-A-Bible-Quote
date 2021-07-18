@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="collapsible-body">
+        <div class="collapsible-body comment-body">
             <ul>
               
                 <li>
@@ -48,19 +48,11 @@
                         </div>
                     </div>
                 </li>
-               
-                    
-                
-             
 
-                <li>There are no comments about this quote yet. {% if not session.user %} <a href="#modal2"
-                        class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
-                    Comment.</li>
-                {% endif %}
-               
-                {% if session.user %}
+                <li>There are no comments about this quote yet. </li>
+            
                 <li>
-                    <div class="card-panel">
+                    <div class="card-panel make-comment-card">
                         <div class="row">
                            
                                 <form method="POST" action="">
@@ -73,7 +65,7 @@
                         </div>
                     </div>
                 </li>
-                {% endif %}
+                
                 
             </ul>
         </div>

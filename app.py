@@ -34,12 +34,10 @@ def search():
 
 @app.route("/browse_themes/<theme_name>")
 def browse_themes(theme_name):
-    
-    # need to pass the selected theme into this view.  How?
-    # Find the quotes that match the theme that was clicked on the homepage how??
-    theme_quotes = list(mongo.db.quotes.find({"theme": theme_name}))
-    # return render_template("browse_results.html", theme_quotes=theme_quotes)
-    return render_template("browse_themes.html", theme_quotes=theme_quotes, theme_name=theme_name)
+    theme_quotes = list(mongo.db.quotes.find({
+        "theme": theme_name}))
+    return render_template("browse_themes.html",
+        theme_quotes=theme_quotes, theme_name=theme_name)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -170,6 +168,7 @@ def my_quotes():
     # **MATCH quote._id from quotes to quote_id value in comments
     # quote_comment = list(mongo.db.comments.find())
     my_quotes = list(mongo.db.quotes.find({"added_by": session["user"]}))
+    # quote_comments = list(mongo.db.comments.find(comments.quote_id = quotes.quote_id))
     return render_template("my_quotes.html", my_quotes=my_quotes)
 
 
@@ -186,10 +185,18 @@ def my_quotes():
 #     return (current template how???)
 
 
-@app.route("/delete_quote/<quote_id>")
-def delete_quote(quote_id):
+@app.route("/delete_quote/<quote_id>, <delete_theme>")
+def delete_quote(quote_id, delete_theme):
     mongo.db.quotes.remove({"_id": ObjectId(quote_id)})
     flash("Quote Successfully Deleted")
+
+# Check if there are any more quotes with the same theme
+#  as the quote that has been deleted.  If not, delete 
+# the theme from the themes collection.
+    theme_text = delete_theme
+    deleted_theme_quotes = list(mongo.db.quotes.find({"theme": theme_text}))
+    if len(deleted_theme_quotes) == 0:
+        mongo.db.themes.remove({"theme": theme_text})
     return my_quotes()
 
 

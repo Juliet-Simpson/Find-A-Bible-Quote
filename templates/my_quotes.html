@@ -79,7 +79,7 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
                     Cancel<i class="far fa-times-circle right"></i></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id) }}" class="modal-close btn red text-shadow">
+                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}" class="modal-close btn red text-shadow">
                     Delete<i class="fas fa-times-circle right"></i></a>
             </div>
         </div>

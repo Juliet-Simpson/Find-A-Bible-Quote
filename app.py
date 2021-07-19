@@ -172,17 +172,17 @@ def my_quotes():
     return render_template("my_quotes.html", my_quotes=my_quotes)
 
 
-# @app.route("/comment")
-# def comment():
-#     if request.method == "POST":
-#         comment = {
-#             "comment": request.form.get("comment").capitalize(),
-#             "quote_id": How DO WE GET THAT,
-#             "comment_by": session["user"]
-#         }
-#         mongo.db.comments.insert_one(comment)
+@app.route("/comment/<quote_id>", methods=['GET', 'POST'])
+def comment(quote_id):
+    if request.method == "POST":
+        comment = {
+            "comment": request.form.get("comment").capitalize(),
+            "quote_id": quote_id,
+            "comment_by": session["user"]
+        }
+        mongo.db.comments.insert_one(comment)
 
-#     return (current template how???)
+    return my_quotes()
 
 
 @app.route("/delete_quote/<quote_id>, <delete_theme>")
@@ -191,12 +191,12 @@ def delete_quote(quote_id, delete_theme):
     flash("Quote Successfully Deleted")
 
 # Check if there are any more quotes with the same theme
-#  as the quote that has been deleted.  If not, delete 
+# as the quote that has been deleted.  If not, delete 
 # the theme from the themes collection.
-    theme_text = delete_theme
-    deleted_theme_quotes = list(mongo.db.quotes.find({"theme": theme_text}))
+    
+    deleted_theme_quotes = list(mongo.db.quotes.find({"theme": delete_theme}))
     if len(deleted_theme_quotes) == 0:
-        mongo.db.themes.remove({"theme": theme_text})
+        mongo.db.themes.remove({"theme": delete_theme})
     return my_quotes()
 
 

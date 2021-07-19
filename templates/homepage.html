@@ -26,10 +26,9 @@
     <div class="collapsible-body">
       <ul>
         {% for _theme in themes %}
-        <li><a href="{{ url_for('browse_themes') }}">{{ _theme.theme }}</a></li>
+        <li><a name="theme" href="{{ url_for('browse_themes', theme_name=_theme.theme) }}">{{ _theme.theme }}</a></li>
         {% endfor %}
-
-      </ul>
+      </form>      </ul>
     </div>
 
   </li>

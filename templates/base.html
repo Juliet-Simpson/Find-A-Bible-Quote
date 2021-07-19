@@ -55,7 +55,7 @@
         <h3 class="center-align">Register</h3>
 
         <div class="row">
-          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register', next=next_page) }}">
             <div class="card-panel no-bottom-margin">
               <!-- username -->
               <div class="row">
@@ -105,7 +105,7 @@
       <h3 class="center-align">Log In</h3>
 
     <div class="row no-bottom-margin">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=next_page) }}">
             <div class="card-panel no-bottom-margin">
                 <!-- username -->
                 <div class="row">

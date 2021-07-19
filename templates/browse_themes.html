@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center">Bible quotes about </h3>
+<h3 class="center">Bible quotes about {{ theme_name | title }}</h3>
 
-{% if quotes|length > 0 %}
+{% if theme_quotes|length > 0 %}
 
 <ul class="collapsible">
-    {% for quote in quotes %}
+    {% for quote in theme_quotes %}
     <li>
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">

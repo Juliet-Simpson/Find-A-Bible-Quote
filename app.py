@@ -19,9 +19,9 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/render_homepage")
+@app.route("/render_homepage/<theme_name>")
 def render_homepage():
-    themes = mongo.db.themes.find().sort("theme", 1)
+    themes = list(mongo.db.themes.find().sort("theme", 1))
     return render_template("homepage.html", themes=themes)
 
 
@@ -32,13 +32,14 @@ def search():
     return render_template("search_results.html", quotes=quotes, query=query)
 
 
-@app.route("/browse_themes")
-def browse_themes():
-    _theme = {
-            "theme": request.form.get("theme")
-        }
-    quotes = list(mongo.db.quotes.find({"theme": "_theme.themes"}))
-    return render_template("browse_results.html", quotes=quotes)
+@app.route("/browse_themes/<theme_name>")
+def browse_themes(theme_name):
+    
+    # need to pass the selected theme into this view.  How?
+    # Find the quotes that match the theme that was clicked on the homepage how??
+    theme_quotes = list(mongo.db.quotes.find({"theme": theme_name}))
+    # return render_template("browse_results.html", theme_quotes=theme_quotes)
+    return render_template("browse_themes.html", theme_quotes=theme_quotes, theme_name=theme_name)
 
 
 @app.route("/login", methods=["GET", "POST"])

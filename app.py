@@ -161,19 +161,34 @@ def add_theme():
     return
 
 
+# # SHOWS NONE OF THE COMMENTS (FILTERING ATTEMPTED)
+# @app.route("/my_quotes")
+# def my_quotes():
+#     my_quotes = list(mongo.db.quotes.find({
+#         "added_by": session["user"]}))
+
+#     for quote in my_quotes:
+#         quote["id"] = str(quote["_id"])
+#         quote_comments = list(mongo.db.comments.find({
+#             "quote_id": quote["id"]}))
+    
+#     return render_template("my_quotes.html", my_quotes=my_quotes,
+#             quote_comments=quote_comments)
+
+# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
 @app.route("/my_quotes")
 def my_quotes():
-    # make a variable of each quotes object id to use for relating quote to comment
-    # quote_id = mongo.db.quote.find({"_id": ObjectId(quote_id)})
-    # **MATCH quote._id from quotes to quote_id value in comments
-    # quote_comment = list(mongo.db.comments.find())
-    my_quotes = list(mongo.db.quotes.find({"added_by": session["user"]}))
-    # quote_comments = list(mongo.db.comments.find(comments.quote_id = quotes.quote_id))
-    return render_template("my_quotes.html", my_quotes=my_quotes)
+    my_quotes = list(mongo.db.quotes.find({
+        "added_by": session["user"]}))
+        
+    quote_comments = list(mongo.db.comments.find())
+
+    return render_template("my_quotes.html", my_quotes=my_quotes,
+        quote_comments=quote_comments)
 
 
-@app.route("/comment/<quote_id>", methods=['GET', 'POST'])
-def comment(quote_id):
+@app.route("/comment/<quote_id>,", methods=['GET', 'POST'])
+def comment(quote_id):   
     if request.method == "POST":
         comment = {
             "comment": request.form.get("comment").capitalize(),
@@ -181,7 +196,6 @@ def comment(quote_id):
             "comment_by": session["user"]
         }
         mongo.db.comments.insert_one(comment)
-
     return my_quotes()
 
 

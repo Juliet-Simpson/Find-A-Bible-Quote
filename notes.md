@@ -1,13 +1,15 @@
 CREDITS
 sidenav edge right taken from mini project
 
+https://stackoverflow.com/questions/52226293/jinja2-check-if-value-exists-in-list-of-dictionaries
+
 PROBLEMS
 1. register bugs.. return what? empty open modal if username already exists (clear form) previous page if registration successful, whatever previous page was.. Make flash messages go away after flashing.   Need to confirm password before making dictionary... How?? notes p53...
 
 
 2. Everywhere in login register and logout return render_template("base.html") it is not ok
 
-3. confirm password at registration
+
 
 4. username id twice
 
@@ -23,7 +25,7 @@ Dropdown select for book
 
 11. MOBILE LAYOUT.. logo.. edit and delete quotes
 
-12.  refreshing page adds quote again??
+12.  refreshing page adds quote again??  Must empty the field.. javascript
 
 
 CODE FOR LATER
@@ -123,7 +125,31 @@ Collapsible header overlayed with card panel to enable formatting
 
         quotes.remove({id: quote_id})
 
-        theme_text = theme._id(quote_id) 
-num_elements = quotes.find({theme:theme_text}).count()
-if num_elements == 0:
-    themes.remove({theme:theme_text})
+        {{ url_for('my_quotes', quote_id=quote._id, comment_id=comment._id) }}
+
+         # comment_id = mongo.db.comments.find({"_id": ObjectId(comment_id)})<div class="collapsible-body comment-body">
+            <ul>
+              {% for comment in quote_comments %}
+                {% if quote_comments | length > 0 %}
+                <li>
+                    <div class="card-panel">
+                        <div class="row">
+                            { comment.comment } { comment.user }
+                         
+                        </div>
+                    </div>
+                </li>
+                {% else %}
+                <li>There are no comments about this quote yet. </li>
+                {% endif %}
+            {% endfor %}
+                <li>
+
+
+{% if quote.id in comments|map(attribute="quote_id") %}
+{% if comment.quote_id == quote.id %}
+....code for rendering comment
+{% endif %}
+{% else %}
+<li>There are no comments about this quote yet. </li>
+{% endif %}

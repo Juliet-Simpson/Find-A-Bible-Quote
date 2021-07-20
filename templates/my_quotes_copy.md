@@ -39,30 +39,23 @@
         </div>
         <div class="collapsible-body comment-body">
             <ul>
-                {% if quote_comments|length > 0 %}
-                {% for comment in quote_comments %}
+              {% if quote.id in comments|map(attribute="quote_id") %}
+                {% if comment.quote_id == quote.id %}
                 <li>
                     <div class="card-panel">
-                        <div>
-                            {{ comment.comment }}
+                        <div class="row">
+                            <h6>{{ comment.comment }} {{ comment.user }}</h6>
                         </div>
-                        <div class="btn-col">
-                            <!-- <div class= "col s12 "> -->
-                            <strong>By: </strong>{{ comment.comment_by }}
-                        <!-- </div> -->
-                    </div>
                     </div>
                 </li>
-                {% endfor %}
+                {% endif %}
                 {% else %}
-                <li>
-                    <h6>There are no comments about this quote yet. </h6>
-                </li>
+                <li>There are no comments about this quote yet. </li>
                 {% endif %}
                 <li>
                     <div class="card-panel make-comment-card">
                         <div class="row">
-                            <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
+                                <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
                                     <input name="comment" id="comment" minlength="3" type="text">
                                     <label for="comment"><i class="fas fa-search search-label"></i> Make a
@@ -72,8 +65,8 @@
                         </div>
                     </div>
                 </li>
-
-
+                
+                
             </ul>
         </div>
         <!-- Modal Structure-->
@@ -86,8 +79,7 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
                     Cancel<i class="far fa-times-circle right"></i></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
-                    class="modal-close btn red text-shadow">
+                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}" class="modal-close btn red text-shadow">
                     Delete<i class="fas fa-times-circle right"></i></a>
             </div>
         </div>

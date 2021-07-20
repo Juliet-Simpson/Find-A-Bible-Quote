@@ -92,6 +92,11 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 .small-info{
     display:block;
 }
+/* Browse/search results */
+.theme-small{
+    text-align: right;
+}
+}
 
 /* Confirm delete modal */
 #modal3 .modal-footer{

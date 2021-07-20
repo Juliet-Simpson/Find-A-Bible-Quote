@@ -11,14 +11,12 @@
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">
                 <div class="row">
-                    <div class="col m4 s8">
+                    <div class="col s5">
                         <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
-                    <div class="col s8 m4">
-                        <h6 class="justify-center">Theme: <strong>{{ quote.theme }}.</strong></h6>
-                    </div>
-                    <div class="col s4 btn-col">
+                    <div class="col s7">
+                        <h6 class="justify-left theme-small">Theme: <strong>{{ quote.theme }}.</strong></h6>
                     </div>
                 </div>
                 <div class="row">

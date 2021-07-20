@@ -78,6 +78,21 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     padding:5px 15px;
 }
 
+.small-info{
+    display:none;
+}
+.theme{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px){
+.big-info{
+    display:none
+}  
+.small-info{
+    display:block;
+}
+
 /* Confirm delete modal */
 #modal3 .modal-footer{
     text-align: center !important;

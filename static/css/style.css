@@ -1,6 +1,9 @@
 body{
     background-color: aqua;
 }
+.brand-logo i{
+    margin:4px 0 0 !important;
+}
 
 .modal{
     max-height: 100% !important;
@@ -86,6 +89,14 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 @media only screen and (max-width: 768px){
+/* Logo */
+nav .brand-logo {
+    left: 35%;
+}
+
+h3{
+    font-size:x-large;
+}
 .big-info{
     display:none
 }  
@@ -95,6 +106,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 /* Browse/search results */
 .theme-small{
     text-align: right;
+    padding-top: 3px;
 }
 }
 

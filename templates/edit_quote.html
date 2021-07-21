@@ -16,8 +16,9 @@
                             <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                         {% endif %}
                     {% endfor %}
+                    <option value="enter-new-theme" id="enter-new-theme"><strong>Add a new theme</strong></option>
                 </select>
-                <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme">
+                <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme" class="" hidden>
                 <label for="theme">Theme</label>
             </div>
         </div>
@@ -83,6 +84,28 @@
             </div>
         </div>
     </form>
-
 </div>
+<script>
+// Select elements
+const theme = document.querySelector('#theme');
+const newTheme = document.querySelector('#new_theme');
+// Add event listener
+theme.addEventListener('change', (event) => {
+    // Check if new theme option is selected from dropdown
+    let isNewTheme = event.target.value === 'enter-new-theme';
+
+    // if it is, remove hidden from input
+    if (isNewTheme) {
+        newTheme.removeAttribute ("hidden");
+        newTheme.classList.add("validate");
+        newTheme.setAttribute("required", true);
+    }
+    // Otherwise, add hidden
+    else{
+        newTheme.setAttribute("hidden", true);    
+    }
+});
+
+
+</script>
 {% endblock %}

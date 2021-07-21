@@ -254,12 +254,11 @@ def delete_quote(quote_id, delete_theme):
 # Check if there are any more quotes with the same theme
 # as the quote that has been deleted.  If not, delete 
 # the theme from the themes collection.
-    
     deleted_theme_quotes = list(mongo.db.quotes.find({"theme": delete_theme}))
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
     return my_quotes()
-
+    
 
 @app.route("/my_comments")
 def my_comments():

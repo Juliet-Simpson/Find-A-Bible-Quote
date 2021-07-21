@@ -62,6 +62,8 @@ Change order of elements on my quotes card on small screens
 
 Overide Materialize logo
 
+Use javascript to show or hide new theme input on 
+
 
  
 

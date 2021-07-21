@@ -24,46 +24,58 @@ def render_homepage():
     themes = list(mongo.db.themes.find().sort("theme", 1))
     return render_template("homepage.html", themes=themes)
 
-# This works
+# This half works doesn't work if search for a non existent theme (Filtering attempted)
+# @app.route("/search", methods=["GET", "POST"])
+# def search():
+    # query = request.form.get("query")
+    # query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
+# # Trying to find comments relevant to quotes that have been found. FINDS COMMENTS FOR THE THEME! It literally isn't working. 
+    # for quote in query_quotes:
+    #     quote_id = str(quote["_id"])
+    #     theme_quote_comments = list(mongo.db.comments.find({
+    #         "quote_id": quote_id}))
+
+    # return render_template("search_results.html",
+    # query_quotes=query_quotes, query=query,
+    # theme_quote_comments=theme_quote_comments)
+
+# NO FILTERING
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
-
-    for quote in query_quotes:
-        quote_id = str(quote["_id"])
-        theme_quote_comments = list(mongo.db.comments.find({
-            "quote_id": quote_id}))
+    # Just find all comments and try and filter them in jinja with map
+    all_comments = list(mongo.db.comments.find())
 
     return render_template("search_results.html",
-    query_quotes=query_quotes, query=query,
-    theme_quote_comments=theme_quote_comments)
+        query_quotes =query_quotes, query=query,
+        all_comments =all_comments)
 
-# this doesn't
-@app.route("/browse_themes/<theme_name>")
-def browse_themes(theme_name):
-    theme_quotes = list(mongo.db.quotes.find({
-        "theme": theme_name}))
-        
-# Got the whole rendering comments bit to do here also
-    for quote in theme_quotes:
-        quote_id = str(quote["_id"])
-        theme_quote_comments = list(mongo.db.comments.find({
-            "quote_id": quote_id}))
-    
-    return render_template("browse_themes.html",
-        theme_quotes=theme_quotes, theme_name=theme_name, theme_quote_comments=theme_quote_comments)
 
-# Working version
+# this doesn't. Comment filtering attempted
 # @app.route("/browse_themes/<theme_name>")
 # def browse_themes(theme_name):
 #     theme_quotes = list(mongo.db.quotes.find({
 #         "theme": theme_name}))
-    
+        
 # # Got the whole rendering comments bit to do here also
+#     for quote in theme_quotes:
+#         quote_id = str(quote["_id"])
+#         browse_quote_comments = list(mongo.db.comments.find({
+#             "quote_id": quote_id}))
+    
 #     return render_template("browse_themes.html",
-#         theme_quotes=theme_quotes, theme_name=theme_name)
+#         theme_quotes=theme_quotes, theme_name=theme_name, browse_quote_comments=browse_quote_comments)
 
+
+@app.route("/browse_themes/<theme_name>")
+def browse_themes(theme_name):
+    theme_quotes = list(mongo.db.quotes.find({
+        "theme": theme_name}))
+    all_comments = list(mongo.db.comments.find())
+    return render_template("browse_themes.html",
+        theme_quotes=theme_quotes, theme_name=theme_name,
+        all_comments=all_comments)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -196,29 +208,29 @@ def edit_quote(quote_id):
 
 # # SHOWS NONE OF THE COMMENTS (FILTERING ATTEMPTED)
 
-@app.route("/my_quotes")
-def my_quotes():
-    my_quotes = list(mongo.db.quotes.find({
-        "added_by": session["user"]}))
-
-    for quote in my_quotes:
-        quote_id = str(quote["_id"])
-        quote_comments = list(mongo.db.comments.find({
-            "quote_id": quote_id}))
-    
-    return render_template("my_quotes.html", my_quotes=my_quotes,
-            quote_comments=quote_comments)
-
-# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
 # @app.route("/my_quotes")
 # def my_quotes():
 #     my_quotes = list(mongo.db.quotes.find({
 #         "added_by": session["user"]}))
 
-#     quote_comments = list(mongo.db.comments.find())
-
+#     for quote in my_quotes:
+#         quote_id = str(quote["_id"])
+#         quote_comments = list(mongo.db.comments.find({
+#             "quote_id": quote_id}))
+    
 #     return render_template("my_quotes.html", my_quotes=my_quotes,
-#         quote_comments=quote_comments)
+#             quote_comments=quote_comments)
+
+# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
+@app.route("/my_quotes")
+def my_quotes():
+    my_quotes = list(mongo.db.quotes.find({
+        "added_by": session["user"]}))
+
+    all_comments = list(mongo.db.comments.find())
+
+    return render_template("my_quotes.html", my_quotes=my_quotes,
+        all_comments=all_comments)
 
 
 @app.route("/comment/<quote_id>,", methods=['GET', 'POST'])

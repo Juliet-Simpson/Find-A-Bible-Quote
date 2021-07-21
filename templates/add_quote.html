@@ -12,9 +12,9 @@
                     {% for _theme in themes %}
                     <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                     {% endfor %}
-                    
+                    <option value="enter-new-theme" id="enter-new-theme"><strong>Add a new theme</strong></option>
                 </select>
-                <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme">
+                <input type="text" id="new_theme" name="new_theme" class="" placeholder="Add a New Theme" hidden>
                 <label for="theme">Theme</label>
             </div>
         </div>
@@ -79,4 +79,33 @@
     </form>
 
 </div>
+
+
+<script>
+// Javascript to only either select a theme or add a new theme
+// Select elements
+const theme = document.querySelector('#theme');
+const newTheme = document.querySelector('#new_theme');
+
+// Add event listener
+theme.addEventListener('change', (event) => {
+    // Check if new theme option is selected from dropdown
+    let isNewTheme = event.target.value === "enter-new-theme";
+
+    // if it is, remove hidden from input
+    if (isNewTheme) {
+        newTheme.removeAttribute ("hidden");
+        newTheme.classList.add("validate");
+        newTheme.setAttribute("required", true);
+        // Want theme (choose a theme dropdown) to keep qreen line not go red when input entered
+        theme.classList.remove("validate");
+    }
+    // Otherwise, add hidden
+    else{
+        newTheme.setAttribute("hidden", true);
+    }
+
+});
+</script>
 {% endblock %}
+

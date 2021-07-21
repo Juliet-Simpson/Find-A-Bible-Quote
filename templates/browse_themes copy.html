@@ -33,8 +33,8 @@
         </div>
         <div class="collapsible-body comment-body">
             <ul>
-                {% if all_comments|length > 0 %}
-                {% for comment in all_comments %}
+                {% if theme_quote_comments|length > 0 %}
+                {% for comment in theme_quote_comments %}
                 <li>
                     <div class="card-panel">
                         <div>
@@ -47,14 +47,13 @@
                 </li>
                 {% endfor %}
                 {% else %}
+                <li>
 
-                <li><h6>There are no comments about this quote yet. 
-                {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a Comment.
-                </h6></li>
-
+                <li><h6>There are no comments about this quote yet. {% if not session.user %} <a href="#modal2"
+                        class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a
+                    Comment.</h6></li>
                 {% endif %}
                 {% endif %}
-
                
                 {% if session.user %}
                 <li>

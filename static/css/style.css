@@ -1,8 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+
 body{
-    background-color: aqua;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
 }
 .brand-logo i{
-    margin:4px 0 0 !important;
+    margin-right:4px !important;
+}
+
+nav .brand-logo {
+    left: auto;
+    -webkit-transform: none;
+    margin-left: 6px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
 }
 
 .modal{
@@ -88,10 +99,11 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     text-align: center;
 }
 
+
 @media only screen and (max-width: 768px){
 /* Logo */
-nav .brand-logo {
-    left: 35%;
+.brand-logo i{
+    margin-top:10px !important;
 }
 
 h3{

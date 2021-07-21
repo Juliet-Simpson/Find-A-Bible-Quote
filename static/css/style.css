@@ -62,7 +62,6 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     padding-bottom: 20px;
 }
 
-
 /* My quotes page */
 
 .collapsible-header{

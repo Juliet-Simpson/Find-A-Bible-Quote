@@ -24,20 +24,46 @@ def render_homepage():
     themes = list(mongo.db.themes.find().sort("theme", 1))
     return render_template("homepage.html", themes=themes)
 
-
+# This works
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
-    return render_template("search_results.html", quotes=quotes, query=query)
+    query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
 
+    for quote in query_quotes:
+        quote_id = str(quote["_id"])
+        theme_quote_comments = list(mongo.db.comments.find({
+            "quote_id": quote_id}))
 
+    return render_template("search_results.html",
+    query_quotes=query_quotes, query=query,
+    theme_quote_comments=theme_quote_comments)
+
+# this doesn't
 @app.route("/browse_themes/<theme_name>")
 def browse_themes(theme_name):
     theme_quotes = list(mongo.db.quotes.find({
         "theme": theme_name}))
+        
+# Got the whole rendering comments bit to do here also
+    for quote in theme_quotes:
+        quote_id = str(quote["_id"])
+        theme_quote_comments = list(mongo.db.comments.find({
+            "quote_id": quote_id}))
+    
     return render_template("browse_themes.html",
-        theme_quotes=theme_quotes, theme_name=theme_name)
+        theme_quotes=theme_quotes, theme_name=theme_name, theme_quote_comments=theme_quote_comments)
+
+# Working version
+# @app.route("/browse_themes/<theme_name>")
+# def browse_themes(theme_name):
+#     theme_quotes = list(mongo.db.quotes.find({
+#         "theme": theme_name}))
+    
+# # Got the whole rendering comments bit to do here also
+#     return render_template("browse_themes.html",
+#         theme_quotes=theme_quotes, theme_name=theme_name)
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -145,6 +171,7 @@ def edit_quote(quote_id):
         # Check if there are any more quotes with the same theme
         # as the theme that has been changed.  GET OLD THEME  If not, delete 
         # the theme from the themes collection.
+
         # old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
         # if len(old_theme_quotes) == 0:
         #     mongo.db.themes.remove({"theme": old_theme})
@@ -163,36 +190,35 @@ def edit_quote(quote_id):
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
         return my_quotes()
-
-            
-        
+ 
     return render_template("edit_quote.html", quote=quote, themes=themes)
 
 
 # # SHOWS NONE OF THE COMMENTS (FILTERING ATTEMPTED)
-# @app.route("/my_quotes")
-# def my_quotes():
-#     my_quotes = list(mongo.db.quotes.find({
-#         "added_by": session["user"]}))
 
-#     for quote in my_quotes:
-#         quote["id"] = str(quote["_id"])
-#         quote_comments = list(mongo.db.comments.find({
-#             "quote_id": quote["id"]}))
-    
-#     return render_template("my_quotes.html", my_quotes=my_quotes,
-#             quote_comments=quote_comments)
-
-# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
 @app.route("/my_quotes")
 def my_quotes():
     my_quotes = list(mongo.db.quotes.find({
         "added_by": session["user"]}))
 
-    quote_comments = list(mongo.db.comments.find())
-
+    for quote in my_quotes:
+        quote_id = str(quote["_id"])
+        quote_comments = list(mongo.db.comments.find({
+            "quote_id": quote_id}))
+    
     return render_template("my_quotes.html", my_quotes=my_quotes,
-        quote_comments=quote_comments)
+            quote_comments=quote_comments)
+
+# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
+# @app.route("/my_quotes")
+# def my_quotes():
+#     my_quotes = list(mongo.db.quotes.find({
+#         "added_by": session["user"]}))
+
+#     quote_comments = list(mongo.db.comments.find())
+
+#     return render_template("my_quotes.html", my_quotes=my_quotes,
+#         quote_comments=quote_comments)
 
 
 @app.route("/comment/<quote_id>,", methods=['GET', 'POST'])
@@ -204,6 +230,7 @@ def comment(quote_id):
             "comment_by": session["user"]
         }
         mongo.db.comments.insert_one(comment)
+        flash("Thanks for commenting")
     return my_quotes()
 
 

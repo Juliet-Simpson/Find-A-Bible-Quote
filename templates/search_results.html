@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% if query_quotes|length > 0 %}
+
 <h3 class="center">Bible quotes about {{ query | title }}</h3>
 
-{% if quotes|length > 0 %}
-
 <ul class="collapsible">
-    {% for quote in quotes %}
+    {% for quote in query_quotes %}
     <li>
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">
@@ -33,27 +33,30 @@
         </div>
         <div class="collapsible-body comment-body">
             <ul>
-              
-                <li class="comment">
+                {% if theme_quote_comments|length > 0 %}
+                {% for comment in theme_quote_comments %}
+                <li>
                     <div class="card-panel">
-                        <div class="row">
-                            Comment + user
-                         
+                        <div>
+                            {{ comment.comment }}
+                        </div>
+                        <div class="btn-col">
+                            <strong>By: </strong>{{ comment.comment_by }}
                         </div>
                     </div>
                 </li>
-
-                <li>There are no comments about this quote yet. {% if not session.user %} <a href="#modal2"
-                        class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a
-                    Comment.</li>
+                {% endfor %}
+                {% else %}
+                <li><h6>There are no comments about {{ query }} yet. {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a
+                    Comment.</h6></li>
                 {% endif %}
-               
+                {% endif %}
                 {% if session.user %}
                 <li>
                     <div class="card-panel make-comment-card">
                         <div class="row">
-                           
-                                <form method="POST" action="">
+
+                            <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
                                     <input name="comment" id="comment" minlength="3" type="text">
                                     <label for="comment"><i class="fas fa-search search-label"></i> Make a
@@ -64,7 +67,7 @@
                     </div>
                 </li>
                 {% endif %}
-                
+
             </ul>
         </div>
     </li>
@@ -72,7 +75,11 @@
 </ul>
 
 {% else %}
-<h4 class="red-text text-darken-4 center-align">There are no quotes for this theme. {% if session.user %}Click <a href="{{ url_for('add_quote') }}"> here </a>to add a quote.{% else %} <a href="#modal2" class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a quote.</h4>
+<br>
+<h4 class="red-text text-darken-4 center-align">There are no quotes about {{ theme_name }} yet.
+    {% if session.user %}Click <a href="{{ url_for('add_quote') }}"> here </a>to add a quote.{% else %} <a
+        href="#modal2" class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
+    quote.</h4>
 {% endif %}
 {% endif %}
 

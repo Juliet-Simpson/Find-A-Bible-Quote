@@ -113,52 +113,60 @@ def add_quote():
         new_theme = request.form.get("new_theme", None)
         if new_theme:
             mongo.db.themes.insert_one({"theme": new_theme})
-            theme = new_theme or request.form.get("theme")
-            quote = {
-                "theme": theme,
-                "book": request.form.get("book").capitalize(),
-                "chapter": request.form.get("chapter"),
-                "start_verse": request.form.get("start_verse"),
-                "end_verse": request.form.get("end_verse"),
-                "text": request.form.get("text").capitalize(),
-                "added_by": session["user"]
-            }
-            mongo.db.quotes.insert_one(quote)
-            flash("Quote Successfully Added")
-            # return render_template("add_quote.html", themes=themes)
-            return my_quotes()
+        theme = new_theme or request.form.get("theme")
+        quote = {
+            "theme": theme,
+            "book": request.form.get("book").capitalize(),
+            "chapter": request.form.get("chapter"),
+            "start_verse": request.form.get("start_verse"),
+            "end_verse": request.form.get("end_verse"),
+            "text": request.form.get("text").capitalize(),
+            "added_by": session["user"]
+        }
+        mongo.db.quotes.insert_one(quote)
+        flash("Quote Successfully Added")
+        # return render_template("add_quote.html", themes=themes)
+        return my_quotes()
 
     return render_template("add_quote.html", themes=themes)
 
 
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
 def edit_quote(quote_id):
+    quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     themes = mongo.db.themes.find().sort("theme", 1)
+    # Commented out code is not working
+    # old_theme = mongo.db.themes.find_one({"quote_id": str(quote_id)})
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None)
         if new_theme:
             mongo.db.themes.insert_one({"theme": new_theme})
-            theme = new_theme or request.form.get("theme")
-            submit = {
-                "theme": theme,
-                "book": request.form.get("book").capitalize(),
-                "chapter": request.form.get("chapter"),
-                "start_verse": request.form.get("start_verse"),
-                "end_verse": request.form.get("end_verse"),
-                "text": request.form.get("text").capitalize(),
-                "added_by": session["user"]
-            }
-            mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
-            flash("Quote Successfully Updated")
-            return my_quotes()
+
+        # Check if there are any more quotes with the same theme
+        # as the theme that has been changed.  GET OLD THEME  If not, delete 
+        # the theme from the themes collection.
+        # old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
+        # if len(old_theme_quotes) == 0:
+        #     mongo.db.themes.remove({"theme": old_theme})
+
+        theme = new_theme or request.form.get("theme")
+        submit = {
+            "theme": theme,
+            "book": request.form.get("book").capitalize(),
+            "chapter": request.form.get("chapter"),
+            "start_verse": request.form.get("start_verse"),
+            "end_verse": request.form.get("end_verse"),
+            "text": request.form.get("text").capitalize(),
+            "added_by": session["user"]
+        }
+
+        mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
+        flash("Quote Successfully Updated")
+        return my_quotes()
+
+            
         
-    quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     return render_template("edit_quote.html", quote=quote, themes=themes)
-
-
-@app.route("/add_theme")
-def add_theme():
-    return
 
 
 # # SHOWS NONE OF THE COMMENTS (FILTERING ATTEMPTED)
@@ -180,7 +188,7 @@ def add_theme():
 def my_quotes():
     my_quotes = list(mongo.db.quotes.find({
         "added_by": session["user"]}))
-        
+
     quote_comments = list(mongo.db.comments.find())
 
     return render_template("my_quotes.html", my_quotes=my_quotes,

@@ -21,6 +21,7 @@ Defensive.. alert.. are you sure you want to add this theme.. please check spell
 
 6. Dropdown number pickers for chapter and verse
 Dropdown select for book
+PATTERN pattern="[1-150]{1,3}"
 
 
 11. MOBILE LAYOUT.. logo.. edit and delete quotes

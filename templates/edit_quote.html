@@ -12,8 +12,8 @@
                     {% for _theme in themes %}
                         {% if _theme.theme == quote.theme %}
                             <option value="{{ _theme.theme }}" selected>{{ _theme.theme }}</option>
-                        {% else %}
-                        <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
+                            {% else %}
+                            <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                         {% endif %}
                     {% endfor %}
                 </select>

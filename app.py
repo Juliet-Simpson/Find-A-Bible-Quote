@@ -52,7 +52,7 @@ def search():
         all_comments =all_comments)
 
 
-# this doesn't. Comment filtering attempted
+# this doesn't work. Comment filtering attempted
 # @app.route("/browse_themes/<theme_name>")
 # def browse_themes(theme_name):
 #     theme_quotes = list(mongo.db.quotes.find({
@@ -182,7 +182,7 @@ def edit_quote(quote_id):
 
         # Check if there are any more quotes with the same theme
         # as the theme that has been changed.  GET OLD THEME  If not, delete 
-        # the theme from the themes collection.
+        # the old theme from the themes collection.
 
         # old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
         # if len(old_theme_quotes) == 0:
@@ -221,11 +221,14 @@ def edit_quote(quote_id):
 #     return render_template("my_quotes.html", my_quotes=my_quotes,
 #             quote_comments=quote_comments)
 
+
 # SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
 @app.route("/my_quotes")
 def my_quotes():
     my_quotes = list(mongo.db.quotes.find({
         "added_by": session["user"]}))
+    for quote in my_quotes:
+        quote["id"] = str(quote["_id"])
 
     all_comments = list(mongo.db.comments.find())
 

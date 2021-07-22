@@ -12,7 +12,7 @@ ALSO after COMMNENTING in comment view, rerender current page
 
 4. HEEELP HOW TO FILTER COMMENTS I"M RUNNING OUT OF TIME!!!!
 
-5. ADD A NEW THEME OPTION!! Javascript?? VALIDATION IN JS
+5. ADD A NEW THEME OPTION VALIDATION IN JS
 
 7. EDIT QUOTE CHECK FOR EMPTY THEME
 
@@ -45,6 +45,8 @@ PREPOPULATE DATABASE
 
 SCREENREADER INFO
 
+BLOCKSCRIPTS
+
 
 FEATURES TO ADD.. 
 Values in add a quote API
@@ -63,6 +65,8 @@ Change order of elements on my quotes card on small screens
 Overide Materialize logo
 
 Use javascript to show or hide new theme input on 
+
+Needed modal code twice on my_quotes!!
 
 
  

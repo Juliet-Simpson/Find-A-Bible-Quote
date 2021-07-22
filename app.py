@@ -186,7 +186,6 @@ def edit_quote(quote_id):
     return render_template("edit_quote.html", quote=quote, themes=themes)
 
 
-# SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
 @app.route("/my_quotes")
 def my_quotes():
     my_quotes = list(mongo.db.quotes.find({
@@ -230,7 +229,28 @@ def delete_quote(quote_id, delete_theme):
 
 @app.route("/my_comments")
 def my_comments():
-    return render_template("my_comments.html")
+    my_comments = list(mongo.db.comments.find({
+        "comment_by": session["user"]}))
+
+    all_quotes = list(mongo.db.quotes.find())
+    for quote in all_quotes:
+        quote["id"] = str(quote["_id"])
+
+    return render_template("my_comments.html", my_comments=my_comments, all_quotes=all_quotes)
+
+
+@app.route("/edit_comment/<comment_id>", methods=["GET", "POST"])
+def edit_comment():
+
+    return redirect(url_for("my_comments"))
+
+
+@app.route("/delete_comment/<comment_id>")
+def delete_comment():
+    mongo.db.comments.remove({"_id": ObjectId(quote_id)})
+    flash("Comment Successfully Deleted")
+
+    return redirect(url_for("my_comments"))
 
 
 if __name__ == "__main__":

@@ -62,6 +62,11 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     padding-bottom: 20px;
 }
 
+/* Add Quote */
+.theme-field{
+    margin-bottom: 0;
+}
+
 /* My quotes page */
 
 .collapsible-header{
@@ -126,8 +131,7 @@ h3{
     text-align: center !important;
 }
 
-/* Add Quote */
-
-.theme-field{
-    margin-bottom: 0;
+/* My Comments Page */
+.comments-btns{
+    text-align: center !important;
 }

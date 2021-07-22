@@ -2,56 +2,31 @@
 {% block content %}
 <h4 class="center">This page displays the quotes on which you have commented.  Expand each quote to see its comments.  You can edit or delete your own comments here.</h4>
 
-<!-- NEW IDEA -->
-{% if my_quotes|length > 0 %}
+{% if my_comments|length > 0 %}
 
 <ul class="collapsible">
-    {% for quote in my_quotes %}
     <li>
+        <!-- Juliet's junk code -->
+        {% for quote in all_quotes %}
+        {% if quote.id in my_comments|map(attribute="quote_id") %}
+        {% for comment in my_comments %}
+        {% if quote.id == comment.quote_id %}
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">
-                <!-- Row hidden on small screens to render different format -->
-                <div class="row big-info">
-                    <div class="col s4">
+                <div class="row">
+                    <div class="col s5 m4">
                         <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
-                    <div class="col s4">
-                        <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
-                    </div>
-                    <div class="col s4 btn-col">
-                        <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
-                                class="fas fa-pencil-alt"></i></a>
-                        <a href="#modal1{{quote._id}}" class="btn-small modal-trigger"><i
-                                class="far fa-trash-alt"></i></a>
+                    <div class="col s7 m8">
+                        <h6 class="justify-left theme-small">Theme: <strong>{{ quote.theme }}.</strong></h6>
                     </div>
                 </div>
-                <!-- Repeated row code with changed format only displaying on small screens -->
-                <div class="row small-info">
-                    <div class="col s6">
-                        <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
-                            {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
-                    </div>
-                    <div class="col s6 btn-col">
-                        <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
-                                class="fas fa-pencil-alt"></i></a>
-                        <a href="#modal2{{quote._id}}" class="btn-small modal-trigger"><i
-                                class="far fa-trash-alt"></i></a>
-                    </div>
-                    <div class="row">
-                    <div class="col s12">
-                        <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
-                    </div>
-                </div>
-                </div>
-                <!-- End repeated code -->
-                <!-- Quote text -->
                 <div class="row">
                     <div class="col s12">
                         <h5>"{{quote.text}}"</h5>
                     </div>
                 </div>
-                <!-- End Quote -->
                 <div class="row">
                     <div class="col s12 btn-col">
                         <i class="fas fa-caret-down"></i>Comments
@@ -59,12 +34,17 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
             <ul>
-               
-                {% if quote.id in all_comments|map(attribute="quote_id") %}
-                {% for comment in all_comments %}
+               <!-- Michaels mapping that worked in my_quotes -->
+                {% if quote.id in my_comments|map(attribute="quote_id") %}
+                {% for comment in my_comments %}
                 {% if comment.quote_id == quote.id %}
                 <li>
                     <div class="card-panel">
@@ -74,14 +54,16 @@
                         <div class="btn-col">
                             <strong>By: </strong>{{ comment.comment_by }}
                         </div>
+                        <div class="col s12 comment-btns">
+                            <a href="#modal2{{comment_id }}" class="btn-small"><i
+                                class="fas fa-pencil-alt"></i></a>
+                            <a href="#modal{{comment._id}}" class="btn-small modal-trigger"><i
+                                    class="far fa-trash-alt"></i></a>
+                        </div>
                     </div>
                 </li>
                 {% endif %}
                 {% endfor %}
-                {% else %}
-                <li>
-                    <h6>There are no comments about this quote yet. </h6>
-                </li>
                 {% endif %}
                 <li>
                     <div class="card-panel make-comment-card">
@@ -89,7 +71,7 @@
                             <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
                                     <input name="comment" id="comment" minlength="3" type="text">
-                                    <label for="comment"><i class="fas fa-search search-label"></i> Make a
+                                    <label for="comment"><i class="far fa-comments search-label"></i> Make a
                                         comment</label>
                                 </div>
                             </form>
@@ -102,40 +84,43 @@
         <div id="modal1{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>
-                <h5>Are you sure that you want to delete this quote?</h5>
-                <p>(Comments will also be deleted).</p>
+                <h5>Are you sure that you want to delete this comment?</h5>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
                     Cancel<i class="far fa-times-circle right"></i></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
+                <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
                     class="modal-close btn red text-shadow">
                     Delete<i class="fas fa-times-circle right"></i></a>
             </div>
         </div>
         <!-- End modal -->
-        <!--Confirm delete modal-->
+        <!--Edit comment modal-->
         <div id="modal2{{quote._id}}" class="modal">
             <div class="modal-content">
-                <h3>Confirm Delete</h3>
-                <h5>Are you sure that you want to delete this quote?</h5>
-                <p>(Comments will also be deleted).</p>
+                <div class="card-panel make-comment-card">
+                    <div class="row">
+                        <form method="POST" action="{{ url_for('edit_comment', comment_id=comment._id) }}"></form>
+                            <div class="input-field">
+                                <input name="comment" id="comment" minlength="3" type="text" value="{{ comment.comment }}">
+                                <label for="comment"><i class="far fa-comments search-label"></i> Edit
+                                    comment</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
-                    class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+            <div class="modal-footer center-align">
+                <button type="submit" 
+                    class="modal-close btn blue"> Edit<i class="fas fa-pencil-alt right"></i>
+                   </button>
             </div>
         </div>
         <!-- End modal -->
     </li>
-    {% endfor %}
 </ul>
 {% else %}
-<h4 class="red-text text-darken-4 center-align">You have not added any quotes yet. Click <a
-        href="{{ url_for('add_quote') }}"> here </a>to add a quote.</h4>
+<h4 class="red-text text-darken-4 center-align">You have not commented on any quotes yet.</h4>
 {% endif %}
 
 {% endblock %}

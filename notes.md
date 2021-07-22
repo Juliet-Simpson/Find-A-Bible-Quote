@@ -72,6 +72,10 @@ Use javascript to show or hide new theme input on
 
 Needed modal code twice on my_quotes!!
 
+Move endif statement inside closing h6 and li tags in comments collapsible body on browse and search results pages.  Corrects formatting.
+
+Redirect url instead of calling function in views for add and edit quote and comment, prevents form resubmission on refresh page!
+
 
  
 

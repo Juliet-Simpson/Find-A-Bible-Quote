@@ -70,17 +70,20 @@ def login():
                         session["user"] = request.form.get("username").lower()
                         flash("Welcome {}".format(
                             request.form.get("username")))
+                         # FIX HERE, just want to return close modal
                         return render_template("base.html")
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
+                # FIX HERE, just want to return close modal
                 return render_template("base.html")
 
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
+            # FIX HERE
             return render_template("base.html")
-
+    # FIX HERE return what?
     return render_template("base.html")
 
 
@@ -91,6 +94,7 @@ def register():
         confirm_password = request.form.get("confirm-password")
         if password != confirm_password:
             flash("Passwords do not match.")
+             # FIX HERE
             return render_template("base.html")
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -108,8 +112,9 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        # FIX HERE
         return render_template("base.html")
-# HERE
+    # FIX HERE
     return render_template("base.html")
 
 
@@ -141,8 +146,7 @@ def add_quote():
         }
         mongo.db.quotes.insert_one(quote)
         flash("Quote Successfully Added")
-        # return render_template("add_quote.html", themes=themes)
-        return my_quotes()
+        return redirect(url_for("my_quotes"))
 
     return render_template("add_quote.html", themes=themes)
 

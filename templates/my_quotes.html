@@ -2,7 +2,6 @@
 {% block content %}
 <h3 class="center">My Quotes</h3>
 
-<!-- NEW IDEA -->
 {% if my_quotes|length > 0 %}
 
 <ul class="collapsible">
@@ -62,7 +61,6 @@
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
             <ul>
-               
                 {% if quote.id in all_comments|map(attribute="quote_id") %}
                 {% for comment in all_comments %}
                 {% if comment.quote_id == quote.id %}

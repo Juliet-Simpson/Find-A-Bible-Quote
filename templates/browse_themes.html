@@ -51,9 +51,8 @@
                 {% else %}
 
                 <li><h6>There are no comments about this quote yet. 
-                {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a Comment.
+                {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a Comment.{% endif %}
                 </h6></li>
-                {% endif %}
                 {% endif %}
                 {% if session.user %}
                 <li>

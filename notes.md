@@ -47,6 +47,10 @@ SCREENREADER INFO
 
 BLOCKSCRIPTS
 
+CRUD testing
+
+Custom 404?
+
 
 FEATURES TO ADD.. 
 Values in add a quote API

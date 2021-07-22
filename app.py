@@ -24,48 +24,21 @@ def render_homepage():
     themes = list(mongo.db.themes.find().sort("theme", 1))
     return render_template("homepage.html", themes=themes)
 
-# This half works doesn't work if search for a non existent theme (Filtering attempted)
-# @app.route("/search", methods=["GET", "POST"])
-# def search():
-    # query = request.form.get("query")
-    # query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
-# # Trying to find comments relevant to quotes that have been found. FINDS COMMENTS FOR THE THEME! It literally isn't working. 
-    # for quote in query_quotes:
-    #     quote_id = str(quote["_id"])
-    #     theme_quote_comments = list(mongo.db.comments.find({
-    #         "quote_id": quote_id}))
-
-    # return render_template("search_results.html",
-    # query_quotes=query_quotes, query=query,
-    # theme_quote_comments=theme_quote_comments)
 
 # NO FILTERING
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
-    # Just find all comments and try and filter them in jinja with map
+
+    for quote in query_quotes:
+        quote["id"] = str(quote["_id"])
+        
     all_comments = list(mongo.db.comments.find())
 
     return render_template("search_results.html",
         query_quotes =query_quotes, query=query,
         all_comments =all_comments)
-
-
-# this doesn't work. Comment filtering attempted
-# @app.route("/browse_themes/<theme_name>")
-# def browse_themes(theme_name):
-#     theme_quotes = list(mongo.db.quotes.find({
-#         "theme": theme_name}))
-        
-# # Got the whole rendering comments bit to do here also
-#     for quote in theme_quotes:
-#         quote_id = str(quote["_id"])
-#         browse_quote_comments = list(mongo.db.comments.find({
-#             "quote_id": quote_id}))
-    
-#     return render_template("browse_themes.html",
-#         theme_quotes=theme_quotes, theme_name=theme_name, browse_quote_comments=browse_quote_comments)
 
 
 @app.route("/browse_themes/<theme_name>")

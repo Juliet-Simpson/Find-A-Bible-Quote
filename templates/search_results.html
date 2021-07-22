@@ -33,8 +33,9 @@
         </div>
         <div class="collapsible-body comment-body">
             <ul>
-                {% if all_comments|length > 0 %}
+                {% if quote.id in all_comments|map(attribute="quote_id") %}
                 {% for comment in all_comments %}
+                {% if comment.quote_id == quote.id %}
                 <li>
                     <div class="card-panel">
                         <div>
@@ -45,6 +46,7 @@
                         </div>
                     </div>
                 </li>
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 <li><h6>There are no comments about {{ query }} yet. {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a
@@ -55,7 +57,6 @@
                 <li>
                     <div class="card-panel make-comment-card">
                         <div class="row">
-
                             <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
                                     <input name="comment" id="comment" minlength="3" type="text">
@@ -67,7 +68,6 @@
                     </div>
                 </li>
                 {% endif %}
-
             </ul>
         </div>
     </li>

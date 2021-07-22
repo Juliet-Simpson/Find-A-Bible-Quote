@@ -72,7 +72,12 @@ def search():
 def browse_themes(theme_name):
     theme_quotes = list(mongo.db.quotes.find({
         "theme": theme_name}))
+
+    for quote in theme_quotes:
+        quote["id"] = str(quote["_id"])
+
     all_comments = list(mongo.db.comments.find())
+
     return render_template("browse_themes.html",
         theme_quotes=theme_quotes, theme_name=theme_name,
         all_comments=all_comments)
@@ -140,7 +145,7 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
-# HERE
+# HERE, modal reload current page, logout can happen from anywhere, may still want to see search results...
     return redirect(url_for("render_homepage"))
 
 
@@ -173,8 +178,7 @@ def add_quote():
 def edit_quote(quote_id):
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     themes = mongo.db.themes.find().sort("theme", 1)
-    # Commented out code is not working
-    # old_theme = mongo.db.themes.find_one({"quote_id": str(quote_id)})
+    old_theme = quote["theme"]
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None)
         if new_theme:
@@ -183,10 +187,9 @@ def edit_quote(quote_id):
         # Check if there are any more quotes with the same theme
         # as the theme that has been changed.  GET OLD THEME  If not, delete 
         # the old theme from the themes collection.
-
-        # old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
-        # if len(old_theme_quotes) == 0:
-        #     mongo.db.themes.remove({"theme": old_theme})
+            old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
+            if len(old_theme_quotes) == 0:
+                mongo.db.themes.remove({"theme": old_theme})
 
         theme = new_theme or request.form.get("theme")
         submit = {
@@ -201,25 +204,9 @@ def edit_quote(quote_id):
 
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
-        return my_quotes()
+        return redirect(url_for("my_quotes"))
  
     return render_template("edit_quote.html", quote=quote, themes=themes)
-
-
-# # SHOWS NONE OF THE COMMENTS (FILTERING ATTEMPTED)
-
-# @app.route("/my_quotes")
-# def my_quotes():
-#     my_quotes = list(mongo.db.quotes.find({
-#         "added_by": session["user"]}))
-
-#     for quote in my_quotes:
-#         quote_id = str(quote["_id"])
-#         quote_comments = list(mongo.db.comments.find({
-#             "quote_id": quote_id}))
-    
-#     return render_template("my_quotes.html", my_quotes=my_quotes,
-#             quote_comments=quote_comments)
 
 
 # SHOWS ALL THE COMMENTS NO FILTERING(NO ATTEMPT TO)
@@ -246,7 +233,8 @@ def comment(quote_id):
         }
         mongo.db.comments.insert_one(comment)
         flash("Thanks for commenting")
-    return my_quotes()
+    return redirect(url_for("my_quotes"))
+    # Want to redirect url to current page.  Make sure comment loads though
 
 
 @app.route("/delete_quote/<quote_id>, <delete_theme>")

@@ -71,7 +71,7 @@ Needed modal code twice on my_quotes!!
 
  
 
-{% if quote.id in comments|map(attribute="quote_id") %}
+{% if quote.id in all_comments|map(attribute="quote_id") %}
 {% if comment.quote_id == quote.id %}
 ....code for rendering comment
 {% endif %}

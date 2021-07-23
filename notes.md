@@ -86,3 +86,7 @@ Redirect url instead of calling function in views for add and edit quote and com
 {% else %}
 <li>There are no comments about this quote yet. </li>
 {% endif %}
+
+New way to do quote comments...???
+
+when a quote is created also create a comments field which is an empty list.. IS THIS POSSIBLE

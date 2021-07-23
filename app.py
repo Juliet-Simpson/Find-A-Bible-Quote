@@ -200,7 +200,7 @@ def my_quotes():
 
 
 @app.route("/comment/<quote_id>,", methods=['GET', 'POST'])
-def comment(quote_id):   
+def comment(quote_id):
     if request.method == "POST":
         comment = {
             "comment": request.form.get("comment").capitalize(),
@@ -225,22 +225,73 @@ def delete_quote(quote_id, delete_theme):
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
     return my_quotes()
-    
+
 
 @app.route("/my_comments")
 def my_comments():
-    my_comments = list(mongo.db.comments.find({
-        "comment_by": session["user"]}))
 
     all_quotes = list(mongo.db.quotes.find())
-    for quote in all_quotes:
-        quote["id"] = str(quote["_id"])
+    my_comments = list(mongo.db.comments.find({
+        "comment_by": session["user"]}))
+        
+    commented_quotes = []
+    commented_quote_id = comment['quote_id']
 
-    return render_template("my_comments.html", my_comments=my_comments, all_quotes=all_quotes)
+    for (quote, comment) in zip(all_quotes, my_comments):
+
+        commented_quote = list(mongo.db.quotes.find({
+            "_id": ObjectId(commented_quote_id)})
+
+        commented_quotes.append(commented_quote)
+
+    return render_template("my_comments.html",
+        commented_quotes=commented_quotes)
+
+    # when this is sorted remember to pass these variables through when returning in edit comment and delete comment aswell
+    
 
 
-@app.route("/edit_comment/<comment_id>", methods=["GET", "POST"])
-def edit_comment():
+
+
+# @app.route("/my_comments")
+# def my_comments():
+#     my_comments = list(mongo.db.comments.find({
+#         "comment_by": session["user"]}))
+#     # same code needed inside for for rendering quotes
+#     for comment in my_comments:
+#         all_quotes = list(mongo.db.quotes.find())
+#         for quote in all_quotes:
+#             quote["id"] = str(quote["_id"])
+#     # and outside for rendering comments _I think 
+#     all_quotes = list(mongo.db.quotes.find())
+#     for quote in all_quotes:
+#         quote["id"] = str(quote["_id"])
+
+#     return render_template("my_comments.html", my_comments=my_comments, all_quotes=all_quotes)
+
+# for reference because this works
+# @app.route("/my_quotes")
+# def my_quotes():
+#     my_quotes = list(mongo.db.quotes.find({
+#         "added_by": session["user"]}))
+#     for quote in my_quotes:
+#         quote["id"] = str(quote["_id"])
+
+#     all_comments = list(mongo.db.comments.find())
+
+#     return render_template("my_quotes.html", my_quotes=my_quotes,
+#         all_comments=all_comments)
+
+
+@app.route("/edit_comment/<quote_id>, <comment_id>", methods=["GET", "POST"])
+def edit_comment(quote_id, comment_id):
+    if request.method == "POST":
+        submit = {
+            "comment": request.form.get("comment").capitalize(),
+            "quote_id": quote_id,
+            "comment_by": session["user"]
+        }
+        mongo.db.comments.update({"_id": ObjectId(comment_id)}, submit)
 
     return redirect(url_for("my_comments"))
 

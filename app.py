@@ -235,47 +235,52 @@ def my_comments():
         "comment_by": session["user"]}))
         
     commented_quotes = []
-    commented_quote_id = comment['quote_id']
 
-    for (quote, comment) in zip(all_quotes, my_comments):
+    for quote in all_quotes:
+        d = {
+            "quote": quote,
+            "comments": []
+        }
 
-        commented_quote = list(mongo.db.quotes.find({
-            "_id": ObjectId(commented_quote_id)})
+        for comment in my_comments:
+            if comment['quote_id'] == str(quote['_id']):
+                d['comments'].append(comment)
 
-        commented_quotes.append(commented_quote)
+        if len(d['comments']) > 0:
+            commented_quotes.append(d)
+
+    # Trying to target correct comments 
+    all_comments = list(mongo.db.comments.find())
+
+    all_comments_for_quote = []
+    for quote in all_quotes:
+        e = {
+            "quote": quote,
+            "comments": []
+        }
+
+        for comment in all_comments:
+            if comment['quote_id'] == str(quote['_id']):
+                e['comments'].append(comment)
+
+        if len(e['comments']) > 0:
+            all_comments_for_quote.append(e)
 
     return render_template("my_comments.html",
-        commented_quotes=commented_quotes)
+        commented_quotes=commented_quotes,
+        all_comments_for_quote=all_comments_for_quote)
 
     # when this is sorted remember to pass these variables through when returning in edit comment and delete comment aswell
     
 
-
-
-
-# @app.route("/my_comments")
-# def my_comments():
-#     my_comments = list(mongo.db.comments.find({
-#         "comment_by": session["user"]}))
-#     # same code needed inside for for rendering quotes
-#     for comment in my_comments:
-#         all_quotes = list(mongo.db.quotes.find())
-#         for quote in all_quotes:
-#             quote["id"] = str(quote["_id"])
-#     # and outside for rendering comments _I think 
-#     all_quotes = list(mongo.db.quotes.find())
-#     for quote in all_quotes:
-#         quote["id"] = str(quote["_id"])
-
-#     return render_template("my_comments.html", my_comments=my_comments, all_quotes=all_quotes)
 
 # for reference because this works
 # @app.route("/my_quotes")
 # def my_quotes():
 #     my_quotes = list(mongo.db.quotes.find({
 #         "added_by": session["user"]}))
-#     for quote in my_quotes:
-#         quote["id"] = str(quote["_id"])
+    # for quote in my_quotes:
+    #     quote["id"] = str(quote["_id"])
 
 #     all_comments = list(mongo.db.comments.find())
 
@@ -302,6 +307,21 @@ def delete_comment():
     flash("Comment Successfully Deleted")
 
     return redirect(url_for("my_comments"))
+
+
+@app.route("/admin")
+def admin():
+    all_quotes = list(mongo.db.quotes.find())
+    all_comments = list(mongo.db.comments.find())
+
+    for quote in all_quotes:
+        quote["id"] = str(quote["_id"])
+
+    return render_template("admin.html",
+    all_quotes=all_quotes, all_comments=all_comments)
+
+
+
 
 
 if __name__ == "__main__":

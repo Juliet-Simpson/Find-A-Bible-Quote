@@ -3,6 +3,14 @@
 body{
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
+    font-size: 110%;
+    background-image: url(../images/sunrise2.png);
+    background-position: left center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
 .brand-logo i{
     margin-right:4px !important;
@@ -10,10 +18,14 @@ body{
 
 nav .brand-logo {
     left: auto;
-    -webkit-transform: none;
+    -webkit-transform-origin-x: none;
     margin-left: 6px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
+    max-height: 64px;
+}
+.login-status{
+    margin:5px 0 0 5px;
 }
 
 .modal{
@@ -26,6 +38,19 @@ nav .brand-logo {
 
 .modal-close{
     margin-right:50px;
+}
+
+h3{
+    margin:20px 0;
+}
+h4{
+    margin:15px 0;
+}
+h5{
+    margin: 12px 0;
+}
+h6{
+    margin:10px 0;
 }
 
 /* Search */
@@ -54,12 +79,31 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     padding: 15px 0 !important;
 }
 
+.comment-card{
+    padding:1rem;
+}
+
 .make-comment-card{
     padding-bottom: 0;
 }
 
 .comment-body li{
     padding-bottom: 20px;
+}
+
+/* .input-field input{
+    word-break: normal;
+} */
+
+.make-comment-card label{
+    color: darkslategray;
+    padding-bottom: 1rem;
+}
+
+.make-comment-card textarea{
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 /* Add Quote */
@@ -90,6 +134,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 .btn-col{
     text-align: right !important;
+    margin-bottom: 5px;
 }
 
 .collapsible-body{

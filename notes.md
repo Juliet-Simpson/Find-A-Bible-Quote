@@ -20,9 +20,10 @@ ALSO after COMMNENTING in comment view, rerender current page
 PATTERN pattern="[1-150]{1,3}"
 
 
-12.  refreshing page adds quote again??  Must empty the field.. javascript
-
 13. reusing ids for comment forms as well.
+
+14.  More than 1 line comments
+
 
 CODE FOR LATER
 
@@ -54,6 +55,8 @@ Custom 404?
 
 FEATURES TO ADD.. 
 Values in add a quote API
+
+more javascript for collapsibles.. keep open after adding or editing a comment, autoscroll to view when opened instead 
 
 MAJOR ISSUES 
 

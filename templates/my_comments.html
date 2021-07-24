@@ -5,27 +5,27 @@
 {% if commented_quotes | length > 0 %}
 
 <ul class="collapsible">
-    {% for quote in commented_quotes %}
+    {% for item in commented_quotes %}
     <li>
         <div class="collapsible-header">
             <div class="card-panel collapsible-card">
                 <div class="row">
                     <div class="col s5 m4">
-                        <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
-                            {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
+                        <h6 class="justify-left">{{ item.quote.book }} {{ item.quote.chapter }} :
+                            {{ item.quote.start_verse }}{% if item.quote.end_verse%}-{{item.quote.end_verse}}{% endif %}</h6>
                     </div>
                     <div class="col s7 m8">
-                        <h6 class="justify-left theme-small">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                        <h6 class="justify-left theme-small">Theme: <strong>{{ item.quote.theme }}.</strong></h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <h5>"{{quote.text}}"</h5>
+                        <h5>"{{item.quote.text}}"</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s6">
-                        <strong>Added by:</strong> {{quote.added_by}}
+                        <strong>Added by:</strong> {{item.quote.added_by}}
                     </div>
                     <div class="col s6 btn-col">
                         <i class="fas fa-caret-down"></i>Comments
@@ -33,12 +33,65 @@
                 </div>
             </div>
         </div>
-       
+         <!-- Comments section -->
+         <div class="collapsible-body comment-body">
+            <ul>
+                {% for thing in all_comments_for_quote %}
+                {% for comment in thing.comments %}
+                    <li>
+                        <div class="card-panel">
+                            <div class="row btn-col">
+                                <div class="col s12 btn-col">
+                                    <a href="#modal2{{comment._id }}" class="btn-small"><i
+                                        class="fas fa-pencil-alt modal-trigger"></i></a>
+                                    <a href="#modal1{{comment._id}}" class="btn-small modal-trigger"><i
+                                            class="far fa-trash-alt modal-trigger"></i></a>
+                                </div>
+                            </div>
+                            <div>
+                                {{ comment.comment }}
+                            </div>
+                            <div class="btn-col">
+                                <strong>By: </strong>{{ comment.comment_by }}
+                            </div>
+                            
+                        </div>
+                    </li>
+                {% endfor %}
+                {% endfor %}
+              
+                <!-- {% if item.id in all_comments|map(attribute="quote_id") %}
+                {% for comment in all_comments %}
+                {% if comment.quote_id == item.id %}
+                <li>
+                    <div class="card-panel">
+                        <div class="row btn-col">
+                            <div class="col s12 btn-col">
+                                <a href="#modal2{{comment_id }}" class="btn-small"><i
+                                    class="fas fa-pencil-alt modal-trigger"></i></a>
+                                <a href="#modal1{{comment_id}}" class="btn-small modal-trigger"><i
+                                        class="far fa-trash-alt modal-trigger"></i></a>
+                            </div>
+                        </div>
+                        <div>
+                            {{ comment.comment }}
+                        </div>
+                        <div class="btn-col">
+                            <strong>By: </strong>{{ comment.comment_by }}
+                        </div>
+                        
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endif %} -->
+            </ul>
+        </div>
     </li>
     {% endfor %}
 </ul>
 {% else %}
 <h4 class="red-text text-darken-4 center-align">You have not commented on any quotes yet.</h4>
 {% endif %}
-
+<br>
 {% endblock %}

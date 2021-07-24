@@ -19,20 +19,24 @@
     <nav class="nav-extended">
       <div class="nav-wrapper">
         <!-- Would like icon to be able to be used instead of t in Quotes -->
-        <a href="{{ url_for('render_homepage') }}" class="brand-logo">BibleQuo<i class="fas fa-cross fa-lg"></i>tes 4U</p></a>
+        <a href="{{ url_for('render_homepage') }}" class="brand-logo">BibleQuo<i class="fas fa-cross fa-lg"></i>tes 4U
+          </p></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 
         <ul class="right hide-on-med-and-down">
           <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
           {% if session.user %}
-        <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
-        <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
-        <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-      {% else %}
-        <li><a class="modal-trigger" href="#modal2">Login</a></li>
-        <li><a class="modal-trigger" href="#modal1">Register</a></li>
-      {% endif %}
+          <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
+          <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
+          <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
+            {% if session.user|lower == "admin"|lower %}
+            <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
+            {% endif %}
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+          <li><a class="modal-trigger" href="#modal2">Login</a></li>
+          <li><a class="modal-trigger" href="#modal1">Register</a></li>
+          {% endif %}
         </ul><br>
       </div>
     </nav>
@@ -40,16 +44,19 @@
     <ul class="sidenav" id="mobile-demo">
       <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
       {% if session.user %}
-        <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
-        <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
-        <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
+      <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
+      <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
+        {% if session.user|lower == "admin"|lower %}
+        <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
+        {% endif %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}
       <li><a class="modal-trigger" href="#modal2">Login</a></li>
       <li><a class="modal-trigger" href="#modal1">Register</a></li>
       {% endif %}
     </ul>
-    
+
     <!-- Register Modal -->
     <div id="modal1" class="modal">
       <div class="modal-content">
@@ -98,63 +105,70 @@
           <a href="#!" class="modal-close waves-effect waves-light btn-small red"><i class="fas fa-times"></i>Cancel</a>
         </div>
       </div>
-      </div>
+    </div>
 
-      <!-- login modal -->
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <h3 class="center-align">Log In</h3>
+    <!-- login modal -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <h3 class="center-align">Log In</h3>
 
-    <div class="row no-bottom-margin">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=next_page) }}">
+        <div class="row no-bottom-margin">
+          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=next_page) }}">
             <div class="card-panel no-bottom-margin">
-                <!-- username -->
-                <div class="row">
-					<div class="input-field col s12">
-						<i class="fas fa-user-cog prefix light-blue-text text-darken-4"></i>
-						<input id="username" name="username" type="text" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-						<label for="username">Username</label>
-					</div>
+              <!-- username -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fas fa-user-cog prefix light-blue-text text-darken-4"></i>
+                  <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  <label for="username">Username</label>
                 </div>
-                <!-- passowrd -->
-                <div class="row">
-                    <div class="input-field col s12">
-						<i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-                        <input id="password" name="password" type="password" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                        <label for="password">Password</label>
-                    </div>
+              </div>
+              <!-- passowrd -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
+                  <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                    pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                  <label for="password">Password</label>
                 </div>
-                <!-- login -->
-                <div class="row">
-                    <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
-                        Log In <i class="fas fa-sign-in-alt"></i>
-                    </button>
-                </div>
+              </div>
+              <!-- login -->
+              <div class="row">
+                <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                  Log In <i class="fas fa-sign-in-alt"></i>
+                </button>
+              </div>
             </div>
-        </form>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-light btn-small red"><i class="fas fa-times"></i>Cancel</a>
+      </div>
     </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-light btn-small red"><i class="fas fa-times"></i>Cancel</a>
-    </div>
-  </div>
-          
+
   </header>
+  <div class="login-status">
+    {% if session.user|lower == "admin"|lower %}
+          Logged in as: <strong>{{session.user}}</strong>
+    {% else %}
+    You are currently not logged in
+    {% endif %}
+  </div>
 
   <section>
     <!-- flash messages -->
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div class="row flashes" id="flash">
-                    <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row flashes" id="flash">
+      <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+    </div>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
-</section>
+  </section>
 
 
   <main class="container">

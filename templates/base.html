@@ -150,7 +150,7 @@
 
   </header>
   <div class="login-status">
-    {% if session.user|lower == "admin"|lower %}
+    {% if session.user|lower %}
           Logged in as: <strong>{{session.user}}</strong>
     {% else %}
     You are currently not logged in

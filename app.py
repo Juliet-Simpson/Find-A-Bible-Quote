@@ -265,8 +265,8 @@ def edit_comment(quote_id, comment_id):
 
 
 @app.route("/delete_comment/<comment_id>")
-def delete_comment():
-    mongo.db.comments.remove({"_id": ObjectId(quote_id)})
+def delete_comment(comment_id):
+    mongo.db.comments.remove({"_id": ObjectId(comment_id)})
     flash("Comment Successfully Deleted")
 
     return redirect(url_for("my_comments"))

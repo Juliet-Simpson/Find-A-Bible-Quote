@@ -92,12 +92,6 @@
 
 
 
-
-
-
-
-
-
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
             <ul>
@@ -111,7 +105,7 @@
                                 <a href="#modal3{{comment._id }}" class="btn-small"><i
                                     class="fas fa-pencil-alt modal-trigger"></i></a>
                                 <a href="#modal4{{comment._id}}" class="btn-small modal-trigger"><i
-                                        class="far fa-trash-alt modal-trigger"></i></a>
+                                        class="far fa-trash-alt"></i></a>
                             </div>
                         
                         <div>
@@ -122,23 +116,9 @@
                         </div>
                     </div>
                 </li>
-                 <!--Confirm delete modal-->
-        <div id="modal4{{quote._id}}" class="modal">
-            <div class="modal-content">
-                <h3>Confirm Delete</h3>
-                <h5>Are you sure that you want to delete this comment?</h5>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
-                <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
-                    class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
-            </div>
-        </div>
-        <!-- End modal -->
+                 
         <!--Edit comment modal-->
-        <div id="modal3{{comment._id}}" class="modal">
+        <!-- <div id="modal3{{comment._id}}" class="modal">
             <div class="modal-content">
                 <div class="card-panel make-comment-card">
                     <div class="row">
@@ -156,6 +136,21 @@
                 <button type="submit" 
                     class="modal-close btn blue"><a> Edit<i class="fas fa-pencil-alt right"></i>
                    </a></button>
+            </div>
+        </div> -->
+        <!-- End modal -->
+        <!--Confirm delete modal-->
+        <div id="modal4{{comment._id}}" class="modal">
+            <div class="modal-content">
+                <h3>Confirm Delete</h3>
+                <h5>Are you sure that you want to delete this comment?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close btn blue text-shadow">
+                    Cancel<i class="far fa-times-circle right"></i></a>
+                <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
+                    class="modal-close btn red text-shadow">
+                    Delete<i class="fas fa-times-circle right"></i></a>
             </div>
         </div>
         <!-- End modal -->

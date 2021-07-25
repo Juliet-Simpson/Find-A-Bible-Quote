@@ -33,28 +33,48 @@
                 </div>
             </div>
         </div>
+
+
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
             <ul>
                 {% for comment in item.comments %}
                     <li>
-                        <div class="card-panel">
+                        <div class="card-panel comment-card">
+                            {% if session.user|lower == comment.comment_by|lower %}
                             <div class="row btn-col">
                                 <div class="col s12 btn-col">
-                                    <a href="#modal2{{comment._id }}" class="btn-small"><i
+                                    <a href="#modal1{{comment._id }}" class="btn-small"><i
                                         class="fas fa-pencil-alt modal-trigger"></i></a>
-                                    <a href="#modal1{{comment._id}}" class="btn-small modal-trigger"><i
-                                            class="far fa-trash-alt modal-trigger"></i></a>
+                                    <a href="#modal2{{comment._id}}" class="btn-small modal-trigger"><i
+                                            class="far fa-trash-alt"></i></a>
                                 </div>
                             </div>
+                            {% endif %}
                             <div>
                                 {{ comment.comment }}
                             </div>
                             <div class="btn-col">
                                 <strong>By: </strong>{{ comment.comment_by }}
                             </div>
-                            
                         </div>
+                        <!--Edit comment modal-->
+        
+        <!-- End modal -->
+        <!--Confirm delete modal-->
+        <div id="modal2{{comment._id}}" class="modal">
+            <div class="modal-content">
+                <h3>Confirm Delete</h3>
+                <h5>Are you sure that you want to delete this comment?</h5>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close btn blue text-shadow">
+                    Cancel<i class="far fa-times-circle right"></i></a>
+                <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
+                    class="modal-close btn red text-shadow">
+                    Delete<i class="fas fa-times-circle right"></i></a>
+            </div>
+        </div>
                     </li>
                 {% endfor %}
             </ul>

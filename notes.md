@@ -52,6 +52,8 @@ CRUD testing
 
 Custom 404?
 
+ADMIN login in readme
+
 
 FEATURES TO ADD.. 
 Values in add a quote API

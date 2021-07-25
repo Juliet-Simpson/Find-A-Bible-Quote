@@ -37,3 +37,6 @@ $(document).ready(function(){
   $(function() {
     $('#flash').delay(2500).fadeOut();
   });
+
+  $('#comment').val();
+  M.textareaAutoResize($('#comment'));

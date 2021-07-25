@@ -98,13 +98,36 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 .make-comment-card label{
     color: darkslategray;
     padding-bottom: 1rem;
+    margin-bottom: 5px;
+}
+.make-comment-card label.active{
+    color: darkslategray;
+    padding-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .make-comment-card textarea{
     border-top: none;
     border-left: none;
     border-right: none;
+    margin-top: 3px;
+    height:fit-content;
 }
+.make-comment-card textarea:focus{
+    outline: none;
+}
+.make-comment-card .input-field{
+    margin-bottom: 3px;
+}
+
+.comment-btns{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* .btn-small{
+    height: 30px;
+} */
 
 /* Add Quote */
 .theme-field{

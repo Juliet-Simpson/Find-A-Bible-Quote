@@ -33,10 +33,11 @@
                 </div>
             </div>
         </div>
-        <!-- Comments section -->
-        <div class="collapsible-body comment-body">
+         <!-- Comments section -->
+         <div class="collapsible-body comment-body">
             <ul>
-                {% for comment in item.comments %}
+                {% for thing in all_comments_for_quote %}
+                {% for comment in thing.comments %}
                     <li>
                         <div class="card-panel">
                             <div class="row btn-col">
@@ -57,9 +58,35 @@
                         </div>
                     </li>
                 {% endfor %}
+                {% endfor %}
+              
+                <!-- {% if item.id in all_comments|map(attribute="quote_id") %}
+                {% for comment in all_comments %}
+                {% if comment.quote_id == item.id %}
+                <li>
+                    <div class="card-panel">
+                        <div class="row btn-col">
+                            <div class="col s12 btn-col">
+                                <a href="#modal2{{comment_id }}" class="btn-small"><i
+                                    class="fas fa-pencil-alt modal-trigger"></i></a>
+                                <a href="#modal1{{comment_id}}" class="btn-small modal-trigger"><i
+                                        class="far fa-trash-alt modal-trigger"></i></a>
+                            </div>
+                        </div>
+                        <div>
+                            {{ comment.comment }}
+                        </div>
+                        <div class="btn-col">
+                            <strong>By: </strong>{{ comment.comment_by }}
+                        </div>
+                        
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endif %} -->
             </ul>
         </div>
-       
     </li>
     {% endfor %}
 </ul>

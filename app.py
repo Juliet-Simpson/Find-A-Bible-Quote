@@ -67,11 +67,11 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome {}".format(
-                            request.form.get("username")))
-                         # FIX HERE, just want to return close modal
-                        return render_template("base.html")
+                    session["user"] = request.form.get("username").lower()
+                    flash("Welcome {}".format(
+                        request.form.get("username")))
+                        # FIX HERE, just want to return close modal
+                    return render_template("base.html")
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -228,8 +228,6 @@ def delete_quote(quote_id, delete_theme):
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
 
-
-
     return my_quotes()
 
 
@@ -254,18 +252,20 @@ def my_comments():
         if len(d['comments']) > 0:
             commented_quotes.append(d)
 
-    return render_template("my_comments.html", commented_quotes=commented_quotes)
+    return render_template("my_comments.html",
+    commented_quotes=commented_quotes)
 
 
 @app.route("/edit_comment/<quote_id>, <comment_id>", methods=["GET", "POST"])
 def edit_comment(quote_id, comment_id):
     if request.method == "POST":
         submit = {
-            "comment": request.form.get("comment").capitalize(),
+            "comment": request.form.get("edit_comment").capitalize(),
             "quote_id": quote_id,
             "comment_by": session["user"]
         }
         mongo.db.comments.update({"_id": ObjectId(comment_id)}, submit)
+        flash("Comment successfully edited")
 
     return redirect(url_for("my_comments"))
 

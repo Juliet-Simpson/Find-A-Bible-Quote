@@ -61,10 +61,12 @@
                         <div class="row">
                             <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
-                                    <input name="comment" id="comment" minlength="3" type="text">
-                                    <label for="comment"><i class="far fa-comments search-label"></i> Make a
-                                        comment</label>
+                                    <i class="far fa-comment search-label prefix"></i>
+                                    <label for="comment"> Make a
+                                        comment</label><br>
+                                    <textarea name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
                                 </div>
+                                <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
                             </form>
                         </div>
                     </div>
@@ -78,7 +80,7 @@
 
 {% else %}
 <br>
-<h4 class="red-text text-darken-4 center-align">There are no quotes about {{ theme_name }} yet.
+<h4 class="red-text text-darken-4 center-align">There are no quotes about {{ query }} yet.
     {% if session.user %}Click <a href="{{ url_for('add_quote') }}"> here </a>to add a quote.{% else %} <a
         href="#modal2" class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
     quote.</h4>

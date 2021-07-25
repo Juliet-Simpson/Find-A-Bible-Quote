@@ -216,6 +216,9 @@ def comment(quote_id):
 @app.route("/delete_quote/<quote_id>, <delete_theme>")
 def delete_quote(quote_id, delete_theme):
     mongo.db.quotes.remove({"_id": ObjectId(quote_id)})
+
+    # Also delete comments from quote
+    mongo.db.comments.remove({"quote_id": str(ObjectId(quote_id))})
     flash("Quote Successfully Deleted")
 
 # Check if there are any more quotes with the same theme
@@ -224,6 +227,9 @@ def delete_quote(quote_id, delete_theme):
     deleted_theme_quotes = list(mongo.db.quotes.find({"theme": delete_theme}))
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
+
+
+
     return my_quotes()
 
 

@@ -44,8 +44,8 @@
                             {% if session.user|lower == comment.comment_by|lower %}
                             <div class="row btn-col">
                                 <div class="col s12 btn-col">
-                                    <a href="#modal1{{comment._id }}" class="btn-small"><i
-                                        class="fas fa-pencil-alt modal-trigger"></i></a>
+                                    <a href="#modal1{{comment._id }}" class="btn-small  modal-trigger"><i
+                                        class="fas fa-pencil-alt"></i></a>
                                     <a href="#modal2{{comment._id}}" class="btn-small modal-trigger"><i
                                             class="far fa-trash-alt"></i></a>
                                 </div>
@@ -58,7 +58,34 @@
                                 <strong>By: </strong>{{ comment.comment_by }}
                             </div>
                         </div>
-                        <!--Edit comment modal-->
+                    
+         <!--Edit comment modal-->
+        <div id="modal3{{comment._id}}" class="modal">
+            <div class="modal-content">
+                <div class="card-panel make-comment-card">
+                    <div class="row">
+                        <form method="POST" action="{{ url_for('edit_comment', quote_id=item.quote._id, comment_id=comment._id) }}"></form>
+                        <div class="input-field">
+                            <i class="far fa-comment search-label prefix"></i>
+                            <label for="comment"> Edit Comment</label><br>
+                            <textarea name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
+                        </div>
+                        <div class="comment-btns col s12">
+                            <a href="#!" class="modal-close btn-small blue">
+                                Cancel<i class="far fa-times-circle right"></i></a>
+                            <button class="btn-small" type="submit">Edit <i
+                                class="fas fa-pencil-alt right"></i></button></div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer center-align">
+                <button type="submit" 
+                    class="modal-close btn blue"><a> Edit<i class="fas fa-pencil-alt right"></i>
+                   </a></button>
+            </div>
+        </div>
         
         <!-- End modal -->
         <!--Confirm delete modal-->
@@ -76,11 +103,28 @@
             </div>
         </div>
                     </li>
+                    
                 {% endfor %}
+                <li>
+                    <div class="card-panel make-comment-card">
+                        <div class="row">
+                            <form method="POST" action="{{ url_for('comment', quote_id=item.quote._id) }}">
+                                <div class="input-field">
+                                    <i class="far fa-comment search-label prefix"></i>
+                                    <label for="comment"> Comment Again</label><br>
+                                    <textarea name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
+                                </div>
+                                <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
        
     </li>
+    
     {% endfor %}
 </ul>
 {% else %}

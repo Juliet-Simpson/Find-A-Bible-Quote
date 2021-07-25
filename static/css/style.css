@@ -52,6 +52,13 @@ h5{
 h6{
     margin:10px 0;
 }
+label{
+    color:darkslategray;
+}
+
+label.active{
+    color:darkslategray;
+}
 
 /* Search */
 /* Target pasted from Devtools */
@@ -96,12 +103,10 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 } */
 
 .make-comment-card label{
-    color: darkslategray;
     padding-bottom: 1rem;
     margin-bottom: 5px;
 }
 .make-comment-card label.active{
-    color: darkslategray;
     padding-bottom: 0;
     margin-bottom: 5px;
 }

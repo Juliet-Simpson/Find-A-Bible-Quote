@@ -64,7 +64,7 @@
 
         <div class="row">
           <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register', next=next_page) }}">
-            <div class="card-panel no-bottom-margin">
+            <div class="card-panel log-reg-card no-bottom-margin">
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
@@ -101,7 +101,7 @@
               </p>
               <!-- register button-->
               <div class="row">
-                <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                <button type="submit" class="col s12 btn log-reg-btn light-blue darken-4 text-shadow">
                   Register <i class="fas fa-sign-in-alt" aria-hidden="true"></i><span class="sr-only">Sign in</span>
                 </button>
               </div>
@@ -121,7 +121,7 @@
 
         <div class="row no-bottom-margin">
           <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=request.endpoint) }}">
-            <div class="card-panel no-bottom-margin">
+            <div class="card-panel log-reg-card no-bottom-margin">
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
@@ -141,8 +141,8 @@
                 </div>
               </div>
               <!-- login -->
-              <div class="row">
-                <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+              <div class="row log-reg-btn">
+                <button type="submit" class="col s12 btn light-blue darken-4 text-shadow">
                   Log In <i class="fas fa-sign-in-alt"></i>
                 </button>
               </div>

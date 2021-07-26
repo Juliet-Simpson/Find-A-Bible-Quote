@@ -25,11 +25,11 @@
                 </div>
                 <!-- Repeated row code with changed format only displaying on small screens -->
                 <div class="row small-info">
-                    <div class="col s6">
+                    <div class="col s5">
                         <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
-                    <div class="col s6 btn-col">
+                    <div class="col s7 btn-col">
                         <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt"></i></a>
                         <a href="#modal2{{quote._id}}" class="btn-small modal-trigger"><i
@@ -89,9 +89,6 @@
         </div>
         <!-- End modal -->
 
-
-
-
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
             <ul>
@@ -100,13 +97,10 @@
                 {% if comment.quote_id == quote.id %}
                 <li>
                     <div class="card-panel comment-card">
-                        
-                            <div class="col s12 btn-col">
-                              
-                                <a href="#modal3{{comment._id}}" class="btn-small modal-trigger"><i
+                         <div class="col s12 btn-col">
+                               <a href="#modal3{{comment._id}}" class="btn-small modal-trigger"><i
                                         class="far fa-trash-alt"></i></a>
                             </div>
-                        
                         <div>
                             {{ comment.comment }}
                         </div>
@@ -116,7 +110,6 @@
                     </div>
                 </li>
                  
-       
         <!--Confirm delete modal-->
         <div id="modal3{{comment._id}}" class="modal">
             <div class="modal-content">
@@ -141,18 +134,16 @@
                 {% endif %}
                 <li>
                     <div class="card-panel make-comment-card">
-                        <div class="row">
-                            <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
-                                <div class="input-field">
-                                    <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
-                                    <label for="comment"> Make a
-                                        comment</label><br>
-                                    <textarea name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
-                                </div>
-                                <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
-                            </form>
-                        </div>
-                    </div>
+                        <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
+                            <div class="input-field">
+                                <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
+                                <label for="comment"> Make a
+                                    comment</label>
+                                <textarea name="comment" id="comment" minlength="3" type="text" class="materialize-textarea"></textarea>
+                            </div>
+                            <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
+                        </form>
+                </div>
                 </li>
             </ul>
         </div>

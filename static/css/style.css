@@ -36,10 +36,6 @@ nav .brand-logo {
     margin-bottom: 0;
 }
 
-.modal-close{
-    margin-right:50px;
-}
-
 h3{
     margin:20px 0;
 }
@@ -59,6 +55,9 @@ label{
 label.active{
     color:darkslategray;
 }
+.btn, .btn-large, .btn-small{
+    background-color: darksalmon !important;
+}
 
 /* Search */
 /* Target pasted from Devtools */
@@ -77,6 +76,18 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 .input-field>label:not(.label-icon).active {
     transform: translateY(-14px) scale(0.9);
 }
+
+/* Reg/login */
+.log-reg-btn{
+    padding: 0 10px;
+}
+.modal-footer{
+    text-align: center !important;
+}
+input{
+    padding-left: 3px !important;
+}
+
 /* comments structure */
 .comment-body li{
     padding-bottom: 0 !important;
@@ -113,6 +124,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     border-right: none;
     margin-top: 3px;
     height:fit-content;
+    overflow-y: scroll;
 }
 .make-comment-card textarea:focus{
     outline: none;
@@ -120,12 +132,17 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 .make-comment-card .input-field{
     margin-bottom: 3px;
 }
+.input-field .prefix.active{
+    color:darksalmon !important;
+}
 
 .comment-btns{
     text-align: center;
-    margin-bottom: 5px;
+    padding-bottom: 10px;
 }
-
+.ed-com-btn{
+    width:150px
+}
 
 /* Add Quote */
 .theme-field{
@@ -169,7 +186,6 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     text-align: center;
 }
 
-
 @media only screen and (max-width: 768px){
 /* Logo */
 .brand-logo i{
@@ -185,6 +201,11 @@ h3{
 .small-info{
     display:block;
 }
+/* homepage */
+p{
+    text-align: center;
+}
+
 /* Browse/search results */
 .theme-small{
     text-align: right;
@@ -194,9 +215,41 @@ h3{
     font-size: 150% !important;
     padding: 1rem;
 }
+/* login/regiser */
+.fa-user-plus, .fa-user-lock, .fa-user-check, .fa-user-cog{
+    padding: 0 5px 0 5px !important;
+}
+.log-reg-card, .make-comment-card{
+    padding: 1rem;
+}
+.make-comment-card row::after{
+    margin-bottom: 0 !important;
+}
 
 label{
     font-size: 80% !important;
+}
+/* add/edit quote */
+.add-quote-card{
+    padding-left: 0;
+    padding-right: 10px;
+}
+.add-quote-card .input-field .prefix{
+    padding: 8px;
+}
+.add-quote-card .input-field label{
+    padding-bottom: 2px;
+}
+/* edit comment */
+.ed-com-btn{
+    width:100px;
+    margin-bottom: 3px;
+}
+.make-comment-card .input-field label{
+   font-size: 110% !important;
+}
+.make-comment-card .input-field{
+    padding-top: 3px;
 }
 }
 

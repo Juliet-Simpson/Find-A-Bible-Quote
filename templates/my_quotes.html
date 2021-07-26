@@ -21,27 +21,27 @@
                     <div class="col s4 btn-col">
                         <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt"></i></a>
-                        <a href="#modal1{{quote._id}}" class="btn-small modal-trigger"><i
-                                class="far fa-trash-alt"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
+                        <a href="#modal1{{quote._id}}" class="btn-small modal-trigger"><i class="far fa-trash-alt"
+                                aria-hidden="true"></i><span class="sr-only">Trash</span></a>
                     </div>
                 </div>
                 <!-- Repeated row code with changed format only displaying on small screens -->
                 <div class="row small-info">
-                    <div class="col s6">
+                    <div class="col s5">
                         <h6 class="justify-left">{{ quote.book }} {{ quote.chapter }} :
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
-                    <div class="col s6 btn-col">
+                    <div class="col s7 btn-col">
                         <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt" aria-hidden="true"></i><span class="sr-only">Pencil</span></a>
                         <a href="#modal2{{quote._id}}" class="btn-small modal-trigger"><i
                                 class="far fa-trash-alt"></i></a>
                     </div>
                     <div class="row">
-                    <div class="col s12">
-                        <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                        <div class="col s12">
+                            <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!-- End repeated code -->
                 <!-- Quote text -->
@@ -53,7 +53,8 @@
                 <!-- End Quote -->
                 <div class="row">
                     <div class="col s12 btn-col">
-                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret down</span>Comments
+                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret
+                            down</span>Comments
                     </div>
                 </div>
             </div>
@@ -83,15 +84,18 @@
                 {% endif %}
                 <li>
                     <div class="card-panel make-comment-card">
-                        <div class="row">
-                            <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
-                                <div class="input-field">
-                                    <input name="comment" id="comment" minlength="3" type="text">
-                                    <label for="comment"><i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span> Make a
-                                        comment</label>
-                                </div>
-                            </form>
-                        </div>
+                        <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
+                            <div class="input-field">
+                                <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span
+                                    class="sr-only">Speech bubble</span>
+                                <label for="comment"> Make a
+                                    comment</label>
+                                <textarea name="comment" id="comment" minlength="3" type="text"
+                                    class="materialize-textarea"></textarea>
+                            </div>
+                            <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button>
+                            </div>
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -105,10 +109,11 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times
+                        circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="far-fa-trash right"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
+                    Delete<i class="far-fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
@@ -121,7 +126,8 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times
+                        circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
                     class="modal-close btn red text-shadow">
                     Delete<i class="far fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>

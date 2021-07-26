@@ -10,11 +10,7 @@ PROBLEMS!!!!
 ALSO after COMMNENTING in comment view, rerender current page
 
 
-4. HEEELP HOW TO FILTER COMMENTS I"M RUNNING OUT OF TIME!!!!
 
-5. ADD A NEW THEME OPTION VALIDATION IN JS
-
-7. EDIT QUOTE CHECK FOR EMPTY THEME
 
 6. add edit quote fields, specify patterns
 PATTERN pattern="[1-150]{1,3}"
@@ -22,7 +18,15 @@ PATTERN pattern="[1-150]{1,3}"
 
 13. reusing ids for comment forms as well.
 
-14.  More than 1 line comments
+14.  materialize default styling
+
+15. modal overflow
+
+16. login register fields just white please
+
+17 small screen input field weird border
+
+resize nav links
 
 
 CODE FOR LATER
@@ -50,7 +54,7 @@ BLOCKSCRIPTS
 
 CRUD testing
 
-Custom 404?
+
 
 ADMIN login in readme
 
@@ -62,7 +66,6 @@ more javascript for collapsibles.. keep open after adding or editing a comment, 
 
 MAJOR ISSUES 
 
-comments will be difficult.. own collection.. comment, comment_author, relevant quote
 
 BUGS/FIXES
 Collapsible header overlayed with card panel to enable formatting

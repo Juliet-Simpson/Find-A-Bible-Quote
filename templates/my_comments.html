@@ -62,7 +62,7 @@
         <div id="modal1{{comment._id}}" class="modal">
             <div class="modal-content">
                 <div class="card-panel make-comment-card">
-                    <div class="row">
+                   
                         <form method="POST" action="{{ url_for('edit_comment', quote_id=item.quote._id, comment_id=comment._id) }}">
                         <div class="input-field">
                             <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
@@ -70,14 +70,13 @@
                             <textarea class="materialize-textarea" name="edit_comment" id="edit_comment" minlength="3" type="text" rows="1" value="{{comment.comment}}">{{comment.comment}}</textarea>
                         </div>
                         <div class="comment-btns col s12">
-                            <a href="#!" class="modal-close btn-small blue">
-                                Cancel<i class="far fa-times-circle right"></i></a>
-                            <button class="btn-small" type="submit">Edit <i
+                            <button class="btn-small blue ed-com-btn" type="submit">Edit <i
                                 class="fas fa-pencil-alt right"></i></button>
+                            <a href="#!" class="modal-close btn-small red ed-com-btn">
+                                Cancel<i class="far fa-times-circle right"></i></a>
                             </div>
 
                         </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -98,21 +97,19 @@
             </div>
         </div>
                     </li>
-                    
                 {% endfor %}
                 <li>
                     <div class="card-panel make-comment-card">
-                        <div class="row">
-                            <form method="POST" action="{{ url_for('comment', quote_id=item.quote._id) }}">
-                                <div class="input-field">
-                                    <i class="far fa-comment search-label prefix"></i>
-                                    <label for="comment"> Comment Again</label>
-                                    <textarea class="materialize-textarea" name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
-                                </div>
-                                <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
-                            </form>
-                        </div>
-                    </div>
+                        <form method="POST" action="{{ url_for('comment', quote_id=item.quote._id) }}">
+                            <div class="input-field">
+                                <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
+                                <label for="comment"> Make a
+                                    comment</label>
+                                <textarea name="comment" class="materialize-textarea" id="comment" minlength="3" type="text"></textarea>
+                            </div>
+                            <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
+                        </form>
+                </div>
                 </li>
             </ul>
         </div>

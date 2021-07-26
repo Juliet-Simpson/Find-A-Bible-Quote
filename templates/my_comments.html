@@ -28,12 +28,11 @@
                         <strong>Added by:</strong> {{item.quote.added_by}}
                     </div>
                     <div class="col s6 btn-col">
-                        <i class="fas fa-caret-down"></i>Comments
+                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret down</span>Comments
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!-- Comments section -->
         <div class="collapsible-body comment-body">
@@ -66,7 +65,7 @@
                     <div class="row">
                         <form method="POST" action="{{ url_for('edit_comment', quote_id=item.quote._id, comment_id=comment._id) }}">
                         <div class="input-field">
-                            <i class="far fa-comment search-label prefix"></i>
+                            <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
                             <label for="edit_comment"> Edit Comment</label>
                             <textarea class="materialize-textarea" name="edit_comment" id="edit_comment" minlength="3" type="text" rows="1" value="{{comment.comment}}">{{comment.comment}}</textarea>
                         </div>

@@ -125,10 +125,10 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    Delete<i class="far fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
@@ -144,7 +144,7 @@
                         <div class="row">
                             <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
                                 <div class="input-field">
-                                    <i class="far fa-comment search-label prefix"></i>
+                                    <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
                                     <label for="comment"> Make a
                                         comment</label><br>
                                     <textarea name="comment" id="comment" minlength="3" type="text" rows="1"></textarea>
@@ -165,10 +165,10 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    Delete<i class="far fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
@@ -181,10 +181,10 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    Delete<i class="far fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->

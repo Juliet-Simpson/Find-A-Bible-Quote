@@ -5,7 +5,7 @@
     <form class="col s12" method="POST" action="{{ url_for('edit_quote', quote_id = quote._id) }}">
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-bible prefix"></i>
+                <i class="fas fa-bible prefix" aria-hidden="true"></i><span class="sr-only">Bible</span>
                 <select name="theme" id="theme" class="validate" required>
                     <option value="" disabled selected>Choose a Theme</option>
                     
@@ -36,7 +36,7 @@
         <!-- Chapter -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-scroll prefix"></i>
+                <i class="fas fa-scroll prefix" aria-hidden="true"></i><span class="sr-only">Scroll</span>
                 <input id="chapter" name="chapter" minlength="1" maxlength="3"
                     type="text" class="validate" value="{{ quote.chapter }}"required>
                 <label for="chapter">Chapter</label>
@@ -46,7 +46,7 @@
         <!-- Start verse -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-quote-left prefix"></i>
+                <i class="fas fa-quote-left prefix" aria-hidden="true"></i><span class="sr-only">Quote left</span>
                 <input id="start_verse" name="start_verse" minlength="1" maxlength="3"
                     type="text" class="validate" value="{{ quote.start_verse }}"required>
                 <label for="start_verse">Start Verse</label>
@@ -56,7 +56,7 @@
         <!-- End verse -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-quote-right prefix"></i>
+                <i class="fas fa-quote-right prefix" aria-hidden="true"></i><span class="sr-only">Quote right</span>
                 <input id="end_verse" name="end_verse" minlength="1" maxlength="3"
                     type="text" value="{{ quote.end_verse }}" >
                 <label for="end">End Verse (if longer than a single verse) </label>
@@ -66,7 +66,7 @@
         <!-- text -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-align-left prefix"></i>
+                <i class="fas fa-align-left prefix" aria-hidden="true"></i><span class="sr-only">Left lines</span>
                 <textarea id="text" name="text" class="materialize-textarea validate" required>{{- quote.text -}}</textarea>
                 <label for="text">Text</label>
             </div>
@@ -76,10 +76,10 @@
         <div class="row">
             <div class="col s12 center-align">
                 <a href="{{ url_for('my_quotes') }}" class="btn-large red text-shadow">
-                    Cancel <i class="fas fa-times-circle right"></i>
+                    Cancel <i class="fas fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span>
                 </a>
                 <button type="submit" class="btn-large">
-                    Edit Quote <i class="fas fa-pencil-alt right"></i>
+                    Edit Quote <i class="fas fa-pencil-alt right" aria-hidden="true"></i><span class="sr-only">Pencil</span>
                 </button>
             </div>
         </div>

@@ -2,10 +2,10 @@
 
 body{
     font-family: 'Ubuntu', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 110%;
-    background-image: url(../assets/images/sunrise.png);
-    background-position: left center;
+    background-image: url(../assets/images/sunrise4.png);
+    background-position: left top;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -98,10 +98,6 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     padding-bottom: 20px;
 }
 
-/* .input-field input{
-    word-break: normal;
-} */
-
 .make-comment-card label{
     padding-bottom: 1rem;
     margin-bottom: 5px;
@@ -130,9 +126,6 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
     margin-bottom: 5px;
 }
 
-/* .btn-small{
-    height: 30px;
-} */
 
 /* Add Quote */
 .theme-field{
@@ -180,7 +173,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 @media only screen and (max-width: 768px){
 /* Logo */
 .brand-logo i{
-    margin-top:10px !important;
+    margin-top:8px !important;
 }
 
 h3{
@@ -196,6 +189,14 @@ h3{
 .theme-small{
     text-align: right;
     padding-top: 3px;
+}
+.prefix{
+    font-size: 150% !important;
+    padding: 1rem;
+}
+
+label{
+    font-size: 80% !important;
 }
 }
 

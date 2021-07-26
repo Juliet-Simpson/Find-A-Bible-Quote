@@ -73,8 +73,11 @@ def login(next):
                         request.form.get("username")))
 
                     # Redirect user to origin url or to homepage.
-                    redirect_url = request.args.get("next", url_for("render_homepage")) 
-                    return redirect(redirect_url)
+                    # redirect_url = request.args.get("next", url_for("render_homepage")) 
+                    # if next:
+                    #     return redirect(url_for(next))
+                    
+                    return redirect(url_for("render_homepage"))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")

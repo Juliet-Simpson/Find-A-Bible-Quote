@@ -58,6 +58,12 @@ label.active{
 .btn, .btn-large, .btn-small{
     background-color: darksalmon !important;
 }
+.red{
+    background-color: red !important;
+}
+.blue{
+    background-color: blue !important;
+}
 
 /* Search */
 /* Target pasted from Devtools */
@@ -241,8 +247,8 @@ label{
     padding-bottom: 2px;
 }
 /* edit comment */
-.ed-com-btn{
-    width:100px;
+.ed-com-btn, .ed-quote-btn{
+    width:150px;
     margin-bottom: 3px;
 }
 .make-comment-card .input-field label{

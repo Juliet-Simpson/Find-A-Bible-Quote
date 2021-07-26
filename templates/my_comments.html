@@ -89,11 +89,13 @@
                 <h5>Are you sure that you want to delete this comment?</h5>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                <a href="#!" class="modal-close btn blue">
+                    Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span
+                    class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
-                    class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    class="modal-close btn red">
+                    Delete<i class="far fa-trash-alt right"aria-hidden="true"></i><span
+                    class="sr-only">Trash</span></a>
             </div>
         </div>
                     </li>

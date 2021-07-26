@@ -58,6 +58,9 @@ label.active{
 .btn, .btn-large, .btn-small{
     background-color: darksalmon !important;
 }
+.btn{
+    margin-bottom: 5px;
+}
 .red{
     background-color: red !important;
 }
@@ -85,7 +88,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 /* Reg/login */
 .log-reg-btn{
-    padding: 0 10px;
+    padding: 0 20px;
 }
 .modal-footer{
     text-align: center !important;
@@ -137,6 +140,9 @@ input{
 }
 .make-comment-card .input-field{
     margin-bottom: 3px;
+}
+.input-field .prefix{
+    color:darksalmon !important;
 }
 .input-field .prefix.active{
     color:darksalmon !important;

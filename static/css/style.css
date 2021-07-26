@@ -217,6 +217,9 @@ h3{
 p{
     text-align: center;
 }
+.search-card{
+    padding-left: 5px;
+}
 
 /* Browse/search results */
 .theme-small{
@@ -237,9 +240,8 @@ p{
 .make-comment-card row::after{
     margin-bottom: 0 !important;
 }
-
-label{
-    font-size: 80% !important;
+.end-label{
+    font-size: 75% !important;
 }
 /* add/edit quote */
 .add-quote-card{

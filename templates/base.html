@@ -19,7 +19,8 @@
     <nav class="nav-extended">
       <div class="nav-wrapper">
         <!-- Would like icon to be able to be used instead of t in Quotes -->
-        <a href="{{ url_for('render_homepage') }}" class="brand-logo"><i class="fas fa-cross fa-lg" aria-hidden="true"></i><span class="sr-only">Cross</span>BibleQuotes 4U
+        <a href="{{ url_for('render_homepage') }}" class="brand-logo"><i class="fas fa-cross fa-lg"
+            aria-hidden="true"></i><span class="sr-only">Cross</span>BibleQuotes 4U
           </p></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 
@@ -29,9 +30,9 @@
           <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
           <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
           <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
-            {% if session.user|lower == "admin"|lower %}
-            <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
-            {% endif %}
+          {% if session.user|lower == "admin"|lower %}
+          <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
+          {% endif %}
           <li><a href="{{ url_for('logout') }}">Logout</a></li>
           {% else %}
           <li><a class="modal-trigger" href="#modal2">Login</a></li>
@@ -47,9 +48,9 @@
       <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
       <li><a href="{{ url_for('my_quotes') }}">My Quotes</a></li>
       <li><a href="{{ url_for('my_comments') }}">My Comments</a></li>
-        {% if session.user|lower == "admin"|lower %}
-        <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
-        {% endif %}
+      {% if session.user|lower == "admin"|lower %}
+      <li><a href="{{ url_for('admin') }}">ADMIN</a></li>
+      {% endif %}
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}
       <li><a class="modal-trigger" href="#modal2">Login</a></li>
@@ -68,7 +69,7 @@
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
-                  <i class="fas fa-user-plus prefix"aria-hidden="true"></i><span class="sr-only">User plus</span>
+                  <i class="fas fa-user-plus prefix" aria-hidden="true"></i><span class="sr-only">User plus</span>
                   <input id="username" name="username" type="text" minlength="5" maxlength="15"
                     pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                   <label for="username">Username</label>
@@ -95,8 +96,9 @@
               <!-- T&Cs -->
               <p>
                 <label>
-                  <input type="checkbox" required class="validate"/>
-                  <span>I agree to this site's terms and conditions.<br> <a href="#modal3" class="modal-trigger">Learn More</a></span>
+                  <input type="checkbox" required class="validate" />
+                  <span>I agree to this site's terms and conditions.<br> <a href="#modal3" class="modal-trigger">Learn
+                      More</a></span>
                 </label>
               </p>
               <!-- register button-->
@@ -104,15 +106,14 @@
                 <button type="submit" class="col s12 btn ">
                   Register <i class="fas fa-sign-in-alt" aria-hidden="true"></i><span class="sr-only">Sign in</span>
                 </button>
-              
-              <a href="#!" class="modal-close btn-small center red"><i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Times</span>Cancel</a>
+                <a href="#!" class="modal-close btn-small center red"><i class="fas fa-times"
+                    aria-hidden="true"></i><span class="sr-only">Times</span>Cancel</a>
+              </div>
             </div>
         </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          
+        </form>
+      </div>
+      <div class="modal-footer">
       </div>
     </div>
 
@@ -121,9 +122,9 @@
       <div class="modal-content">
         <h3 class="center-align">Log In</h3>
         <div class="card-panel log-reg-card no-bottom-margin">
-        <div class="row no-bottom-margin">
-          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=request.endpoint) }}">
-           
+          <div class="row no-bottom-margin">
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=request.endpoint) }}">
+
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
@@ -148,30 +149,32 @@
                   Log In <i class="fas fa-sign-in-alt"></i>
                 </button>
               </div>
-           
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-      </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close btn-small red"><i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Times</span>Cancel</a>
+        <a href="#!" class="modal-close btn-small red"><i class="fas fa-times" aria-hidden="true"></i><span
+            class="sr-only">Times</span>Cancel</a>
       </div>
     </div>
     <!-- T&Cs modal -->
     <div id="modal3" class="modal">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Terms and Conditions</h4>
+        <p>While this site encourages freedom of expression, users are required to refrain from making any abusive, discriminatory, blasphemous or otherwise offensive comments.  Any comment in breach of this will be deleted by the site admin.</p>
+        <p>Admin will review bible quotes and correct errors in the quoting or attribution.  Unfortunately if a user's intended bible quote cannot be identified, the quote entry will be deleted.  Please take care to ensure quotes are entered accurately.</p>
+        <p>Any quote not from the bible will be deleted.</p>
+        <p><a href="#!" class="modal-close btn-flat">Close</a></p>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close btn-flat">Close</a>
       </div>
     </div>
 
   </header>
   <div class="login-status">
     {% if session.user|lower %}
-          Logged in as: <strong>{{session.user}}</strong>
+    Logged in as: <strong>{{session.user}}</strong>
     {% else %}
     You are currently not logged in
     {% endif %}

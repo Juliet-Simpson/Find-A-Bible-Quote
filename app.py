@@ -22,7 +22,8 @@ mongo = PyMongo(app)
 @app.route("/render_homepage/<theme_name>")
 def render_homepage():
     themes = list(mongo.db.themes.find().sort("theme", 1))
-    return render_template("homepage.html", themes=themes)
+    return render_template("homepage.html", themes=themes,
+        next_page=request.endpoint)
 
 
 # NO FILTERING
@@ -38,7 +39,7 @@ def search():
 
     return render_template("search_results.html",
         query_quotes =query_quotes, query=query,
-        all_comments =all_comments)
+        all_comments =all_comments, next_page=request.endpoint)
 
 
 @app.route("/browse_themes/<theme_name>")
@@ -56,8 +57,8 @@ def browse_themes(theme_name):
         all_comments=all_comments)
 
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
+@app.route("/login/<next>", methods=["GET", "POST"])
+def login(next):
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -70,21 +71,19 @@ def login():
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome {}".format(
                         request.form.get("username")))
-                        # FIX HERE, just want to return close modal
-                    return render_template("base.html")
+
+                    # Redirect user to origin url or to homepage.
+                    redirect_url = request.args.get("next", url_for("render_homepage")) 
+                    return redirect(redirect_url)
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
-                # FIX HERE, just want to return close modal
-                return render_template("base.html")
 
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
-            # FIX HERE
-            return render_template("base.html")
-    # FIX HERE return what?
-    return render_template("base.html")
+
+    return render_template("base.html", next_page=request.endpoint)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -95,7 +94,7 @@ def register():
         if password != confirm_password:
             flash("Passwords do not match.")
              # FIX HERE
-            return render_template("base.html")
+            return render_template("base.html", next_page=request.endpoint)
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -113,9 +112,9 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         # FIX HERE
-        return render_template("base.html")
+        return render_template("base.html", next_page=request.endpoint)
     # FIX HERE
-    return render_template("base.html")
+    return render_template("base.html", next_page=request.endpoint)
 
 
 @app.route("/logout")
@@ -124,7 +123,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
 # HERE, modal reload current page, logout can happen from anywhere, may still want to see search results...
-    return redirect(url_for("render_homepage"))
+    return redirect(url_for("render_homepage", next_page=request.endpoint))
 
 
 @app.route("/add_quote", methods=["GET", "POST"])
@@ -148,7 +147,7 @@ def add_quote():
         flash("Quote Successfully Added")
         return redirect(url_for("my_quotes"))
 
-    return render_template("add_quote.html", themes=themes)
+    return render_template("add_quote.html", themes=themes,next_page=request.endpoint)
 
 
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
@@ -183,7 +182,7 @@ def edit_quote(quote_id):
 
         return redirect(url_for("my_quotes"))
  
-    return render_template("edit_quote.html", quote=quote, themes=themes)
+    return render_template("edit_quote.html", quote=quote, themes=themes, next_page=request.endpoint)
 
 
 @app.route("/my_quotes")
@@ -196,7 +195,7 @@ def my_quotes():
     all_comments = list(mongo.db.comments.find())
 
     return render_template("my_quotes.html", my_quotes=my_quotes,
-        all_comments=all_comments)
+        all_comments=all_comments, next_page=request.endpoint)
 
 
 @app.route("/comment/<quote_id>,", methods=['GET', 'POST'])
@@ -228,7 +227,7 @@ def delete_quote(quote_id, delete_theme):
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
 
-    return my_quotes()
+    return redirect(url_for("my_quotes"))
 
 
 @app.route("/my_comments")
@@ -253,7 +252,8 @@ def my_comments():
             commented_quotes.append(d)
 
     return render_template("my_comments.html",
-    commented_quotes=commented_quotes)
+        commented_quotes=commented_quotes,
+        next_page=request.endpoint)
 
 
 @app.route("/edit_comment/<quote_id>, <comment_id>", methods=["GET", "POST"])
@@ -287,7 +287,8 @@ def admin():
         quote["id"] = str(quote["_id"])
 
     return render_template("admin.html",
-    all_quotes=all_quotes, all_comments=all_comments)
+        all_quotes=all_quotes, all_comments=all_comments,
+        next_page=request.endpoint)
 
 
 if __name__ == "__main__":

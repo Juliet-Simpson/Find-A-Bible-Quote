@@ -237,6 +237,7 @@ p{
 .log-reg-card, .make-comment-card{
     padding: 1rem;
 }
+
 .make-comment-card row::after{
     margin-bottom: 0 !important;
 }
@@ -253,6 +254,9 @@ p{
 }
 .add-quote-card .input-field label{
     padding-bottom: 2px;
+}
+.quote-row{
+    margin-bottom: 0;
 }
 /* edit comment */
 .ed-com-btn, .ed-quote-btn{

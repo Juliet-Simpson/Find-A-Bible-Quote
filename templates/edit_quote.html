@@ -3,7 +3,7 @@
 <h3 class="center-align">Edit a Quote</h3>
 <div class="row card-panel add-quote-card">
     <form class="col s12" method="POST" action="{{ url_for('edit_quote', quote_id = quote._id) }}">
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-bible prefix" aria-hidden="true"></i><span class="sr-only">Bible</span>
                 <select name="theme" id="theme" class="validate" required>
@@ -16,7 +16,7 @@
                             <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                         {% endif %}
                     {% endfor %}
-                    <option value="enter-new-theme" id="enter-new-theme"><strong>Add a new theme</strong></option>
+                    <option value="enter-new-theme" id="enter-new-theme" class="blue-text"><strong>Add a new theme</strong></option>
                 </select>
                 <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme" class="" hidden>
                 <label for="theme">Theme</label>
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Book -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-book-open prefix"></i>
                 <input id="book" name="book" minlength="3" maxlength="50"
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Chapter -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-scroll prefix" aria-hidden="true"></i><span class="sr-only">Scroll</span>
                 <input id="chapter" name="chapter" minlength="1" maxlength="3"
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Start verse -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-quote-left prefix" aria-hidden="true"></i><span class="sr-only">Quote left</span>
                 <input id="start_verse" name="start_verse" minlength="1" maxlength="3"
@@ -54,7 +54,7 @@
         </div>
 
         <!-- End verse -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-quote-right prefix" aria-hidden="true"></i><span class="sr-only">Quote right</span>
                 <input id="end_verse" name="end_verse" minlength="1" maxlength="3"
@@ -62,9 +62,8 @@
                 <label for="end" class="end-label">End Verse (if longer than a single verse) </label>
             </div>
         </div>
-
         <!-- text -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix" aria-hidden="true"></i><span class="sr-only">Left lines</span>
                 <textarea id="text" name="text" class="materialize-textarea validate" required>{{- quote.text -}}</textarea>
@@ -73,7 +72,7 @@
         </div>
 
         <!-- submit button -->
-        <div class="row">
+        <div class="row quote-row">
             <div class="col s12 center-align">
                 <button type="submit" class="btn ed-quote-btn blue">
                     Edit Quote <i class="fas fa-pencil-alt right" aria-hidden="true"></i><span class="sr-only">Pencil</span>
@@ -81,7 +80,6 @@
                 <a href="{{ url_for('my_quotes') }}" class="btn ed-quote-btn red">
                     Cancel <i class="fas fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span>
                 </a>
-               
             </div>
         </div>
     </form>

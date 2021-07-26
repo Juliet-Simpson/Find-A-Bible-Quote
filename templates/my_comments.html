@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h4 class="center">This page displays the quotes on which you have commented.  Expand each quote to see its comments.  You can edit or delete your own comments here.</h4>
+<h5 class="center">This page displays the quotes on which you have commented.  Expand each quote to see its comments.  You can edit or delete your own comments here.</h5>
 
 {% if commented_quotes | length > 0 %}
 
@@ -121,6 +121,7 @@
     {% endfor %}
 </ul>
 {% else %}
+<br>
 <h4 class="red-text text-darken-4 center-align">You have not commented on any quotes yet.</h4>
 {% endif %}
 <br>

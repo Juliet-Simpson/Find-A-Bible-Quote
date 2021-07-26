@@ -161,13 +161,6 @@ def edit_quote(quote_id):
         if new_theme:
             mongo.db.themes.insert_one({"theme": new_theme})
 
-        # Check if there are any more quotes with the same theme
-        # as the theme that has been changed.  GET OLD THEME  If not, delete 
-        # the old theme from the themes collection.
-            old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
-            if len(old_theme_quotes) == 0:
-                mongo.db.themes.remove({"theme": old_theme})
-
         theme = new_theme or request.form.get("theme")
         submit = {
             "theme": theme,
@@ -181,6 +174,13 @@ def edit_quote(quote_id):
 
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
+        # Check if there are any more quotes with the same theme
+        # as the theme that has been changed.  GET OLD THEME  If not, delete 
+        # the old theme from the themes collection.
+        old_theme_quotes = list(mongo.db.quotes.find({"theme": old_theme}))
+        if len(old_theme_quotes) == 0:
+            mongo.db.themes.remove({"theme": old_theme})
+
         return redirect(url_for("my_quotes"))
  
     return render_template("edit_quote.html", quote=quote, themes=themes)

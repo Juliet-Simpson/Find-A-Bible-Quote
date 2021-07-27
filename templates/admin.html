@@ -37,7 +37,7 @@
                     </div>
                     <div class="row">
                     <div class="col s12">
-                        <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                        <h6 >Theme: <strong class="theme">{{ quote.theme }}.</strong></h6>
                     </div>
                 </div>
                 </div>
@@ -50,13 +50,16 @@
                 </div>
                 <!-- End Quote -->
                 <div class="row">
-                    <div class="col s12 btn-col">
-                        <i class="fas fa-caret-down"></i>Comments
+                    <div class="col s6">
+                        <strong>Added by:</strong> {{quote.added_by}}
+                    </div>
+                    <div class="col s6 btn-col">
+                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret down</span>Comments
                     </div>
                 </div>
             </div>
         </div>
-        <!--Confirm delete modal-->
+        <!--Confirm delete quote modal-->
         <div id="modal1{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>
@@ -64,15 +67,15 @@
                 <p>(Comments will also be deleted).</p>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                <a href="#!" class="modal-close btn blue ">
+                    Cancel<i class="far fa-times-circle right"aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
-                    class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    class="modal-close btn red ">
+                    Delete<i class="far fa-trash-alt right"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
-        <!--Confirm delete modal-->
+        <!--Confirm delete comment modal-->
         <div id="modal2{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>
@@ -81,10 +84,10 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
-                    Cancel<i class="far fa-times-circle right"></i></a>
+                    Cancel<i class="far fa-times-circle right"aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
                 <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="fas fa-times-circle right"></i></a>
+                    Delete<i class="fa-trash-alt right"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
@@ -99,7 +102,7 @@
                     <div class="card-panel comment-card">
                          <div class="col s12 btn-col">
                                <a href="#modal3{{comment._id}}" class="btn-small modal-trigger"><i
-                                        class="far fa-trash-alt"></i></a>
+                                        class="far fa-trash-alt"aria-hidden="true"></i><span class="sr-only">Trash</span>/a>
                             </div>
                         <div>
                             {{ comment.comment }}
@@ -163,7 +166,7 @@
             </div>
         </div>
         <!-- End modal -->
-        <!--Confirm delete modal-->
+        <!--Confirm delete modal (repeated small screen layout)-->
         <div id="modal2{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>

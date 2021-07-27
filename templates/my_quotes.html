@@ -16,11 +16,11 @@
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
                     <div class="col s4">
-                        <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                        <h6 >Theme: <strong class="theme">{{ quote.theme }}</strong></h6>
                     </div>
                     <div class="col s4 btn-col">
                         <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
-                                class="fas fa-pencil-alt"></i></a>
+                                class="fas fa-pencil-alt"aria-hidden="true"></i><span class="sr-only">Pencil</span></a>
                         <a href="#modal1{{quote._id}}" class="btn-small modal-trigger"><i class="far fa-trash-alt"
                                 aria-hidden="true"></i><span class="sr-only">Trash</span></a>
                     </div>
@@ -35,11 +35,11 @@
                         <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt" aria-hidden="true"></i><span class="sr-only">Pencil</span></a>
                         <a href="#modal2{{quote._id}}" class="btn-small modal-trigger"><i
-                                class="far fa-trash-alt"></i></a>
+                                class="far fa-trash-alt"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
+                            <h6 class="theme">Theme: <strong class="theme">{{ quote.theme }}</strong></h6>
                         </div>
                     </div>
                 </div>

@@ -57,8 +57,8 @@ def browse_themes(theme_name):
         all_comments=all_comments)
 
 
-@app.route("/login/<next>", methods=["GET", "POST"])
-def login(next):
+@app.route("/login/", methods=["GET", "POST"])
+def login():
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -91,8 +91,7 @@ def register():
         confirm_password = request.form.get("confirm-password")
         if password != confirm_password:
             flash("Passwords do not match.")
-             # FIX HERE
-            return render_template("base.html", next_page=request.endpoint)
+            return redirect(url_for("render_homepage"))
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -109,10 +108,9 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        # FIX HERE
-        return render_template("base.html", next_page=request.endpoint)
-    # FIX HERE
-    return render_template("base.html", next_page=request.endpoint)
+        return redirect(url_for("render_homepage"))
+    
+    return redirect(url_for("render_homepage"))
 
 
 @app.route("/logout")
@@ -121,7 +119,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
 # HERE, modal reload current page, logout can happen from anywhere, may still want to see search results...
-    return redirect(url_for("render_homepage", next_page=request.endpoint))
+    return redirect(url_for("render_homepage"))
 
 
 @app.route("/add_quote", methods=["GET", "POST"])
@@ -206,8 +204,7 @@ def comment(quote_id):
         }
         mongo.db.comments.insert_one(comment)
         flash("Thanks for commenting")
-    return redirect(url_for("my_quotes"))
-    # Want to redirect url to current page.  Make sure comment loads though
+    return redirect(url_for("my_comments"))
 
 
 @app.route("/delete_quote/<quote_id>, <delete_theme>")

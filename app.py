@@ -29,7 +29,6 @@ def render_homepage():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query").replace(" ", "")
-    print(query)
     if query == "":
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
@@ -41,8 +40,9 @@ def search():
     all_comments = list(mongo.db.comments.find())
 
     return render_template("search_results.html",
-        query_quotes=query_quotes, query=query,
-        all_comments=all_comments, next_page=request.endpoint)
+                           query_quotes=query_quotes, query=query,
+                           all_comments=all_comments,
+                           next_page=request.endpoint)
 
 
 @app.route("/browse_themes/<theme_name>")
@@ -56,8 +56,8 @@ def browse_themes(theme_name):
     all_comments = list(mongo.db.comments.find())
 
     return render_template("browse_themes.html",
-        theme_quotes=theme_quotes, theme_name=theme_name,
-        all_comments=all_comments)
+                           theme_quotes=theme_quotes, theme_name=theme_name,
+                           all_comments=all_comments)
 
 
 @app.route("/login/", methods=["GET", "POST"])
@@ -71,11 +71,11 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome {}".format(
-                        request.form.get("username")))
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome {}".format(
+                      request.form.get("username")))
 
-                    return redirect(url_for("render_homepage"))
+                return redirect(url_for("render_homepage"))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -129,8 +129,13 @@ def logout():
 def add_quote():
     themes = mongo.db.themes.find().sort("theme", 1)
     if request.method == "POST":
-        new_theme = request.form.get("new_theme", None)
+        new_theme = request.form.get("new_theme", None) 
         if new_theme:
+            is_new_theme = new_theme.replace(" ", "")
+            if is_new_theme == "":
+                flash("Please enter a theme value")
+                return redirect(url_for("add_quote"))
+
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
                 mongo.db.themes.insert_one({"theme": new_theme})
@@ -149,7 +154,9 @@ def add_quote():
         flash("Quote Successfully Added")
         return redirect(url_for("my_quotes"))
 
-    return render_template("add_quote.html", themes=themes,next_page=request.endpoint)
+    return render_template("add_quote.html",
+                           themes=themes,
+                           next_page=request.endpoint)
 
 
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
@@ -158,8 +165,12 @@ def edit_quote(quote_id):
     themes = mongo.db.themes.find().sort("theme", 1)
     old_theme = quote["theme"]
     if request.method == "POST":
-        new_theme = request.form.get("new_theme", None).strip()
-        print(new_theme)
+        new_theme = request.form.get("new_theme", None).replace(" ", "")
+        is_new_theme = new_theme.replace(" ", "")
+        if is_new_theme == "":
+            flash("Please enter a theme value")
+            return redirect(url_for("edit_quote"))
+
         if new_theme:
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
@@ -200,7 +211,8 @@ def my_quotes():
     all_comments = list(mongo.db.comments.find())
 
     return render_template("my_quotes.html", my_quotes=my_quotes,
-                           all_comments=all_comments, next_page=request.endpoint)
+                           all_comments=all_comments,
+                           next_page=request.endpoint)
 
 
 # @app.route("/comment/<quote_id><next>,", methods=['GET', 'POST'])
@@ -278,8 +290,8 @@ def my_comments():
             commented_quotes.append(d)
 
     return render_template("my_comments.html",
-        commented_quotes=commented_quotes,
-        next_page=request.endpoint)
+                           commented_quotes=commented_quotes,
+                           next_page=request.endpoint)
 
 
 @app.route("/edit_comment/<quote_id>, <comment_id>", methods=["GET", "POST"])
@@ -313,8 +325,8 @@ def admin():
         quote["id"] = str(quote["_id"])
 
     return render_template("admin.html",
-        all_quotes=all_quotes, all_comments=all_comments,
-        next_page=request.endpoint)
+                           all_quotes=all_quotes, all_comments=all_comments,
+                           next_page=request.endpoint)
 
 
 if __name__ == "__main__":

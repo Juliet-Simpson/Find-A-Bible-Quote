@@ -130,8 +130,11 @@ def add_quote():
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None)
         if new_theme:
-            mongo.db.themes.insert_one({"theme": new_theme})
+            is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
+            if len(is_it_new) == 0:
+                mongo.db.themes.insert_one({"theme": new_theme})
         theme = new_theme or request.form.get("theme")
+        
         quote = {
             "theme": theme,
             "book": request.form.get("book").capitalize(),
@@ -154,9 +157,12 @@ def edit_quote(quote_id):
     themes = mongo.db.themes.find().sort("theme", 1)
     old_theme = quote["theme"]
     if request.method == "POST":
-        new_theme = request.form.get("new_theme", None)
+        new_theme = request.form.get("new_theme", None).strip()
+        print(new_theme)
         if new_theme:
-            mongo.db.themes.insert_one({"theme": new_theme})
+            is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
+            if len(is_it_new) == 0:
+                mongo.db.themes.insert_one({"theme": new_theme})
 
         theme = new_theme or request.form.get("theme")
         submit = {

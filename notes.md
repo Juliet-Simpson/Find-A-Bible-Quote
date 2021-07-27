@@ -106,6 +106,5 @@ empty search empty comment
 <li>There are no comments about this quote yet. </li>
 {% endif %}
 
-New way to do quote comments...???
 
-when a quote is created also create a comments field which is an empty list.. IS THIS POSSIBLE
+pattern="[a-zA-Z0-9]${2,100}$"

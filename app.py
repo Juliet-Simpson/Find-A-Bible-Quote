@@ -72,11 +72,6 @@ def login(next):
                     flash("Welcome {}".format(
                         request.form.get("username")))
 
-                    # Redirect user to origin url or to homepage.
-                    # redirect_url = request.args.get("next", url_for("render_homepage")) 
-                    # if next:
-                    #     return redirect(url_for(next))
-                    
                     return redirect(url_for("render_homepage"))
             else:
                 # invalid password match
@@ -86,7 +81,7 @@ def login(next):
             # username doesn't exist
             flash("Incorrect Username and/or Password")
 
-    return render_template("base.html", next_page=request.endpoint)
+    return redirect(url_for("render_homepage"))
 
 
 @app.route("/register", methods=["GET", "POST"])

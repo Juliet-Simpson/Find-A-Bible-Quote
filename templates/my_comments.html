@@ -105,9 +105,9 @@
                         <form method="POST" action="{{ url_for('comment', quote_id=item.quote._id) }}">
                             <div class="input-field">
                                 <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
-                                <label for="comment"> Make a
+                                <label for="comment-comment"> Make a
                                     comment</label>
-                                <textarea name="comment" class="materialize-textarea" id="comment" minlength="3" type="text"></textarea>
+                                <textarea name="comment" class="materialize-textarea" id="comment-comment" minlength="3" type="text"></textarea>
                             </div>
                             <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
                         </form>

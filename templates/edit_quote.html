@@ -6,7 +6,7 @@
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-bible prefix" aria-hidden="true"></i><span class="sr-only">Bible</span>
-                <select name="theme" id="theme" class="validate" required>
+                <select name="theme" id="edit-theme" class="validate" required>
                     <option value="" disabled selected>Choose a Theme</option>
                     
                     {% for _theme in themes %}
@@ -16,10 +16,10 @@
                             <option value="{{ _theme.theme }}">{{ _theme.theme }}</option>
                         {% endif %}
                     {% endfor %}
-                    <option value="enter-new-theme" id="enter-new-theme" class="blue-text"><strong>Add a new theme</strong></option>
+                    <option value="enter-new-theme" id="edit-enter-new-theme" class="blue-text"><strong>Add a new theme</strong></option>
                 </select>
-                <input type="text" id="new_theme" name="new_theme" placeholder="Add a New Theme" class="" hidden>
-                <label for="theme">Theme</label>
+                <input type="text" id="edit-new_theme" name="new_theme" placeholder="Add a New Theme" class="" hidden>
+                <label for="edit-theme">Theme</label>
             </div>
         </div>
 
@@ -27,9 +27,9 @@
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-book-open prefix"></i>
-                <input id="book" name="book" minlength="3" maxlength="50"
+                <input id="edit-book" name="book" minlength="3" maxlength="50"
                     type="text" class="validate"  value="{{ quote.book }}"required>
-                <label for="book">Book</label>
+                <label for="edit-book">Book</label>
             </div>
         </div>
 
@@ -37,9 +37,9 @@
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-scroll prefix" aria-hidden="true"></i><span class="sr-only">Scroll</span>
-                <input id="chapter" name="chapter" minlength="1" maxlength="3"
+                <input id="edit-chapter" name="chapter" minlength="1" maxlength="3"
                     type="text" class="validate" value="{{ quote.chapter }}"required>
-                <label for="chapter">Chapter</label>
+                <label for="edit-chapter">Chapter</label>
             </div>
         </div>
 
@@ -47,9 +47,9 @@
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-quote-left prefix" aria-hidden="true"></i><span class="sr-only">Quote left</span>
-                <input id="start_verse" name="start_verse" minlength="1" maxlength="3"
+                <input id="edit-start_verse" name="start_verse" minlength="1" maxlength="3"
                     type="text" class="validate" value="{{ quote.start_verse }}"required>
-                <label for="start_verse">Start Verse</label>
+                <label for="edit-start_verse">Start Verse</label>
             </div>
         </div>
 
@@ -57,17 +57,17 @@
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-quote-right prefix" aria-hidden="true"></i><span class="sr-only">Quote right</span>
-                <input id="end_verse" name="end_verse" minlength="1" maxlength="3"
+                <input id="edit-end_verse" name="end_verse" minlength="1" maxlength="3"
                     type="text" value="{{ quote.end_verse }}" >
-                <label for="end" class="end-label">End Verse (if longer than a single verse) </label>
+                <label for="edit-end_verse" class="end-label">End Verse (if longer than a single verse) </label>
             </div>
         </div>
         <!-- text -->
         <div class="row quote-row">
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix" aria-hidden="true"></i><span class="sr-only">Left lines</span>
-                <textarea id="text" name="text" class="materialize-textarea validate" required>{{- quote.text -}}</textarea>
-                <label for="text">Text</label>
+                <textarea id="edit-text" name="text" class="materialize-textarea validate" required>{{- quote.text -}}</textarea>
+                <label for="edit-text">Text</label>
             </div>
         </div>
 
@@ -86,8 +86,8 @@
 </div>
 <script>
 // Select elements
-const theme = document.querySelector('#theme');
-const newTheme = document.querySelector('#new_theme');
+const theme = document.querySelector('#edit-theme');
+const newTheme = document.querySelector('#edit-new_theme');
 // Add event listener
 theme.addEventListener('change', (event) => {
     // Check if new theme option is selected from dropdown

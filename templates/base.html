@@ -43,6 +43,7 @@
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
+      <br>
       <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
       {% if session.user %}
       <li><a href="{{ url_for('add_quote') }}">Add A Quote</a></li>
@@ -64,7 +65,7 @@
         <h3 class="center-align">Register</h3>
 
         <div class="row">
-          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register', next=next_page) }}">
+          <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel log-reg-card no-bottom-margin">
               <!-- username -->
               <div class="row quote-row">
@@ -123,24 +124,23 @@
         <h3 class="center-align">Log In</h3>
         <div class="card-panel log-reg-card no-bottom-margin">
           <div class="row no-bottom-margin">
-            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login', next=request.endpoint) }}">
-
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login'}}">
               <!-- username -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="fas fa-user-cog prefix" aria-hidden="true"></i><span class="sr-only">User cog</span>
-                  <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                  <input id="lgn-username" name="username" type="text" minlength="5" maxlength="15"
                     pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                  <label for="username">Username</label>
+                  <label for="lgn-username">Username</label>
                 </div>
               </div>
               <!-- passowrd -->
               <div class="row">
                 <div class="input-field col s12">
                   <i class="fas fa-user-lock prefix" aria-hidden="true"></i><span class="sr-only">User lock</span>
-                  <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                  <input id="lgn-password" name="password" type="password" minlength="5" maxlength="15"
                     pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                  <label for="password">Password</label>
+                  <label for="lgn-password">Password</label>
                 </div>
               </div>
               <!-- login -->

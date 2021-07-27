@@ -41,6 +41,10 @@ _theme = {
 {{ url_for('edit_quote', quote_id=quote._id) }}
 {{ url_for('delete_quote', quote_id=quote._id) }}
 
+ if query is None:
+        return render_template("search_results.html", query_quotes=[], query='',
+        all_comments=[], next_page=request.endpoint)
+
 
 DON'T FORGET
 

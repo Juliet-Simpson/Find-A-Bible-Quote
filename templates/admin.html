@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h4 class="center">ADMIN</h4>
-
+{% if all_quotes | length > 0 %}
 <ul class="collapsible">
     {% for quote in all_quotes %}
     <li>
@@ -185,6 +185,9 @@
     </li>
     {% endfor %}
 </ul>
+{% else %}
+<h5 class="center">The quotes database is currently empty.</h5>
+{% endif %}
 <br>
 
 {% endblock %}

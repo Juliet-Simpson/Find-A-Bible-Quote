@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 def render_homepage():
     themes = list(mongo.db.themes.find().sort("theme", 1))
     return render_template("homepage.html", themes=themes,
-        next_page=request.endpoint)
+                           next_page=request.endpoint)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -164,12 +164,14 @@ def edit_quote(quote_id):
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     themes = mongo.db.themes.find().sort("theme", 1)
     old_theme = quote["theme"]
+
     if request.method == "POST":
-        new_theme = request.form.get("new_theme", None).replace(" ", "")
+        new_theme = request.form.get("new_theme", None)
+        # check if theme is whitespace
         is_new_theme = new_theme.replace(" ", "")
         if is_new_theme == "":
             flash("Please enter a theme value")
-            return redirect(url_for("edit_quote"))
+            return render_template("edit_quote.html", quote=quote, themes=themes)
 
         if new_theme:
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
@@ -238,8 +240,17 @@ def my_quotes():
 @app.route("/comment/<quote_id>", methods=['GET', 'POST'])
 def comment(quote_id):
     if request.method == "POST":
+
+        comment_input = request.form.get("comment")
+        # check if comment has whitespace
+        is_comment_input = comment_input.replace(" ", "")
+        if is_comment_input == "":
+            flash("Comment must have a value")
+
+            return redirect(url_for('my_comments'))
+
         comment = {
-            "comment": request.form.get("comment").capitalize(),
+            "comment": comment_input.capitalize(),
             "quote_id": quote_id,
             "comment_by": session["user"]
         }
@@ -297,8 +308,14 @@ def my_comments():
 @app.route("/edit_comment/<quote_id>, <comment_id>", methods=["GET", "POST"])
 def edit_comment(quote_id, comment_id):
     if request.method == "POST":
+        edited_comment = request.form.get("edit_comment")
+        is_edited_comment = edited_comment.replace(" ", "")
+        if is_edited_comment == "":
+            flash("Edited comment must have a value")
+            return redirect(url_for("my_comments"))
+
         submit = {
-            "comment": request.form.get("edit_comment").capitalize(),
+            "comment": edited_comment.capitalize(),
             "quote_id": quote_id,
             "comment_by": session["user"]
         }

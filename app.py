@@ -28,8 +28,9 @@ def render_homepage():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    if query is None:
+    query = request.form.get("query").replace(" ", "")
+    print(query)
+    if query == "":
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
@@ -40,8 +41,8 @@ def search():
     all_comments = list(mongo.db.comments.find())
 
     return render_template("search_results.html",
-        query_quotes =query_quotes, query=query,
-        all_comments =all_comments, next_page=request.endpoint)
+        query_quotes=query_quotes, query=query,
+        all_comments=all_comments, next_page=request.endpoint)
 
 
 @app.route("/browse_themes/<theme_name>")
@@ -120,7 +121,7 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
-# HERE, modal reload current page, logout can happen from anywhere, may still want to see search results...
+
     return redirect(url_for("render_homepage"))
 
 
@@ -199,7 +200,7 @@ def my_quotes():
     all_comments = list(mongo.db.comments.find())
 
     return render_template("my_quotes.html", my_quotes=my_quotes,
-        all_comments=all_comments, next_page=request.endpoint)
+                           all_comments=all_comments, next_page=request.endpoint)
 
 
 # @app.route("/comment/<quote_id><next>,", methods=['GET', 'POST'])

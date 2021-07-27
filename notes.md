@@ -96,6 +96,8 @@ Redirect url instead of calling function in views for add and edit quote and com
 
 Min quote length
 empty search empty comment
+
+check that new theme really is new if not, don't add to database
  
 
 {% if quote.id in all_comments|map(attribute="quote_id") %}

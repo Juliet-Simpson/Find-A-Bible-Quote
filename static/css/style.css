@@ -24,6 +24,13 @@ nav .brand-logo {
     font-weight: 400;
     max-height: 64px;
 }
+nav ul a {
+    font-size: 18px;
+}
+
+.sidenav li>a {
+    font-size: 20px;
+}
 .login-status{
     margin:5px 0 0 5px;
 }
@@ -198,6 +205,19 @@ input{
     text-align: center;
 }
 
+/* Confirm delete modal */
+#modal3 .modal-footer{
+    text-align: center !important;
+}
+
+/* My Comments Page */
+.my-comments{
+    margin-bottom: 25px;
+}
+.comments-btns{
+    text-align: center !important;
+}
+
 @media only screen and (max-width: 768px){
 /* Logo */
 .brand-logo i{
@@ -258,6 +278,16 @@ p{
 .quote-row{
     margin-bottom: 0;
 }
+/* Quotes */
+
+.fa-trash:before{
+    color: white;
+}
+/* My Comments Page */
+.my-comments{
+    font-size: 130%;
+    margin-bottom: 10px;
+}
 /* edit comment */
 .ed-com-btn, .ed-quote-btn{
     width:150px;
@@ -271,12 +301,3 @@ p{
 }
 }
 
-/* Confirm delete modal */
-#modal3 .modal-footer{
-    text-align: center !important;
-}
-
-/* My Comments Page */
-.comments-btns{
-    text-align: center !important;
-}

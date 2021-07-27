@@ -28,8 +28,9 @@ def render_homepage():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query").replace(" ", "")
-    if query == "":
+    query = request.form.get("query")
+    is_query = query.replace(" ", "")
+    if is_query == "":
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))

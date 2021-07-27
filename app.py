@@ -26,10 +26,12 @@ def render_homepage():
         next_page=request.endpoint)
 
 
-# NO FILTERING
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
+    if query is None:
+        flash("Please enter a search value")
+        return redirect(url_for("render_homepage"))
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
 
     for quote in query_quotes:
@@ -178,7 +180,7 @@ def edit_quote(quote_id):
 
         return redirect(url_for("my_quotes"))
  
-    return render_template("edit_quote.html", quote=quote, themes=themes, next_page=request.endpoint)
+    return render_template("edit_quote.html", quote=quote, themes=themes)
 
 
 @app.route("/my_quotes")
@@ -194,7 +196,27 @@ def my_quotes():
         all_comments=all_comments, next_page=request.endpoint)
 
 
-@app.route("/comment/<quote_id>,", methods=['GET', 'POST'])
+# @app.route("/comment/<quote_id><next>,", methods=['GET', 'POST'])
+# def comment(quote_id, next):
+#     if request.method == "POST":
+#         comment = {
+#             "comment": request.form.get("comment").capitalize(),
+#             "quote_id": quote_id,
+#             "comment_by": session["user"]
+#         }
+#         mongo.db.comments.insert_one(comment)
+#         flash("Thanks for commenting")
+
+#         redirect_url = request.args.get("next", url_for("my_comments"))
+#         return redirect(redirect_url)
+
+    # if next == "my_quotes"
+    #     return redirect(url_for('my_quotes'))
+
+    # return redirect(url_for("my_comments"))
+
+
+@app.route("/comment/<quote_id>", methods=['GET', 'POST'])
 def comment(quote_id):
     if request.method == "POST":
         comment = {
@@ -204,7 +226,9 @@ def comment(quote_id):
         }
         mongo.db.comments.insert_one(comment)
         flash("Thanks for commenting")
+
     return redirect(url_for("my_comments"))
+
 
 
 @app.route("/delete_quote/<quote_id>, <delete_theme>")

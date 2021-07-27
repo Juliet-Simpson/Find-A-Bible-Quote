@@ -52,11 +52,17 @@ CHANGE DUBUG TO FALSE
 
 PREPOPULATE DATABASE
 
-SCREENREADER INFO
+Am I responsive
 
 BLOCKSCRIPTS
 
 CRUD testing
+
+validate code
+
+comment code
+
+lighthouse
 
 
 
@@ -88,7 +94,8 @@ Move endif statement inside closing h6 and li tags in comments collapsible body 
 
 Redirect url instead of calling function in views for add and edit quote and comment, prevents form resubmission on refresh page!
 
-
+Min quote length
+empty search empty comment
  
 
 {% if quote.id in all_comments|map(attribute="quote_id") %}

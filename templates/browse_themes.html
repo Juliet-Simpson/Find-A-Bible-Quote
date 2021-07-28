@@ -16,7 +16,8 @@
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
                     <div class="col s7 m8">
-                        <h6 class="justify-left theme-small">Theme: <strong class="theme">{{ quote.theme }}</strong></h6>
+                        <h6 class="justify-left theme-small">Theme: <strong class="theme">{{ quote.theme }}</strong>
+                        </h6>
                     </div>
                 </div>
                 <div class="row">
@@ -29,7 +30,8 @@
                         <strong>Added by:</strong> {{quote.added_by}}
                     </div>
                     <div class="col s6 btn-col">
-                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret down</span>Comments
+                        <i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Caret
+                            down</span>Comments
                     </div>
                 </div>
             </div>
@@ -52,24 +54,29 @@
                 {% endif %}
                 {% endfor %}
                 {% else %}
-
-                <li><h6>There are no comments about this quote yet. 
-                {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a Comment.{% endif %}
-                </h6></li>
+                <li>
+                    <h6>There are no comments about this quote yet.
+                        {% if not session.user %} <a href="#modal2" class="modal-trigger"><strong>Login</a> or <a
+                            href="#modal1" class="modal-trigger"></strong>Register</strong></a> to make a
+                        Comment.{% endif %}
+                    </h6>
+                </li>
                 {% endif %}
                 {% if session.user %}
                 <li>
                     <div class="card-panel make-comment-card">
                         <form method="POST" action="{{ url_for('comment', quote_id=quote._id, next=next_page) }}">
                             <div class="input-field">
-                                <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>
+                                <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span
+                                    class="sr-only">Speech bubble</span>
                                 <label for="browse-comment"> Make a
                                     comment</label>
                                 <textarea name="comment" id="browse-comment" minlength="3" type="text"></textarea>
                             </div>
-                            <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button></div>
+                            <div class="comment-btns col s12"><button class="btn-small" type="submit">Post</button>
+                            </div>
                         </form>
-                </div>
+                    </div>
                 </li>
                 {% endif %}
             </ul>
@@ -77,8 +84,6 @@
     </li>
     {% endfor %}
 </ul>
-
 {% endif %}
 <br>
-
 {% endblock %}

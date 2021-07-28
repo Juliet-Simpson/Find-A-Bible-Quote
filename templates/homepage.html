@@ -3,7 +3,8 @@
 <h3 class="center">Find Bible Quotes For You</h3>
 
 <!-- Search Bar -->
-<br><div class="card-panel search-card">
+<br>
+<div class="card-panel search-card">
   <form method="GET" action="{{ url_for('search') }}">
     <div class="input-field">
       <i class="fas fa-search search-label prefix"></i>
@@ -15,11 +16,11 @@
 
 <section>
   <p>Search for a bible quote relevant to a chosen theme by typing the theme into the search bar. Alternatively browse
-    all themes using the dropdown below and click on a theme to view associated quotes.</p><p> You can comment on quotes or add
+    all themes using the dropdown below and click on a theme to view associated quotes.</p>
+  <p> You can comment on quotes or add
     and edit your own chosen bible quotes but you must first be registered and logged in to do so.
   </p>
 </section><br>
-
 <ul class="collapsible browse-themes">
   <li>
     <div class="collapsible-header ">
@@ -30,11 +31,9 @@
         {% for _theme in themes %}
         <li><a name="theme" href="{{ url_for('browse_themes', theme_name=_theme.theme) }}">{{ _theme.theme }}</a></li>
         {% endfor %}
-       </ul>
+      </ul>
     </div>
-
   </li>
-
 </ul>
 <br>
 {% endblock %}

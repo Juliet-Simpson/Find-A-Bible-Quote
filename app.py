@@ -143,7 +143,7 @@ def add_quote():
                 mongo.db.themes.insert_one({"theme": new_theme})
         theme = new_theme or request.form.get("theme")
 
-         # Book must not be just whitespace
+        # Book must not be just whitespace
         book = request.form.get("book")
         is_book = book.replace(" ", "")
         if is_book == "":
@@ -176,18 +176,30 @@ def edit_quote(quote_id):
 
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None)
-        # check if theme is whitespace
-        is_new_theme = new_theme.replace(" ", "")
-        if is_new_theme == "":
-            flash("Please enter a theme value")
-            return render_template("edit_quote.html", quote=quote, themes=themes)
 
         if new_theme:
+            # check if new theme is just whitespace
+            is_new_theme = new_theme.replace(" ", "")
+            if is_new_theme == "":
+                flash("Please enter a theme value")
+                return render_template("edit_quote.html", quote=quote,
+                                       themes=themes)
+            # Check if new theme added is actually new and if not don't readd to database
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
                 mongo.db.themes.insert_one({"theme": new_theme})
 
         theme = new_theme or request.form.get("theme")
+
+        # Book must not be just whitespace
+        book = request.form.get("book")
+        is_book = book.replace(" ", "")
+        if is_book == "":
+            flash("Book must have a vlaue")
+            return render_template("edit_quote.html",
+                                   quote=quote,
+                                   themes=themes)
+
         submit = {
             "theme": theme,
             "book": request.form.get("book").capitalize(),

@@ -306,6 +306,14 @@ def comment(quote_id):
             "quote_id": quote_id,
             "comment_by": session["user"]
         }
+
+        # check if user has already made this comment and prevent 
+        # duplication if so
+        comment_already = list(mongo.db.comments.find(comment))
+        if len(comment_already) > 0:
+            flash("You have already made this comment previously")
+            return redirect(url_for("my_comments"))
+
         mongo.db.comments.insert_one(comment)
         flash("Thanks for commenting")
 
@@ -371,6 +379,15 @@ def edit_comment(quote_id, comment_id):
             "quote_id": quote_id,
             "comment_by": session["user"]
         }
+
+        # check if user has already made this comment and prevent 
+        # duplication if so
+        comment_already = list(mongo.db.comments.find(submit))
+        if len(comment_already) > 0:
+            flash("You have already made this edited comment previously")
+            return redirect(url_for("my_comments"))
+
+
         mongo.db.comments.update({"_id": ObjectId(comment_id)}, submit)
         flash("Comment successfully edited")
 

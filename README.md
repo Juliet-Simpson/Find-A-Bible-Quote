@@ -14,7 +14,7 @@ PASSWORD: admin
 
 Previews of the homepage on different devices can be viewed here:
 
-![Previews](assets/images/readme/previews.png "Previews")
+![Previews](static/assets/images/readme/previews.png "Previews")
 
 
 ## User Stories
@@ -58,18 +58,46 @@ To create a web abb that gives the user an interface to meet the needs of the us
 ### **2. Scope**
 
 Features to include:
+* A navbar, collapsible for small screens
 
-* Navbar with a Brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
+* Functionality to search for a quote by theme
+
+* Functionality to browse through themes and view associated quotes.
+
+* Login and register functionality
+
+* Functionality for a user to post quotes.
+
+* Functionality for a user to make comments on quotes.
+
+* Functionality for a user to view quotes and associated comments.
+
+* Functionality for a user to review their own quotes and comments and edit or delete them.
+
+* Functionality for an admin user to review all quotes and comments, edit or delete quotes and delete comments.
+
+* An attractive user interface facilitating ease of carrying out all the above actions.
+
+
+### **3. Structure**
+
+* The app will be responsive on all screen sizes
+
+* There will be a beatiful background image of a sunrise over mountains with the contrast reduced that will exist throughout the site.
+
+* A navbar with a brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
 
 * Login and Register links which will open modals for login or register criteria to be entered and submitted. 
+
+* The register will have a Learn More link after the checkbox to agree to the terms and conditions.  This will open another overlayed modal laying out the site terms and conditions.  there will be a button to clos the modal at the bottom.
 
 * Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.
 
 * Search results page showing quotes stored in the database for the searched for theme.  Each quote will be on a card panel which is a collapsible header, showing the book chapter and verses from the bible, the theme the quote is for, the quote text, which user added the quote and a caret down icon labelled comments. The collapsible body will show the comments about the quote, each on a card panel with which user made the comment. Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will ba a message saying login or register to make a comment.  If there are no quotes for the searched theme there will be a message saying so and an option either to log in/register to add a quote or add a quote if already logged in.
 
-* Description of app and instructions for using it on the Homepage.
+* Description of app and instructions for using it on the homepage.
 
-* Dropdown to show all the themes for which there are already quotes.  Each theme clickable to redirect to a page rendering those quotes. This page will be indistuiguishable in structure from the search results page from the user's perspective.
+* Dropdown to show all the themes for which there are already quotes on the homepage.  Each theme clickable to redirect to a page rendering those quotes. This page will be indistuiguishable in structure from the search results page from the user's perspective.  However there will be no message for no quotes for a theme because only themes with a quote will be shown in the dropdown.
 
 * There will be 4 navigable pages for the logged in user, Home, Add A Quote, My Quotes and My Comments.  An aditional 5th, ADMIN, will be navigable fo a user logged in as admin. 
 
@@ -81,27 +109,27 @@ Features to include:
 
 * The Edit buttons on the my quotes page will navigate to an edit quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page.
 
-* There will be a My Comments page listing the quotes on which a user has commented.  All the comments
+* There will be a My Comments page listing the quotes on which a user has commented.  All the comments for a quote will be shown but the ones made by the user will have buttons to edit or delete the comment.  
+
+* The edit comment button on my quotes page will open a modal with a form for editing the comment.  There will be buttons to submit or cancel.  The delete button will open a confirm delete modal.
+
+* The ADMIN page for users logged in as admin will show all the quotes in the database with buttons to lead to the edit page for editing them or to open the confirm delete modal to delete them.  The comments will be displayed for each quote in the same structure as on the other pages.  Admin will have a button with each comment to delete it but not to edit it.
 
 
-
-
-
-### **3. Structure**
-
-* The app will be over 8 html templates extending a base template.  
-
-* It will be responsive for different screen sizes and the layout will vary accordingly.  
-* The header will contain the colour scheme selection options, page title, the date and time and the How To Use speech bubble button to open the modal. 
-* Below the header, a section containing a text input field to name the list OR the title of the currently open list.  
-* The weather API will be to the left of the screen on a desktop and in the bottom section of the page on a tablet and a mobile.
-* The to do list items will be displayed centrally on the screen with a 'done' checkbox to the left and urgent and trash button icons to the right of each item. 
-* The 'enter a to-do' text input will be central at the bottom of the page on a desktop or at the bottom of the 'to dos' section on a tablet or mobile.
-* List titles will display in a column to the right of the screen on desktop and between the todos and the weather on a mobile or tablet.
 
 ### **4. Skeleton**
 
 The wireframes can be viewed here:
+
+- [Homepage wireframes](static/assets/images/readme/wireframes/homepage-wireframes.pdf)
+
+- [Wireframes](assets/wireframes/wireframes.pdf)
+
+- [Wireframes](assets/wireframes/wireframes.pdf)
+
+- [Wireframes](assets/wireframes/wireframes.pdf)
+
+- [Wireframes](assets/wireframes/wireframes.pdf)
 
 - [Wireframes](assets/wireframes/wireframes.pdf)
 

@@ -37,12 +37,15 @@ def render_homepage():
 @app.route("/search", methods=["GET"])
 def search():
     query = request.args.get("query", "")
+    # search for a phrase instead of keywords
+    query_phrase = f'\"{query}\"'
+    # don't search for just whitespace
     is_query = query.replace(" ", "")
     if not is_query:
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
 
-    query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
+    query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query_phrase}}))
 
     for quote in query_quotes:
         quote["id"] = str(quote["_id"])

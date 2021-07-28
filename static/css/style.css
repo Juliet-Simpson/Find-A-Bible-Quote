@@ -87,7 +87,7 @@ label.active{
     padding-left: 20px !important;
 }
 .results{
-    margin:0;
+    margin:0 !important;
 }
 
 /* Buttons and icons */

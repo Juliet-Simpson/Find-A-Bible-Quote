@@ -302,6 +302,10 @@ p{
     text-align: right;
     padding-top: 3px;
 }
+
+.collapsible-header .card-panel .row .col h6{
+    font-size: 67% !important;
+}
 .prefix{
     font-size: 150% !important;
     padding: 1rem;

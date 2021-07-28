@@ -45,7 +45,8 @@ def search():
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
 
-    query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query_phrase}}))
+    query_quotes = list(mongo.db.quotes.find({"$text": {
+        "$search": query_phrase}}))
 
     for quote in query_quotes:
         quote["id"] = str(quote["_id"])
@@ -438,5 +439,5 @@ def admin():
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"), port=int(os.environ.get("PORT")),
-        debug=True
+        debug=False
     )

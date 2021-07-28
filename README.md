@@ -91,23 +91,31 @@ Features to include:
 
 * The register will have a Learn More link after the checkbox to agree to the terms and conditions.  This will open another overlayed modal laying out the site terms and conditions.  there will be a button to clos the modal at the bottom.
 
-* Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.
+* Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.  The quotes, if any will then be shown on the search results page.
 
-* Search results page showing quotes stored in the database for the searched for theme.  Each quote will be on a card panel which is a collapsible header, showing the book chapter and verses from the bible, the theme the quote is for, the quote text, which user added the quote and a caret down icon labelled comments. The collapsible body will show the comments about the quote, each on a card panel with which user made the comment. Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will ba a message saying login or register to make a comment.  If there are no quotes for the searched theme there will be a message saying so and an option either to log in/register to add a quote or add a quote if already logged in.
+* Description of app and instructions for using it on the homepage. 
 
-* Description of app and instructions for using it on the homepage.
+* Dropdown to show all the themes for which there are already quotes on the homepage.  Each theme clickable to redirect to a page rendering those quotes. 
 
-* Dropdown to show all the themes for which there are already quotes on the homepage.  Each theme clickable to redirect to a page rendering those quotes. This page will be indistuiguishable in structure from the search results page from the user's perspective.  However there will be no message for no quotes for a theme because only themes with a quote will be shown in the dropdown.
+* Search results page showing quotes stored in the database for the searched for theme.  
+    * If there are no quotes for the searched theme there will be a message saying so and an option to add a quote which is a link to the add quote page or links to login or register to add a quote if the user is not logged in so that they can then add a quote for that theme. 
+    * If there are quotes, each quote will be on a card panel which is a collapsible header, showing the book, chapter and verses from the bible, the theme the quote is for, the quote text, which user added the quote and a caret down icon labelled comments.
+    * The collapsible body will show the comments about the quote, each on a card panel with which user made the comment. 
+    * Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will ba a message saying login or register to make a comment. 
 
-* There will be 4 navigable pages for the logged in user, Home, Add A Quote, My Quotes and My Comments.  An aditional 5th, ADMIN, will be navigable fo a user logged in as admin. 
+* 'Browse results' page showing quotes for the theme they selected from the dropdown on the homepage.
+    * Will be indistuiguishable in structure from the search results page from the user's perspective, except that there will be no message for no quotes for a theme because only themes with any quote will be shown in the dropdown on the homepage.
 
-* There will be an Add Quote page where users enter the details of a quote they would like to add: Theme, Book, Chapter, Start Verse, End Verse (optional) and quote Text. There is a lage Add Quote button at the bottom which will submit the quote to the database as an object.
+* There will be 4 pages navigable from the navbar for the logged in user: Home, Add A Quote, My Quotes and My Comments.  An aditional 5th, ADMIN, will be navigable fo a user logged in as 'admin'. 
 
-* My Quotes page to show the user all the quotes that they have added. Same structure as Search results page but each quote will have edit and delete buttons on the top right of each quote card.
+* The Add Quote page where users enter the details of a quote they would like to add: Theme, Book, Chapter, Start Verse, End Verse (optional) and quote Text. 
+    * There is a lage Add Quote button at the bottom which will submit the quote to the database as an object.
 
-* The delete buttons on the MyQuotes page will open a modal asking the user to confirm the quote delete before deleting it from the database.
-
-* The Edit buttons on the my quotes page will navigate to an edit quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page.
+* My Quotes page to show the user all the quotes that they have added. Same structure as Search results page but each quote will have edit and delete buttons on the top right of each quote card.  
+    * Possible message that user has not added any quotes yet and link to the Add a Quote page.
+    * No links to login or register because user must be already logged in to be on this page.
+    * The delete buttons for quotes will open a modal asking the user to confirm the quote delete before deleting it from the database.
+    * The Edit buttons on the my quotes page will navigate to an Edit Quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page or a button to submit the edited quoote.
 
 * There will be a My Comments page listing the quotes on which a user has commented.  All the comments for a quote will be shown but the ones made by the user will have buttons to edit or delete the comment.  
 
@@ -121,34 +129,35 @@ Features to include:
 
 The wireframes can be viewed here:
 
-- [Homepage wireframes](static/assets/images/readme/wireframes/homepage-wireframes.pdf)
+- [Desktop Homepage wireframes](static/assets/images/readme/wireframes/homepage-wireframes-desktop.png)
 
-- [Wireframes](assets/wireframes/wireframes.pdf)
+- [Mobile Homepage wireframes](static/assets/images/readme/wireframes/homepage-wireframes-mobile.png)
 
-- [Wireframes](assets/wireframes/wireframes.pdf)
+- [Desktop Register and Login wireframes](static/assets/images/readme/wireframes/log-reg-wireframes-desktop.png)
 
-- [Wireframes](assets/wireframes/wireframes.pdf)
+- [Mobile Register and Login wireframes](static/assets/images/readme/wireframes/log-reg-wireframes-mobile.png)
 
-- [Wireframes](assets/wireframes/wireframes.pdf)
+- [Desktop Add Quote and Edit Quote wireframes](static/assets/images/readme/wireframes/add-edit-quote-wireframes-desktop.png)
 
-- [Wireframes](assets/wireframes/wireframes.pdf)
+- [Mobile Add Quote and Edit Quote wireframes](static/assets/images/readme/wireframes/add-edit-quote-wireframes-mobile.png)
 
+- [Desktop My Quotes wireframes](static/assets/images/readme/wireframes/my-quotes-wireframes-desktop.png)
+
+- [Mobile My Quotes wireframes](static/assets/images/readme/wireframes/my-quotes-wireframes-mobile.png)
+
+- [Desktop My Comments wireframes](static/assets/images/readme/wireframes/my-comments-wireframes-desktop.png)
+
+- [Mobile My Comments wireframes](static/assets/images/readme/wireframes/my-comments-wireframes-mobile.png)
+
+- [Desktop ADMIN wireframes](static/assets/images/readme/wireframes/admin-wireframes-desktop.png)
+
+- [Mobile ADMIN wireframes](static/assets/images/readme/wireframes/admin-wireframes-mobile.png)
 
 ### **5. Surface**
 
-There will be 4 different themes to choose from each with its own colour scheme. There will be a font for the business themes and a font for the fun themes.  The 4 themes will be:
+The theme will be the same through out.  The navbar will be red with contrasting white text to compliment the reddish sky at the top of the background image.
+The background image will be of the sun with rays over a distant mountain range with a grassy meadow in the foreground.  The exposure will be increased and the contrast reduced to give a paled effect which will not interfere with the site functionality overlayed.
 
-* Business light:
-    * A pleasant but non distracting theme with a mainly white background.
-
-* Business dark:
-    * A pleasant but non distracting theme with a dark coloured background and white text in contrast.
-
-* Fun light:
-    * A vibrant and exciting rainbow theme to encourage the user to find getting things done 'fun'.
-
-* Fun dark:
-    * An artistic and attractive dark coloured theme aiming to lift the mood of the user without being overly bright.
 
 ## Features
 

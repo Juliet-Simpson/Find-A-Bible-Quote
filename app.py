@@ -213,7 +213,6 @@ def add_quote():
 
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
 def edit_quote(quote_id):
-    redirect_url = request.args.get("next", url_for("my_quotes"))
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     themes = mongo.db.themes.find().sort("theme", 1)
     old_theme = quote["theme"]
@@ -227,8 +226,7 @@ def edit_quote(quote_id):
             if is_new_theme == "":
                 flash("Please enter a theme value")
                 return render_template(
-                    "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
-                )
+                    "edit_quote.html", quote=quote, themes=themes)
             # Check if new theme added is actually new and if not don't re-add
             # to database
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
@@ -243,16 +241,14 @@ def edit_quote(quote_id):
         if is_book == "":
             flash("Book must have a vlaue")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
-            )
+                "edit_quote.html", quote=quote, themes=themes)
 
         # Quote text must not be just whitespace
         is_text = request.form.get("text").replace(" ", "")
         if is_text == "":
             flash("Quote text must have a value")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
-            )
+                "edit_quote.html", quote=quote, themes=themes)
 
 
         submit = {
@@ -270,8 +266,7 @@ def edit_quote(quote_id):
         if len(quote_already) > 0:
             flash("""The edited quote already exists for this theme.""")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
-            )
+                "edit_quote.html", quote=quote, themes=themes)
 
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")
@@ -282,10 +277,9 @@ def edit_quote(quote_id):
         if len(old_theme_quotes) == 0:
             mongo.db.themes.remove({"theme": old_theme})
 
-        return redirect(redirect_url)
+        return redirect(url_for("my_quotes"))
 
-    return render_template("edit_quote.html", quote=quote, themes=themes, 
-    next_page=request.full_path)
+    return render_template("edit_quote.html", quote=quote, themes=themes)
 
 
 @app.route("/my_quotes")

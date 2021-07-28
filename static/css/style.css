@@ -62,11 +62,11 @@ p{
     text-align: center;
 }
 label{
-    color:darkslategray;
+    color:darkslategray !important;
 }
 
 label.active{
-    color:darkslategray;
+    color:darkslategray !important;
 }
 .query-label{
     font-size: 120% !important;
@@ -99,19 +99,20 @@ label.active{
 }
 
 .ed-com-btn, .ed-quote-btn{
-    width:150px;
+    width:150px !important;
     margin-bottom: 4px;
 }
+
 
 /* Search */
 /* Target pasted from Devtools */
 
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
-    border-bottom: 1px solid #9e9e9e !important;
+    border-bottom: 1px solid darkslategray !important;
 }
 
 input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #9e9e9e;
+    color: darkslategray;
 }
 
 .search-label{
@@ -124,6 +125,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 /* Reg/login */
 .log-reg-btn{
     padding: 0 20px;
+    text-align: center !important;
 }
 .modal-footer{
     text-align: center !important;
@@ -195,9 +197,7 @@ input{
 .theme-field{
     margin-bottom: 0;
 }
-.theme-label, .end-label{
-    color: #9e9e9e !important;
-}
+
 .add-quote-card{
     padding-bottom: 10px !important;
 }

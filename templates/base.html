@@ -3,6 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Fina a bible quote by theme">
+  <meta name="keywords" content="HTML, CSS, Python, JavaScript">
+  <meta name="author" content="Juliet Simpson">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -22,7 +25,7 @@
         <a href="{{ url_for('render_homepage') }}" class="brand-logo"><i class="fas fa-cross fa-lg"
             aria-hidden="true"></i><span class="sr-only">Cross</span>BibleQuotes 4U
           </a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"aria-hidden="true"></i><span class="sr-only">Bars</span></a>
 
         <ul class="right hide-on-med-and-down">
           <li><a href="{{ url_for('render_homepage') }}">Home</a></li>
@@ -103,11 +106,11 @@
                 </label>
               </p>
               <!-- register button-->
-              <div class="row center-align log-reg-btn">
-                <button type="submit" class="col s12 btn ">
+              <div class="row log-reg-btn">
+                <button type="submit" class="col s12 btn reg-btn blue">
                   Register <i class="fas fa-sign-in-alt" aria-hidden="true"></i><span class="sr-only">Sign in</span>
                 </button>
-                <a href="#!" class="modal-close btn-small center red"><i class="fas fa-times"
+                <a href="#!" class="modal-close btn center reg-btn red"><i class="fas fa-times"
                     aria-hidden="true"></i><span class="sr-only">Times</span>Cancel</a>
               </div>
             </div>
@@ -145,7 +148,7 @@
               </div>
               <!-- login -->
               <div class="row log-reg-btn">
-                <button type="submit" class="col s12 btn ">
+                <button type="submit" class="col s12 btn blue">
                   Log In <i class="fas fa-sign-in-alt"></i>
                 </button>
               </div>

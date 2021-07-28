@@ -34,16 +34,44 @@ def search():
         flash("Please enter a search value")
         return redirect(url_for("render_homepage"))
     query_quotes = list(mongo.db.quotes.find({"$text": {"$search": query}}))
+    # variable for all_comments moved up here
+    all_comments = list(mongo.db.comments.find())
 
     for quote in query_quotes:
         quote["id"] = str(quote["_id"])
-        
-    all_comments = list(mongo.db.comments.find())
+        quote_id = quote["_id"]
+
+        #  Pasted code for commenting
+        if request.method == "POST":
+
+            comment_input = request.form.get("comment", None)
+
+            # check if comment has whitespace
+            is_comment_input = comment_input.replace(" ", "")
+
+            if is_comment_input == "":
+                flash("Comment must have a value")
+
+                return render_template("search_results.html",
+                                        query_quotes=query_quotes,
+                                        query=query,
+                                        all_comments=all_comments)
+
+            comment = {
+                "comment": comment_input.capitalize(),
+                "quote_id": quote_id,
+                "comment_by": session["user"]
+            }
+            mongo.db.comments.insert_one(comment)
+            flash("Thanks for commenting")
+
+    return render_template("search_results.html",
+                            query_quotes=query_quotes, query=query,
+                            all_comments=all_comments)
 
     return render_template("search_results.html",
                            query_quotes=query_quotes, query=query,
-                           all_comments=all_comments,
-                           next_page=request.endpoint)
+                           all_comments=all_comments)
 
 
 @app.route("/browse_themes/<theme_name>")
@@ -130,7 +158,7 @@ def logout():
 def add_quote():
     themes = mongo.db.themes.find().sort("theme", 1)
     if request.method == "POST":
-        new_theme = request.form.get("new_theme", None) 
+        new_theme = request.form.get("new_theme", None)
         if new_theme:
             is_new_theme = new_theme.replace(" ", "")
             if is_new_theme == "":
@@ -141,8 +169,6 @@ def add_quote():
             if len(is_it_new) == 0:
                 mongo.db.themes.insert_one({"theme": new_theme})
         theme = new_theme or request.form.get("theme")
-
-        
         
         quote = {
             "theme": theme,
@@ -174,7 +200,8 @@ def edit_quote(quote_id):
         is_new_theme = new_theme.replace(" ", "")
         if is_new_theme == "":
             flash("Please enter a theme value")
-            return render_template("edit_quote.html", quote=quote, themes=themes)
+            return render_template("edit_quote.html", quote=quote,
+                                   themes=themes)
 
         if new_theme:
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
@@ -234,33 +261,33 @@ def my_quotes():
 #         redirect_url = request.args.get("next", url_for("my_comments"))
 #         return redirect(redirect_url)
 
-    # if next == "my_quotes"
-    #     return redirect(url_for('my_quotes'))
+#     if next == "my_quotes"
+#         return redirect(url_for('my_quotes'))
 
-    # return redirect(url_for("my_comments"))
+#     return redirect(url_for("my_comments"))
 
 
-@app.route("/comment/<quote_id>", methods=['GET', 'POST'])
-def comment(quote_id):
-    if request.method == "POST":
+# @app.route("/comment/<quote_id>", methods=['GET', 'POST'])
+# def comment(quote_id):
+#     if request.method == "POST":
 
-        comment_input = request.form.get("comment")
-        # check if comment has whitespace
-        is_comment_input = comment_input.replace(" ", "")
-        if is_comment_input == "":
-            flash("Comment must have a value")
+#         comment_input = request.form.get("comment")
+#         # check if comment has whitespace
+#         is_comment_input = comment_input.replace(" ", "")
+#         if is_comment_input == "":
+#             flash("Comment must have a value")
 
-            return redirect(url_for('my_comments'))
+#             return redirect(url_for('my_comments'))
 
-        comment = {
-            "comment": comment_input.capitalize(),
-            "quote_id": quote_id,
-            "comment_by": session["user"]
-        }
-        mongo.db.comments.insert_one(comment)
-        flash("Thanks for commenting")
+#         comment = {
+#             "comment": comment_input.capitalize(),
+#             "quote_id": quote_id,
+#             "comment_by": session["user"]
+#         }
+#         mongo.db.comments.insert_one(comment)
+#         flash("Thanks for commenting")
 
-    return redirect(url_for("my_comments"))
+#     return redirect(url_for("my_comments"))
 
 
 

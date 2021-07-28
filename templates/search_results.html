@@ -3,7 +3,7 @@
 
 {% if query_quotes|length > 0 %}
 
-<h3 class="center">Bible quotes about {{ query | title }}</h3>
+<h3 class="center">Bible quotes about {{ query | lower }}</h3>
 
 <ul class="collapsible">
     {% for quote in query_quotes %}
@@ -79,7 +79,7 @@
 
 {% else %}
 <br>
-<h4 class="red-text text-darken-4 center-align">There are no quotes about {{ query }} yet.
+<h4 class="red-text text-darken-4 center-align">There are no quotes about {{ query | lower }} yet.
     {% if session.user %}Click <a href="{{ url_for('add_quote') }}"> here </a>to add a quote.{% else %} <a
         href="#modal2" class="modal-trigger">Login</a> or <a href="#modal1" class="modal-trigger">register</a> to add a
     quote.</h4>

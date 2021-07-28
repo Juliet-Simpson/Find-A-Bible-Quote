@@ -167,7 +167,7 @@ def add_quote():
             # Do not re add new theme to the database if it does actually exist (user error)
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
-                mongo.db.themes.insert_one({"theme": new_theme})
+                mongo.db.themes.insert_one({"theme": new_theme.capitalize()})
         theme = new_theme or request.form.get("theme")
 
         # Book must not be just whitespace
@@ -228,12 +228,13 @@ def edit_quote(quote_id):
                 return render_template(
                     "edit_quote.html", quote=quote, themes=themes
                 )
-            # Check if new theme added is actually new and if not don't readd to database
+            # Check if new theme added is actually new and if not don't readd 
+            # to database
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
-                mongo.db.themes.insert_one({"theme": new_theme})
+                mongo.db.themes.insert_one({"theme": new_theme.capitalize()})
 
-        theme = new_theme or request.form.get("theme")
+        theme = new_theme.capitalize() or request.form.get("theme")
 
         # Book must not be just whitespace
         book = request.form.get("book")

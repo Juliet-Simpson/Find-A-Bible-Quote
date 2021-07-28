@@ -149,6 +149,12 @@ def add_quote():
         if is_book == "":
             flash("Book must have a vlaue")
             return redirect(url_for("add_quote"))
+
+        # Quote must not be just whitespace
+        is_text = request.form.get("text").replace(" ", "")
+        if is_text == "":
+            flash("Quote text must have a value")
+            return redirect(url_for("add_quote"))
         
         quote = {
             "theme": theme,

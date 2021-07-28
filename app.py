@@ -110,6 +110,15 @@ def register():
     if request.method == "POST":
         password = request.form.get("password")
         confirm_password = request.form.get("confirm-password")
+        # passwrod must not contain whitespace
+        no_white_pw = password.replace(" ", "")
+        if no_white_pw == "":
+            flash("Password must not contain whitespace")
+            return redirect(url_for("render_homepage"))
+        if no_white_pw != password:
+            flash("Password must not contain whitespace")
+            return redirect(url_for("render_homepage"))
+        # Passwords must match
         if password != confirm_password:
             flash("Passwords do not match.")
             return redirect(url_for("render_homepage"))

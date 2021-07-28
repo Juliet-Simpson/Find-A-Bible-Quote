@@ -175,7 +175,7 @@ def add_quote():
             return redirect(url_for("add_quote"))
 
         quote = {
-            "theme": theme,
+            "theme": theme.capitalize(),
             "book": request.form.get("book").capitalize(),
             "chapter": request.form.get("chapter"),
             "start_verse": request.form.get("start_verse"),
@@ -244,7 +244,7 @@ def edit_quote(quote_id):
             )
 
         submit = {
-            "theme": theme,
+            "theme": theme.capitalize(),
             "book": request.form.get("book").capitalize(),
             "chapter": request.form.get("chapter"),
             "start_verse": request.form.get("start_verse"),

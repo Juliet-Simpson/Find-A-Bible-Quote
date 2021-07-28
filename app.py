@@ -254,6 +254,7 @@ def edit_quote(quote_id):
                 "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
             )
 
+
         submit = {
             "theme": theme.capitalize(),
             "book": request.form.get("book").capitalize(),
@@ -261,7 +262,7 @@ def edit_quote(quote_id):
             "start_verse": request.form.get("start_verse"),
             "end_verse": request.form.get("end_verse"),
             "text": request.form.get("text").capitalize(),
-            "added_by": session["user"],
+            "added_by": quote["added_by"],
         }
 
         # Prevent addition of duplicate quotes

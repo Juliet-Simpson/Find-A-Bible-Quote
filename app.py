@@ -132,17 +132,23 @@ def add_quote():
     if request.method == "POST":
         new_theme = request.form.get("new_theme", None) 
         if new_theme:
+            # Do not allow just whitespace
             is_new_theme = new_theme.replace(" ", "")
             if is_new_theme == "":
                 flash("Please enter a theme value")
                 return redirect(url_for("add_quote"))
-
+            # Do not re add new theme to the database if it does actually exist (user error)
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
                 mongo.db.themes.insert_one({"theme": new_theme})
         theme = new_theme or request.form.get("theme")
 
-        
+         # Book must not be just whitespace
+        book = request.form.get("book")
+        is_book = book.replace(" ", "")
+        if is_book == "":
+            flash("Book must have a vlaue")
+            return redirect(url_for("add_quote"))
         
         quote = {
             "theme": theme,

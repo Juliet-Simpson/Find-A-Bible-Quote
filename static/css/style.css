@@ -4,7 +4,7 @@ body{
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
     font-size: 110%;
-    background-image: url(../assets/images/sunrise4.png);
+    background-image: url(../assets/images/sunrise.png);
     background-position: left top;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -312,6 +312,9 @@ p{
 }
 .end-label{
     font-size: 75% !important;
+}
+.tiny-label{
+   font-size: 65% !important;
 }
 /* add/edit quote */
 .add-quote-card{

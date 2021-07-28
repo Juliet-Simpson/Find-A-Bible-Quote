@@ -3,66 +3,24 @@ sidenav edge right taken from mini project
 
 https://stackoverflow.com/questions/52226293/jinja2-check-if-value-exists-in-list-of-dictionaries
 
-PROBLEMS!!!!
-
-
-2. Everywhere in login register and logout return render_template("base.html") it is not ok, want to rerender current page
-ALSO after COMMNENTING in comment view, rerender current page
 
 
 
-
-6. add edit quote fields, specify patterns
-PATTERN pattern="[1-150]{1,3}"
-
-
-13. reusing ids for comment forms as well.
-
-14.  materialize default styling
-
-15. modal overflow
-
-16. login register fields just white please
-
-17 small screen input field weird border
-
-resize nav links
-
-
-CODE FOR LATER
-
-{{ url_for('add_theme') }}
-
-{{ url_for('comment') }}
-
-_theme = {
-            "theme": request.form.get("theme")
-        }
-{{ url_for('edit_quote', quote_id=quote._id) }}
-{{ url_for('delete_quote', quote_id=quote._id) }}
-
- if query is None:
-        return render_template("search_results.html", query_quotes=[], query='',
-        all_comments=[], next_page=request.endpoint)
 
 
 DON'T FORGET
 
-CHANGE DUBUG TO FALSE
+
 
 PREPOPULATE DATABASE
 
-Am I responsive
+COMMENT CODE
 
-BLOCKSCRIPTS
 
 CRUD testing
 
-validate code
 
 comment code
-
-lighthouse
 
 
 
@@ -99,14 +57,3 @@ empty search empty comment
 
 check that new theme really is new if not, don't add to database
  
-
-{% if quote.id in all_comments|map(attribute="quote_id") %}
-{% if comment.quote_id == quote.id %}
-....code for rendering comment
-{% endif %}
-{% else %}
-<li>There are no comments about this quote yet. </li>
-{% endif %}
-
-
-pattern="[a-zA-Z0-9]${2,100}$"

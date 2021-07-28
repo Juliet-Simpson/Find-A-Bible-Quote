@@ -6,28 +6,46 @@ A web-based data-base app using MongoDB Atlas for Code Institute's Fullstack Sof
 
 The deployed site on GitHub Pages can be viewed [here.](https://find-a-bible-quote.herokuapp.com/)
 
-Previews of the interface themes on different devices can be viewed here:
+Login details for admin are:
 
-![Business Light Previews](assets/images/readme-scrshts/b-l-prev.png "Business Light Previews")
-![Business Dark Previews](assets/images/readme-scrshts/b-d-prev.png "Business Dark Previews")
-![Fun Light Previews](assets/images/readme-scrshts/f-l-prev.png "Fun Light Previews")
-![Fun Dark Previews](assets/images/readme-scrshts/f-d-prev.png "Fun Dark Previews")
+USERNAME: admin
+
+PASSWORD: admin
+
+Previews of the homepage on different devices can be viewed here:
+
+![Previews](assets/images/readme/previews.png "Previews")
+
 
 ## User Stories
 
 * A user is experiencing a certain emotion or situation and would like to read Bible verses that could help them to understand and deal with that emotion or situation.
 
-* A user would like to see what themes Bible quotes have been added for.
+* A user would like to see what themes Bible quotes have been added for and associated quotes for those.
 
 * A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
 
-* A user wants to be able to return to the app after closing it and review lists that they have written at an earlier date.
+* On finding quotes for a theme, a user wishes to comment on a quote that another has added.  They therefore need to register.
 
-* A user has previously added a quote but they realise they have made a mistake about the start verse number and would like to go back and edit this for quote they added.
+* A user is worried obout online abuse so is cautious about registering.
 
-* On reading a quote for a situation that they searched for, a user would like to comment about how it helped them.
+* A returning user would like to use the search by theme feature and comment on the quotes obtained as results. They need to log in to do this.
 
-* A user has previously commented on a quote but due to unwelcome responses in the comments about their comment they would now like to delete it.
+* A logged in user wants to review all the quotes they have added as they use the app as a collection for their favourites.   They would also like to see if others have commented on their quotes and have the option to reply to comments by commenting further.
+
+* On reviewing the quotes that they have added a user thinks that they would like to update the theme they have given a quote.
+
+* A user enters a quote then realises that they have made a mistake in the quoting of the text or attribution.
+
+* A user recalls commenting on a quote they particularly liked and would like to look at it again.
+
+* A user looking at their recent commenting activity sees a spelling mistake in one of their comments and would like to correct it.
+
+* One of a user's comments has received negaive comments back.   They have thought about it again and now wish to delete their comment.
+
+* A user no longer wants to use the app and wishes to delete the quotes they have added.
+
+* Admin needs a page where they can monitor all site activity and delete false quotes, correct errors in quotes where possible and monitor comments for breaches of site standards, with the functionality to delete comments if necessary.   
 
 
 
@@ -35,29 +53,35 @@ Previews of the interface themes on different devices can be viewed here:
 
 ### **1. Strategy**
 
-To create a web abb that gives the user an interface to fulfill the user stories that is connected to a MongoDB database that stores all the quotes added and associated information so that it can be accessed (Read), added to (Created), edited (Updated) or removed (Deleted) and in this way meet the CRUD requirements of this project.
+To create a web abb that gives the user an interface to meet the needs of the user stories, connected to a MongoDB database. This will store all the quotes added and associated information so that it can be accessed (Read), added to (Created), edited (Updated) or removed (Deleted).  In this way this project will meet its CRUD requirements.
 
 ### **2. Scope**
 
 Features to include:
 
-* Navbar with Logo and options for Home Login and Register initally.  Login Register willopen modals to do this.  Once the user is logged in these will options will change to Home, Add Quote, My Quotes and Logout.
+* Navbar with a Brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
 
-* Search bar on Homepage which enables the user to seach for quotes for a chosen theme by typing that theme into the search bar.
+* Login and Register links which will open modals for login or register criteria to be entered and submitted. 
 
-* Search results page.  Each quote will be on a card panel showing the book chapter and verses from the bible,the quote text and a collapsible dropdown to show comments about the quote.  If there are no quotes there will be a message saying so and an option either to log in/register to add a quote or add a quote if already logged in.
+* Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.
+
+* Search results page showing quotes stored in the database for the searched for theme.  Each quote will be on a card panel which is a collapsible header, showing the book chapter and verses from the bible, the theme the quote is for, the quote text, which user added the quote and a caret down icon labelled comments. The collapsible body will show the comments about the quote, each on a card panel with which user made the comment. Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will ba a message saying login or register to make a comment.  If there are no quotes for the searched theme there will be a message saying so and an option either to log in/register to add a quote or add a quote if already logged in.
 
 * Description of app and instructions for using it on the Homepage.
 
 * Dropdown to show all the themes for which there are already quotes.  Each theme clickable to redirect to a page rendering those quotes. This page will be indistuiguishable in structure from the search results page from the user's perspective.
 
-* There will be an Add Quote page where users enter the details of a quote they would like to add: Theme, Book, Chapter, Start Verse, End Verse (optional) and quote Text. There is a lage Add Quote button which will submit the quote to the database as an object.
+* There will be 4 navigable pages for the logged in user, Home, Add A Quote, My Quotes and My Comments.  An aditional 5th, ADMIN, will be navigable fo a user logged in as admin. 
 
-* My Quotes page to show the user all the quotes that they have added. Same structure as Search results page but each quote will have edit and delete buttons on the top right of their card.
+* There will be an Add Quote page where users enter the details of a quote they would like to add: Theme, Book, Chapter, Start Verse, End Verse (optional) and quote Text. There is a lage Add Quote button at the bottom which will submit the quote to the database as an object.
+
+* My Quotes page to show the user all the quotes that they have added. Same structure as Search results page but each quote will have edit and delete buttons on the top right of each quote card.
 
 * The delete buttons on the MyQuotes page will open a modal asking the user to confirm the quote delete before deleting it from the database.
 
-* The Edit buttons on the my quotes page will navigate to an edit quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited.
+* The Edit buttons on the my quotes page will navigate to an edit quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page.
+
+* There will be a My Comments page listing the quotes on which a user has commented.  All the comments
 
 
 
@@ -65,7 +89,7 @@ Features to include:
 
 ### **3. Structure**
 
-* The app will be all on one page.  
+* The app will be over 8 html templates extending a base template.  
 
 * It will be responsive for different screen sizes and the layout will vary accordingly.  
 * The header will contain the colour scheme selection options, page title, the date and time and the How To Use speech bubble button to open the modal. 

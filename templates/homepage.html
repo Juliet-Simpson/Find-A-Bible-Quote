@@ -7,7 +7,7 @@
   <form method="GET" action="{{ url_for('search') }}">
     <div class="input-field">
       <i class="fas fa-search search-label prefix"></i>
-      <input name="query" id="query" minlength="3" type="text" validate>
+      <input name="query" id="query" minlength="3" type="text">
       <label class="query-label" for="query"> Search for a Bible quote by theme</label>
     </div>
   </form>
@@ -30,7 +30,7 @@
         {% for _theme in themes %}
         <li><a name="theme" href="{{ url_for('browse_themes', theme_name=_theme.theme) }}">{{ _theme.theme }}</a></li>
         {% endfor %}
-      </form>      </ul>
+       </ul>
     </div>
 
   </li>

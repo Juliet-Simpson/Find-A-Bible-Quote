@@ -25,6 +25,9 @@ nav .brand-logo {
     font-weight: 400;
     max-height: 64px;
 }
+.nav-extended{
+    height: 64px !important;
+}
 nav ul a {
     font-size: 18px;
 }

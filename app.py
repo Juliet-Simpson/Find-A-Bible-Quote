@@ -6,8 +6,7 @@ from flask import (
     redirect,
     request,
     session,
-    url_for,
-)
+    url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -164,7 +163,8 @@ def add_quote():
             if is_new_theme == "":
                 flash("Please enter a theme value")
                 return redirect(url_for("add_quote"))
-            # Do not re add new theme to the database if it does actually exist (user error)
+            # Do not re add new theme to the database if it does actually
+            # exist (user error)
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
                 mongo.db.themes.insert_one({"theme": new_theme.capitalize()})
@@ -249,7 +249,6 @@ def edit_quote(quote_id):
             flash("Quote text must have a value")
             return render_template(
                 "edit_quote.html", quote=quote, themes=themes)
-
 
         submit = {
             "theme": theme.capitalize(),
@@ -344,7 +343,6 @@ def delete_quote(quote_id, delete_theme):
     # Check if there are any more quotes with the same theme
     # as the quote that has been deleted.  If not, delete
     # the theme from the themes collection.
-
     deleted_theme_quotes = list(mongo.db.quotes.find({"theme": delete_theme}))
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
@@ -436,5 +434,6 @@ def admin():
 
 if __name__ == "__main__":
     app.run(
-        host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=True
+        host=os.environ.get("IP"), port=int(os.environ.get("PORT")),
+        debug=False
     )

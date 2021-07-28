@@ -297,47 +297,27 @@ def my_quotes():
                            next_page=request.endpoint)
 
 
-# @app.route("/comment/<quote_id><next>,", methods=['GET', 'POST'])
-# def comment(quote_id, next):
-#     if request.method == "POST":
-#         comment = {
-#             "comment": request.form.get("comment").capitalize(),
-#             "quote_id": quote_id,
-#             "comment_by": session["user"]
-#         }
-#         mongo.db.comments.insert_one(comment)
-#         flash("Thanks for commenting")
+@app.route("/comment/<quote_id>", methods=['GET', 'POST'])
+def comment(quote_id):
+    if request.method == "POST":
 
-#         redirect_url = request.args.get("next", url_for("my_comments"))
-#         return redirect(redirect_url)
+        comment_input = request.form.get("comment")
+        # check if comment has whitespace
+        is_comment_input = comment_input.replace(" ", "")
+        if is_comment_input == "":
+            flash("Comment must have a value")
 
-#     if next == "my_quotes"
-#         return redirect(url_for('my_quotes'))
+            return redirect(url_for('my_comments'))
 
-#     return redirect(url_for("my_comments"))
+        comment = {
+            "comment": comment_input.capitalize(),
+            "quote_id": quote_id,
+            "comment_by": session["user"]
+        }
+        mongo.db.comments.insert_one(comment)
+        flash("Thanks for commenting")
 
-
-# @app.route("/comment/<quote_id>", methods=['GET', 'POST'])
-# def comment(quote_id):
-#     if request.method == "POST":
-
-#         comment_input = request.form.get("comment")
-#         # check if comment has whitespace
-#         is_comment_input = comment_input.replace(" ", "")
-#         if is_comment_input == "":
-#             flash("Comment must have a value")
-
-#             return redirect(url_for('my_comments'))
-
-#         comment = {
-#             "comment": comment_input.capitalize(),
-#             "quote_id": quote_id,
-#             "comment_by": session["user"]
-#         }
-#         mongo.db.comments.insert_one(comment)
-#         flash("Thanks for commenting")
-
-#     return redirect(url_for("my_comments"))
+    return redirect(url_for("my_comments"))
 
 
 

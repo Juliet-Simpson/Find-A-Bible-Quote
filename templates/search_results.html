@@ -58,8 +58,7 @@
                 {% if session.user %}
                 <li>
                     <div class="card-panel make-comment-card">
-                        <form method="POST" action="{{ url_for('comment', quote_id=quote._id) }}">
-                            <!-- <form method="POST" action="{{ url_for('search', quote_id=quote._id) }}"></form> -->
+                        <form method="POST" action="{{ url_for('comment', quote_id=quote._id, next=next_page) }}">
                             
                             <div class="input-field">
                                 <i class="far fa-comment search-label prefix" aria-hidden="true"></i><span class="sr-only">Speech bubble</span>

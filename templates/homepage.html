@@ -4,7 +4,7 @@
 
 <!-- Search Bar -->
 <br><div class="card-panel search-card">
-  <form method="POST" action="{{ url_for('search') }}">
+  <form method="GET" action="{{ url_for('search') }}">
     <div class="input-field">
       <i class="fas fa-search search-label prefix"></i>
       <input name="query" id="query" minlength="3" type="text" validate>

@@ -165,6 +165,15 @@ def add_quote():
             "text": request.form.get("text").capitalize(),
             "added_by": session["user"]
         }
+
+        # Prevent addition of duplicate quotes
+        quote_already = list(mongo.db.quotes.find(quote))
+        if len(quote_already) > 0:
+            flash(
+                  """This quote has already been added for this theme.
+                  Post a different quote.""")
+            return redirect(url_for("add_quote"))
+
         mongo.db.quotes.insert_one(quote)
         flash("Quote Successfully Added")
         return redirect(url_for("my_quotes"))
@@ -206,7 +215,7 @@ def edit_quote(quote_id):
                                    quote=quote,
                                    themes=themes)
 
-         # Quote must not be just whitespace
+        # Quote text must not be just whitespace
         is_text = request.form.get("text").replace(" ", "")
         if is_text == "":
             flash("Quote text must have a value")
@@ -223,6 +232,14 @@ def edit_quote(quote_id):
             "text": request.form.get("text").capitalize(),
             "added_by": session["user"]
         }
+
+        # Prevent addition of duplicate quotes
+        quote_already = list(mongo.db.quotes.find(submit))
+        if len(quote_already) > 0:
+            flash(
+                  """The edited quote already exists for this theme.""")
+            return render_template("edit_quote.html", quote=quote,
+                                   themes=themes)
 
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
         flash("Quote Successfully Updated")

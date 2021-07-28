@@ -213,6 +213,7 @@ def add_quote():
 
 @app.route("/edit_quote/<quote_id>", methods=["GET", "POST"])
 def edit_quote(quote_id):
+    redirect_url = request.args.get("next", url_for("my_quotes"))
     quote = mongo.db.quotes.find_one({"_id": ObjectId(quote_id)})
     themes = mongo.db.themes.find().sort("theme", 1)
     old_theme = quote["theme"]
@@ -226,9 +227,9 @@ def edit_quote(quote_id):
             if is_new_theme == "":
                 flash("Please enter a theme value")
                 return render_template(
-                    "edit_quote.html", quote=quote, themes=themes
+                    "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
                 )
-            # Check if new theme added is actually new and if not don't readd 
+            # Check if new theme added is actually new and if not don't re-add
             # to database
             is_it_new = list(mongo.db.themes.find({"theme": new_theme}))
             if len(is_it_new) == 0:
@@ -242,7 +243,7 @@ def edit_quote(quote_id):
         if is_book == "":
             flash("Book must have a vlaue")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes
+                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
             )
 
         # Quote text must not be just whitespace
@@ -250,7 +251,7 @@ def edit_quote(quote_id):
         if is_text == "":
             flash("Quote text must have a value")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes
+                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
             )
 
         submit = {
@@ -268,7 +269,7 @@ def edit_quote(quote_id):
         if len(quote_already) > 0:
             flash("""The edited quote already exists for this theme.""")
             return render_template(
-                "edit_quote.html", quote=quote, themes=themes
+                "edit_quote.html", quote=quote, themes=themes, next_page=request.full_path
             )
 
         mongo.db.quotes.update({"_id": ObjectId(quote_id)}, submit)
@@ -280,9 +281,10 @@ def edit_quote(quote_id):
         if len(old_theme_quotes) == 0:
             mongo.db.themes.remove({"theme": old_theme})
 
-        return redirect(url_for("my_quotes"))
+        return redirect(redirect_url)
 
-    return render_template("edit_quote.html", quote=quote, themes=themes)
+    return render_template("edit_quote.html", quote=quote, themes=themes, 
+    next_page=request.full_path)
 
 
 @app.route("/my_quotes")
@@ -337,6 +339,7 @@ def comment(quote_id):
 
 @app.route("/delete_quote/<quote_id>, <delete_theme>")
 def delete_quote(quote_id, delete_theme):
+    redirect_url = request.args.get("next", url_for("my_quotes"))
     mongo.db.quotes.remove({"_id": ObjectId(quote_id)})
 
     # Also delete comments from quote
@@ -351,7 +354,7 @@ def delete_quote(quote_id, delete_theme):
     if len(deleted_theme_quotes) == 0:
         mongo.db.themes.remove({"theme": delete_theme})
 
-    return redirect(url_for("my_quotes"))
+    return redirect(redirect_url)
 
 
 @app.route("/my_comments")
@@ -413,10 +416,11 @@ def edit_comment(quote_id, comment_id):
 
 @app.route("/delete_comment/<comment_id>")
 def delete_comment(comment_id):
+    redirect_url = request.args.get("next", url_for("my_comments"))
     mongo.db.comments.remove({"_id": ObjectId(comment_id)})
     flash("Comment Successfully Deleted")
 
-    return redirect(url_for("my_comments"))
+    return redirect(redirect_url)
 
 
 @app.route("/admin")

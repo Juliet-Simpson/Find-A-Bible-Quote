@@ -17,7 +17,7 @@
                         <h6 class="theme">Theme: <strong>{{ quote.theme }}.</strong></h6>
                     </div>
                     <div class="col s4 btn-col">
-                        <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
+                        <a href="{{ url_for('edit_quote', quote_id=quote._id, next=next_page) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt"></i></a>
                         <a href="#modal1{{quote._id}}" class="btn-small modal-trigger"><i
                                 class="far fa-trash-alt"></i></a>
@@ -30,7 +30,7 @@
                             {{ quote.start_verse }}{% if quote.end_verse%}-{{quote.end_verse}}{% endif %}</h6>
                     </div>
                     <div class="col s7 btn-col">
-                        <a href="{{ url_for('edit_quote', quote_id=quote._id) }}" class="btn-small"><i
+                        <a href="{{ url_for('edit_quote', quote_id=quote._id, next=next_page) }}" class="btn-small"><i
                                 class="fas fa-pencil-alt"></i></a>
                         <a href="#modal2{{quote._id}}" class="btn-small modal-trigger"><i
                                 class="far fa-trash-alt"></i></a>
@@ -69,7 +69,7 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue ">
                     Cancel<i class="far fa-times-circle right"aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
+                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme,next=next_page) }}"
                     class="modal-close btn red ">
                     Delete<i class="far fa-trash-alt right"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
@@ -85,7 +85,7 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
                     Cancel<i class="far fa-times-circle right"aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
-                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme) }}"
+                <a href="{{ url_for('delete_quote', quote_id=quote._id, delete_theme=quote.theme,next=next_page) }}"
                     class="modal-close btn red text-shadow">
                     Delete<i class="fa-trash-alt right"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
@@ -102,7 +102,7 @@
                     <div class="card-panel comment-card">
                          <div class="col s12 btn-col">
                                <a href="#modal3{{comment._id}}" class="btn-small modal-trigger"><i
-                                        class="far fa-trash-alt"aria-hidden="true"></i><span class="sr-only">Trash</span>/a>
+                                        class="far fa-trash-alt"aria-hidden="true"></i><span class="sr-only">Trash</span></a>
                             </div>
                         <div>
                             {{ comment.comment }}
@@ -122,9 +122,9 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-close btn blue text-shadow">
                     Cancel<i class="far fa-times-circle right" aria-hidden="true"></i><span class="sr-only">Times circle</span></a>
-                <a href="{{ url_for('delete_comment', comment_id=comment._id) }}"
+                <a href="{{ url_for('delete_comment', comment_id=comment._id, next=next_page) }}"
                     class="modal-close btn red text-shadow">
-                    Delete<i class="far fa-trash right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
+                    Delete<i class="far fa-trash-alt right" aria-hidden="true"></i><span class="sr-only">Trash</span></a>
             </div>
         </div>
         <!-- End modal -->
@@ -150,7 +150,7 @@
                 </li>
             </ul>
         </div>
-        <!--Confirm delete modal-->
+        <!--Confirm delete quote modal-->
         <div id="modal1{{quote._id}}" class="modal">
             <div class="modal-content">
                 <h3>Confirm Delete</h3>

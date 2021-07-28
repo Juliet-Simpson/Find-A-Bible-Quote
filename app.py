@@ -206,6 +206,14 @@ def edit_quote(quote_id):
                                    quote=quote,
                                    themes=themes)
 
+         # Quote must not be just whitespace
+        is_text = request.form.get("text").replace(" ", "")
+        if is_text == "":
+            flash("Quote text must have a value")
+            return render_template("edit_quote.html",
+                                   quote=quote,
+                                   themes=themes)
+
         submit = {
             "theme": theme,
             "book": request.form.get("book").capitalize(),

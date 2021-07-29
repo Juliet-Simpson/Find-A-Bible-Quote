@@ -85,11 +85,12 @@ Features to include:
 
 * There will be a beatiful background image of a sunrise over mountains with the contrast reduced that will exist throughout the site.
 
-* A navbar with a brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
+* A navbar on large screens with a brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
 
-* Login and Register links which will open modals for login or register criteria to be entered and submitted. 
+* A burger icon in the top nav bar for a collapsed side nav on medium and small screens.
 
-* The register will have a Learn More link after the checkbox to agree to the terms and conditions.  This will open another overlayed modal laying out the site terms and conditions.  there will be a button to clos the modal at the bottom.
+* Login and Register links in the nav which will open modals for login or register criteria to be entered and submitted. 
+    * A secondary modal can be launched from the register modal detailing the site's terms and conditions with a button to close.
 
 * Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.  The quotes, if any will then be shown on the search results page.
 
@@ -117,13 +118,14 @@ Features to include:
     * The delete buttons for quotes will open a modal asking the user to confirm the quote delete before deleting it from the database.
     * The Edit buttons on the my quotes page will navigate to an Edit Quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page or a button to submit the edited quoote.
 
-* There will be a My Comments page listing the quotes on which a user has commented.  All the comments for a quote will be shown but the ones made by the user will have buttons to edit or delete the comment.  
+* My Comments page listing the quotes on which a user has commented.  
+    * All the comments for a quote will be shown but the ones made by the user will have buttons to edit or delete the comment.  
+    * The edit comment button on my quotes page will open a modal with a form for editing the comment.  There will be buttons to submit or cancel this form.  
+    * The delete comment button will open a confirm delete modal.
 
-* The edit comment button on my quotes page will open a modal with a form for editing the comment.  There will be buttons to submit or cancel.  The delete button will open a confirm delete modal.
-
-* The ADMIN page for users logged in as admin will show all the quotes in the database with buttons to lead to the edit page for editing them or to open the confirm delete modal to delete them.  The comments will be displayed for each quote in the same structure as on the other pages.  Admin will have a button with each comment to delete it but not to edit it.
-
-
+* ADMIN page for users logged in as admin will show all the quotes in the database with their associated comments.
+    * Quotes will have buttons leading to the edit page for editing them and to the confirm delete modal for deleting them.  
+    * The comments will be displayed for each quote in the same structure as on the other pages.  Admin will have a button with each comment to delete it but not to edit it.
 
 ### **4. Skeleton**
 
@@ -136,6 +138,10 @@ The wireframes can be viewed here:
 - [Desktop Register and Login wireframes](static/assets/images/readme/wireframes/log-reg-wireframes-desktop.png)
 
 - [Mobile Register and Login wireframes](static/assets/images/readme/wireframes/log-reg-wireframes-mobile.png)
+
+- [Desktop Search and Browse results wireframes](static/assets/images/readme/wireframes/search-browse-wireframes-desktop.png)
+
+- [Mobile Search and Browse wireframes](static/assets/images/readme/wireframes/search-browse-wireframes-mobile.png)
 
 - [Desktop Add Quote and Edit Quote wireframes](static/assets/images/readme/wireframes/add-edit-quote-wireframes-desktop.png)
 
@@ -162,58 +168,41 @@ The background image will be of the sun with rays over a distant mountain range 
 ## Features
 
 ### Included:
+* Responsiveness of the user interface for all screen sizes on all devices.
 
-* A button bar to select an interface color scheme at the top of the page. The selection will be saved to local storage and be the theme that shows on reloading the page.
+* Nav bar on large screens and right side nav on medium and small screens.
 
-* The date and time shown in the header.
+* A search input to search for quotes by entered theme name
 
-* A speech bubble button in the header or dropping just below and overlaying the page to open a modal which gives instructions for using the app.
+* A drop down menu containing existing themes that have quotes associated where each theme is a link to view quotes for that theme
 
-* An X button at the top right of the modal to close it.
+* Register and login functionality with requirement to confirm password and agree to terms and conditions at registration.
 
-* A text input field to name a list, the entered text being converted to a list title in the place of the text input on pressing enter. The entered text will also be appended to the 'list of lists' under the heading Current Lists.
-* An alert box will appear warning the user of a duplicate list name if the same list name is entered twice.  The duplicate list name will not be added.
+* A page for a logged in user to add a bible quote and select a pre-existing theme or enter a new theme for it.
 
-* The list name will be saved to local storage and will still be visible under the heading Current Lists on returning to the page.  
+* A page displaying all the quotes the current logged in user has added with associated comments for quotes with the option for the user to edit or delete any of these quotes
 
-* Each list name under Current Lists will be clickable to put that list name into the position of list title and show the to do items in that list in the To Do list section.  If it gets longer than the available space it will become scrollable.
+* A page displaying all the quotes the current logged in user has commented on with all associated comments for quotes and the option for the user to edit or delete any of their own comments.
 
-* There will be a space for items to do, central to the page. On mobile this will initially be a small height but increase with added items until a maximum is reached after which the list of to do items will be scrollable.
+* A page only visible to a user logged in as 'admin' which displays all quotes in the database with associated comments and the option to edit or delete a quote and delete a comment.
 
-* At the bottom of the to do items section the will be a text input field to add an item to do on entering some text and then pressing enter.
+* Requirement of secondary confirmation of deletion of a quote or comment before it is actually deleted.
 
-* If an attempt is made to add a to do item without a list being named, an alert will appear asking the user to first select of name a list.
+* Validation of inputs:
+    * Whitespace will not be accepted
+    * Correct formats for quote book, chapter and verses.
 
-* If a duplicate to do item is entered in one list an alert will appear tell the user that to do is already listed.  It won't then be added to the list.
-
-* To the left of each item to do will be a circle that can be checked.  A checked item will then appear with a line through the text.
-
-* To the right of an item will be an exclamation icon which can be clicked to turn itself and the text of the to do item red.  Clicking it again will remove the red color. If an item has been checked the red color is disabled.
-
-* To the right of the urgent icon will be a trash icon which will remove the to do item from the list.
-
-* Below the Add Something To Do input will be a New List and a Delete List button.
-
-* The delete list will remove a list name and its to dos from the Current lists and from local storage.
-
-* The new List button will retain the previous list name under current lists and its associated to dos will be stored in local storage.  The New List Name input box will return and replace the previous list tile.  The to dos section will be cleared.
-
-* The current weather in the user's location will be shown in a panel to the left of the screen on desktops and on scrolling to the bottom of the app on mobiles.  A request will be made on a user's first visit for them to allow geolocation for this.
-
-* A notification will be shown in the weather section if there is a problem with obtaining geolocation or weather data.
-
-* All the lists, with their associated to do do's with their associated custom attributes, will be saved in local storage and be able to be reviewed on reopening the app after closing.
-
-* The app will reopen showing the last list that was open (if there was one).
+* Flash messages giving user feedback for their actions.
 
 
 ### Left to implement
 
-* Trash icons next to each list name in the list of current lists so that a list can be deleted without the necessity of first opening it.
+* Connection to an API loading accurate bible text when a book chapter and verse are selected from menus containing only true bible books, chapters of those books and verses of those chapters.  The desired version of the bible would also need selecting.
 
-* An encouraging sound when a to do item is checked as done.
-* A sound when a to do item is trashed.
-* A 'Well Done' gif or a visual effect when a to do item is checked as done.
+* User profile pages containing optionally entered name, location and contact info.  Users able to choose what information other users are able to see. 
+
+* Functionality to reply to specific comments.
+
 
 ## Technologies
 
@@ -222,9 +211,23 @@ The background image will be of the sun with rays over a distant mountain range 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+- [Jinja](https://en.wikipedia.org/wiki/Jinja_%28template_engine%29)
+
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
 ### Frameworks, Libraries and Tools 
+
+- [Flask:](https://flask.palletsprojects.com/en/2.0.x/)
+    * Templating used throughout the site
+
+- [Materialize (version 1.0.0):](https://materializecss.com/) 
+    * HTML CSS and javascript used throughout the site for responsiveness, styling and components: Nav bar and side nav, card panels, collapsibles, form elements and buttons.
+
+- [jQuery](https://jquery.com/)
+    * Used for initializing Materialize components, validating the select elements and fading out the flashed messages.
 
 - [Balsamiq:](https://balsamiq.com/)
     * Creation of the wireframe mock ups.
@@ -232,12 +235,8 @@ The background image will be of the sun with rays over a distant mountain range 
 - [Am I Responsive:](http://ami.responsivedesign.is/)
     * Checking of responsiveness and creation of the previews in this README.
 
-- [Bootstrap (version 4.6.0:](https://getbootstrap.com/docs/4.6/getting-started/introduction/)) 
-    * **CSS and HTML** For responsive layout for different screen sizes.
-    * **CSS, HTML and JavaScript** for How To Use modal.
-
 - [Google Fonts:](https://fonts.google.com/)
-    * Used to import the 'Arvo' font for the business themes and the 'Josefin Sans' font for the fun themes into the style.css file.
+    * Used to import the 'Ubuntu' font used throughout the site.
 
 - [Git:](https://git-scm.com/)
     * Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
@@ -249,41 +248,34 @@ The background image will be of the sun with rays over a distant mountain range 
     * IDE used for development and testing.
 
 - [Google Chrome Dev Tools:](https://developer.chrome.com/docs/devtools/)
-    * Used throughout the development process to view the console and locate errors in javascript and assist with layout and styling.
+    * Used throughout the development process to view the console and locate errors and assist with layout and styling.
 
 - [Font Awesome:](https://fontawesome.com/)
-    * Icons for Date and Time and for 'to do' items, made clickable to indicate done, urgent or trash.
-
-- [OpenWeatherMap:](https://openweathermap.org/current)
-    * Used for the API call to get current weather data based on latitude and longitude.
-
-- [Paint-X:](https://paint-x.com/)
-    * Used to create the 'How To Use', 'Delete List' and 'New List' Buttons.
+    * Icons throughout the site.
 
 - [COMPRESS PNG:](https://compresspng.com/)
-    * Used to compress background images to improve loading time.
+    * Used to compress background image to improve loading time.
 
 ## **Testing**
 
 ### **Third Party Tools/Services**
 
-- [W3C HTML Validator](https://validator.w3.org/nu/#textarea): Used to Validate the HTML code by copying and pasting code from index.html into this webpage. 
-* The HTML code passed through this with no errors or warnings.
+- [W3C HTML Validator](https://validator.w3.org/nu/#textarea): Validation by direct URL input:
+    * Code passes through with no errors
+    * Only warnings are due to the use of either name attribute in form elements, (warned as being unnecessary but in fact needed for Python code) or sections lacking headings which are not desirable for this site.
 
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator): Used to validate the css code from all style.css by pasting the code into this page:
+    * Passed with no errors or warnings.
 
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator): Used to validate the code from all css files individually by pasting the code into this page.
-    * The CSS code all passed with no errors or warnings.
+- [PEP8](http://pep8online.com/): Online python checking tool used to validate Python code:
+    * Code passed with no errors or warnings.
 
-- [JSHint](https://jshint.com/): Used to validate code from all javascript files individually by pasting them into this webpage.
-    * All code passed with no errors.
-    * list.js and weather.js caused warnings that the code was only compatible with ES6 as template literal syntax and 'let' to declare variables had been used.  I believe these are acceptable for this project.
-
-- [Chrome Lighthouse Extension](https://developers.google.com/web/tools/lighthouse/): Used to audit the app.   
+- [Chrome Lighthouse Extension](https://developers.google.com/web/tools/lighthouse/): Used to audit the site:   
     * Some improvements and changes were needed to improve lighthouse scores.  These are summarised in this table:
-    ![Lighthouse Improvements](assets/images/readme-scrshts/lh-imprv.png "Lighthouse Improvements")
+    ![Lighthouse Improvements](static/assets/images/readme/lh-imprv.png "Lighthouse Improvements")
 
     * A summary of the subsequent lighthouse results are shown here:
-     ![Lighthouse Results Summary](assets/images/readme-scrshts/lighthouse.png "Lighthouse results summary")
+     ![Lighthouse Results Summary](static/assets/images/readme/lighthouse-results.png "Lighthouse results summary")
 
 ### Manual Testing
 **Bugs and fixes**

@@ -21,7 +21,7 @@ Previews of the homepage on different devices can be viewed here:
 
 * A user is experiencing a certain emotion or situation and would like to read Bible verses that could help them to understand and deal with that emotion or situation.
 
-* A user would like to see what themes Bible quotes have been added for and associated quotes for those.
+* A user would like to see what themes Bible quotes have been added for and view the associated quotes.
 
 * A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
 
@@ -41,7 +41,7 @@ Previews of the homepage on different devices can be viewed here:
 
 * A user looking at their recent commenting activity sees a spelling mistake in one of their comments and would like to correct it.
 
-* One of a user's comments has received negaive comments back.   They have thought about it again and now wish to delete their comment.
+* One of a user's comments has received negative comments back.   They have thought about it again and now wish to delete their comment.
 
 * A user no longer wants to use the app and wishes to delete the quotes they have added.
 
@@ -53,7 +53,7 @@ Previews of the homepage on different devices can be viewed here:
 
 ### **1. Strategy**
 
-To create a web abb that gives the user an interface to meet the needs of the user stories, connected to a MongoDB database. This will store all the quotes added and associated information so that it can be accessed (Read), added to (Created), edited (Updated) or removed (Deleted).  In this way this project will meet its CRUD requirements.
+To create a web app that gives the user an interface to meet the needs of the user stories, connected to a MongoDB database. This will store all the quotes added and associated information so that it can be accessed (Read), added to (Created), edited (Updated) or removed (Deleted).  In this way this project will meet its CRUD requirements.
 
 ### **2. Scope**
 
@@ -83,7 +83,7 @@ Features to include:
 
 * The app will be responsive on all screen sizes
 
-* There will be a beatiful background image of a sunrise over mountains with the contrast reduced that will exist throughout the site.
+* There will be a beautiful background image of a sunrise over mountains with the contrast reduced that will exist throughout the site.
 
 * A navbar on large screens with a brand Logo and links for Home, Login and Register for the unlogged in user and Home, Add a Quote, My Quotes, My Comments and Logout for a logged in user.  There will be an extra link, ADMIN, for users logged in as admin.  
 
@@ -92,7 +92,7 @@ Features to include:
 * Login and Register links in the nav which will open modals for login or register criteria to be entered and submitted. 
     * A secondary modal can be launched from the register modal detailing the site's terms and conditions with a button to close.
 
-* Search bar on the homepage which enables users to seach for quotes for a chosen theme by typing that theme into the search bar.  The quotes, if any will then be shown on the search results page.
+* Search bar on the homepage which enables users to search for quotes for a chosen theme by typing that theme into the search bar.  The quotes, if any will then be shown on the search results page.
 
 * Description of app and instructions for using it on the homepage. 
 
@@ -102,21 +102,21 @@ Features to include:
     * If there are no quotes for the searched theme there will be a message saying so and an option to add a quote which is a link to the add quote page or links to login or register to add a quote if the user is not logged in so that they can then add a quote for that theme. 
     * If there are quotes, each quote will be on a card panel which is a collapsible header, showing the book, chapter and verses from the bible, the theme the quote is for, the quote text, which user added the quote and a caret down icon labelled comments.
     * The collapsible body will show the comments about the quote, each on a card panel with which user made the comment. 
-    * Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will ba a message saying login or register to make a comment. 
+    * Below the comments cards but still in the collapsible body for each quote, if the user is logged in there will be a card to make and post a comment for that quote. If they are not logged in there will be a message saying login or register to make a comment. 
 
 * 'Browse results' page showing quotes for the theme they selected from the dropdown on the homepage.
-    * Will be indistuiguishable in structure from the search results page from the user's perspective, except that there will be no message for no quotes for a theme because only themes with any quote will be shown in the dropdown on the homepage.
+    * Will be indistinguishable in structure from the search results page from the user's perspective, except that there will be no message for no quotes for a theme because only themes with any quote will be shown in the dropdown on the homepage.
 
-* There will be 4 pages navigable from the navbar for the logged in user: Home, Add A Quote, My Quotes and My Comments.  An aditional 5th, ADMIN, will be navigable fo a user logged in as 'admin'. 
+* There will be 4 pages navigable from the navbar for the logged in user: Home, Add A Quote, My Quotes and My Comments.  An additional 5th, ADMIN, will be navigable for a user logged in as 'admin'. 
 
 * The Add Quote page where users enter the details of a quote they would like to add: Theme, Book, Chapter, Start Verse, End Verse (optional) and quote Text. 
-    * There is a lage Add Quote button at the bottom which will submit the quote to the database as an object.
+    * There is a large Add Quote button at the bottom which will submit the quote to the database as an object.
 
 * My Quotes page to show the user all the quotes that they have added. Same structure as Search results page but each quote will have edit and delete buttons on the top right of each quote card.  
     * Possible message that user has not added any quotes yet and link to the Add a Quote page.
     * No links to login or register because user must be already logged in to be on this page.
     * The delete buttons for quotes will open a modal asking the user to confirm the quote delete before deleting it from the database.
-    * The Edit buttons on the my quotes page will navigate to an Edit Quote page which looks the same as the add quote page but will be prepoulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page or a button to submit the edited quoote.
+    * The Edit buttons on the my quotes page will navigate to an Edit Quote page which looks the same as the add quote page but will be pre-poulated with values for the quote being edited. There will be an option here to cancel the edit, which will return to the My Quotes page or a button to submit the edited qu1ote.
 
 * My Comments page listing the quotes on which a user has commented.  
     * All the comments for a quote will be shown but the ones made by the user will have buttons to edit or delete the comment.  
@@ -162,7 +162,7 @@ The wireframes can be viewed here:
 ### **5. Surface**
 
 The theme will be the same through out.  The navbar will be red with contrasting white text to compliment the reddish sky at the top of the background image.
-The background image will be of the sun with rays over a distant mountain range with a grassy meadow in the foreground.  The exposure will be increased and the contrast reduced to give a paled effect which will not interfere with the site functionality overlayed.
+The background image will be of the sun with rays over a distant mountain range with a grassy meadow in the foreground.  The exposure will be increased and the contrast reduced to give a paled effect which will not interfere with the site functionality overlaid.
 
 
 ## Features
@@ -174,7 +174,7 @@ The background image will be of the sun with rays over a distant mountain range 
 
 * A search input to search for quotes by entered theme name
 
-* A drop down menu containing existing themes that have quotes associated where each theme is a link to view quotes for that theme
+* A dropdown menu containing existing themes that have quotes associated where each theme is a link to view quotes for that theme
 
 * Register and login functionality with requirement to confirm password and agree to terms and conditions at registration.
 
@@ -299,25 +299,25 @@ The background image will be of the sun with rays over a distant mountain range 
 **Bugs and fixes**
 
 * Collapsible header would only allow one line of content so not all the information for a quote could be rendered.
-    * It was ovelayed with a card panel which could be formatted.
+    * It was ovelaid with a card panel which could be formatted.
 
 * Whitespace being submitted to the database searched for as a search query.  Anywhere that there is a text input, it proved impossible using a pattern attribute to specify that special characters were allowed but just whitespace was not.
     * Fixed in python by making a variable of the text input, using .replace(" ", "") on the variable, which replaced all whitespace with no space.  A check was then run to see if the variable then had a value of "" (no space) and if it did, flashing a message to the user that the input had not value and returning to where the input came from.
 
 * Search for theme was accepting key words for searching with instead of an exact phrase.  
-    a variable had to be made of the phrase wrapped in escaped quotes and then made into an f string.  This vriable was then used for the theme search.
+    a variable had to be made of the phrase wrapped in escaped quotes and then made into an f string.  This variable was then used for the theme search.
 
 * Quotes text was being rendered on the template enclosed in quotes.  If the user then inputted their quote text wrapped in quotes, the quote would render wrapped in double quotes.
     * It would be possible to remove all quotes added by a user for quote text using .replace(). However if single quotes were replaced (which would be necessary to avoid the issue) then apostrophes would also be removed.  Therefore the quotes were removed from the template and quotes are not shown wrapped in them unless the user submits them so.
 
 * If an admin user was editing a quote for a mistake, when the edit was submitted then they would be updated as the user that added the quote as they are the current session user. 
-    * Change the "added_by" field in the new object that will update the quote to be the quote itself's own added by, using "added_by" = quote["added_by"] in the new object so that added_by does not get changed.
+    * Change the "added_by" field in the new object that will update the quote to be the quote it self's own added by, using "added_by" = quote["added_by"] in the new object so that added_by does not get changed.
 
 * If a user chose to add a new theme when adding or editing a quote but then manually entered a theme that already existed, a duplicate theme got added to the database.
     * Before submitting the new theme, find a list of quotes form the database that have that new theme for their theme.  If that list length is zero then the added new theme genuinely is new.
 
 * Allowing a password to contain special characters but not whitespace.
-    * again .replace had to be used romoving any whitespace but then checking against the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
+    * again .replace had to be used removing any whitespace but then checking against the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
 
 * There was no check against a user adding a quote more than once, leading to duplicate quotes in the data base by that user.
     Some python has been added in add quote to do a check in the database for quotes that match before adding a new quote. If there are any then flashing to the user that hey have already added this quote for this theme.  This same logic was used to prevent duplication of quotes in the database after a quote was edited.  It was then applied to adding and editing comments to also prevent those being duplicated.
@@ -365,10 +365,10 @@ The background image will be of the sun with rays over a distant mountain range 
 
 **Pending Issues**
 
-* If an Admin user edits a quote from their Admin page, the route for edit comment will reroute back to My Quotes page, as it would do for a regular user after editing a quote, not back to the admin page.  It is not possible to redirect the edit quote view back to the page that it was called from because a POST methed is necessarily being used to send an updated quote object to the database.   It is only possible to implement this functionality if the only method used in the route is GET.  Thus an admin user must manually navigate themselves back to their Admin page from My Quotes if they wish to return there.
+* If an Admin user edits a quote from their Admin page, the route for edit comment will reroute back to My Quotes page, as it would do for a regular user after editing a quote, not back to the admin page.  It is not possible to redirect the edit quote view back to the page that it was called from because a POST method is necessarily being used to send an updated quote object to the database.   It is only possible to implement this functionality if the only method used in the route is GET.  Thus an admin user must manually navigate themselves back to their Admin page from My Quotes if they wish to return there.
     * Credit: My Code Institute mentor, Sandeep Aggarwal, for assistance with making this functionality work for other routes and identifying the reason for it not working here.
 
-* There is still no defense against 2 different users adding the same quote for the same theme.  They will be differnt objects because the session user adding them will be different so the database will accept them.
+* There is still no defence against 2 different users adding the same quote for the same theme.  They will be different objects because the session user adding them will be different so the database will accept them.
     * This could be addressed with more time available.
 
 ### User Stories
@@ -392,7 +392,7 @@ Each user story was tested individually and consideration given to how it may be
 
 
 * A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
-    * There is a form on the Add a Quote page to fill in the details of a bible quote and choose a theme for it, either a pre existing theme or a new one added.
+    * There is a form on the Add a Quote page to fill in the details of a bible quote and choose a theme for it, either a pre-existing theme or a new one added.
 
  ![User Story 3](static/assets/images/readme/userstories/us3.png "User Story 3 Screen shot")
 
@@ -403,7 +403,7 @@ Each user story was tested individually and consideration given to how it may be
  ![User Story 4](static/assets/images/readme/userstories/us4.png "User Story 4 Screen shot")
 
 
-* A user is worried obout online abuse so is cautious about registering.
+* A user is worried about online abuse so is cautious about registering.
     * The terms and conditions modal clearly stated that abusive comments are not tolerated by this site and will be deleted by admin.  This should reassure this user.
 
  ![User Story 5](static/assets/images/readme/userstories/us5.png "User Story 5 Screen shot")
@@ -464,7 +464,7 @@ Each user story was tested individually and consideration given to how it may be
 
 
  * A user no longer wants to use the app and wishes to delete the quotes they have added.
-    * User's quotes can be delted from My Quotes page using the trash icon button next to the quote which raises the confirm delete modal.
+    * User's quotes can be deleted from My Quotes page using the trash icon button next to the quote which raises the confirm delete modal.
 
 ![User Story 14.1](static/assets/images/readme/userstories/us16.png "User Story 14 Screen shot 1")
 
@@ -484,7 +484,7 @@ Each user story was tested individually and consideration given to how it may be
  * Entries can be created in the database for this site by:
     * Registering a user adds a user document to the 'Users' collection
 
-    * Posting a bible quote using the 'Post a Quote form' adds a quote object document to the Quotes coleection in the database
+    * Posting a bible quote using the 'Post a Quote form' adds a quote object document to the Quotes collection in the database
 
     * If a new theme is entered on the 'Post a Quote' or 'Edit Quote' form, a theme document gets added to the themes collection.
 
@@ -492,15 +492,15 @@ Each user story was tested individually and consideration given to how it may be
 
 #### Read
 
-* Data is retrieved from the database and dispalyed to the user in the following ways:
+* Data is retrieved from the database and displayed to the user in the following ways:
 
-    * The Browse Themes dropdown on the homepage displays all the themese in the themes collection
+    * The Browse Themes dropdown on the homepage displays all the themes in the themes collection
 
     * browse_themes.html and search_results.html display the following information for quotes that have the theme as a key value that has been selected from the browse dropdown or searched for in the search bar: Theme, Book, Chapter, Start verse, end verse (if quote is more than one verse), quote text, and the username of the user that added the quote.
 
     * The My Quotes page displays the same information for a quote as above, except not user, for all the quotes from the quotes collection that have the key "added_by" value of the session user's username.  User name need not be displayed here as it is always the session user for this page.
 
-    * Comments made about quotes, and the username of the user that made the comment, are retrieved and displayed for all quotes displayed on the site, in the format of a list in a collapsible body underneath the relevant quote they are for. The quote_id field value of the comment from the comments collection matches the string of the Object ID of the quote in the quotes collection that they are for.  In this way quotes and associated comments can be dispalyed together.
+    * Comments made about quotes, and the username of the user that made the comment, are retrieved and displayed for all quotes displayed on the site, in the format of a list in a collapsible body underneath the relevant quote they are for. The quote_id field value of the comment from the comments collection matches the string of the Object ID of the quote in the quotes collection that they are for.  In this way quotes and associated comments can be displayed together.
     Once the object id of the quote was made a string in python, the jinja map filter was used on the templates to map the actual quote id to the quote_id field of the comment.   The exception to this was the My Comments page.
 
     * The My Comments page retrieves from the database and then displays the same information as above for (theme, book, chapter, verses, text and added by) quotes that have a stringified Object ID equal to the value of the quote_id field of comments in the comments collection, but only for comments that also have a commented_by value equal to the username of the current session user.  In this way, The My Comments page renders all quotes on which the current session user has commented.   As with all other quotes displayed on the site, all the comments for each quote, and the user that commented, are then displayed with each quote (not just the comments made by the session user, these were only used as the starting point for filtering the quotes).  
@@ -545,7 +545,7 @@ The site was deployed to Heroku following these steps:
 
      ![Procfile2](static/assets/images/readme/deployment/dp3.png "Procfile 2")
 
-5. Navaigate to [Heroku](https://id.heroku.com/login) and login
+5. Navigate to [Heroku](https://id.heroku.com/login) and login
 
     ![Heroku login](static/assets/images/readme/deployment/dp4.png "Heroku login")
 
@@ -609,7 +609,7 @@ The site was deployed to Heroku following these steps:
 
 ### Concept
 
-* The idea for the site was coceived by me
+* The idea for the site was conceived by me
 
 ### Code
 
@@ -623,7 +623,7 @@ The site was deployed to Heroku following these steps:
 
 * Code for return redirect(redirect_url) conceived by my Code Institute mentor, some implemented with his help, some by me independently.
 
-* Creation of env.py, import of dependencies, creation of Procfile and requirements.txt and deployment proceedure were all taken from Code Institute lesson.
+* Creation of env.py, import of dependencies, creation of Procfile and requirements.txt and deployment procedure were all taken from Code Institute lessons.
 
 * All other code was written by me.
 

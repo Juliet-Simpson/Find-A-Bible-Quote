@@ -436,6 +436,7 @@ def admin():
         next_page=request.full_path,
     )
 
+
 # Code from code institute lesson
 if __name__ == "__main__":
     app.run(

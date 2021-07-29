@@ -4,7 +4,7 @@ A web-based data-base app using MongoDB Atlas for Code Institute's Fullstack Sof
 
 ## **Preview** 
 
-The deployed site on GitHub Pages can be viewed [here.](https://find-a-bible-quote.herokuapp.com/)
+The site deployed to Heroku can be viewed [here.](https://find-a-bible-quote.herokuapp.com/)
 
 Login details for admin are:
 
@@ -229,11 +229,18 @@ The background image will be of the sun with rays over a distant mountain range 
 - [jQuery](https://jquery.com/)
     * Used for initializing Materialize components, validating the select elements and fading out the flashed messages.
 
-- [Balsamiq:](https://balsamiq.com/)
-    * Creation of the wireframe mock ups.
+- [Heroku](https://id.heroku.com/login)
+    * Cloud platform used for deployment
 
-- [Am I Responsive:](http://ami.responsivedesign.is/)
-    * Checking of responsiveness and creation of the previews in this README.
+- [MongoDB](https://www.mongodb.com/)
+    * Cloud storage of non relational database
+
+- [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
+    * Helper user with debugging python
+    * Security helper used for generating password hash
+
+- [Pymongo](https://pymongo.readthedocs.io/en/stable/index.html)
+    * Tools for working with MongoDB from Python
 
 - [Google Fonts:](https://fonts.google.com/)
     * Used to import the 'Ubuntu' font used throughout the site.
@@ -256,6 +263,12 @@ The background image will be of the sun with rays over a distant mountain range 
 - [COMPRESS PNG:](https://compresspng.com/)
     * Used to compress background image to improve loading time.
 
+- [Balsamiq:](https://balsamiq.com/)
+    * Creation of the wireframe mock ups.
+
+- [Am I Responsive:](http://ami.responsivedesign.is/)
+    * Checking of responsiveness and creation of the previews in this README.
+
 ## **Testing**
 
 ### **Third Party Tools/Services**
@@ -272,6 +285,7 @@ The background image will be of the sun with rays over a distant mountain range 
 
 - [Chrome Lighthouse Extension](https://developers.google.com/web/tools/lighthouse/): Used to audit the site:   
     * Some improvements and changes were needed to improve lighthouse scores.  These are summarised in this table:
+    
     ![Lighthouse Improvements](static/assets/images/readme/lh-imprv.png "Lighthouse Improvements")
 
     * A summary of the subsequent lighthouse results are shown here:

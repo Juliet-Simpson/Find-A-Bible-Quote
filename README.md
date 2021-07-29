@@ -203,6 +203,8 @@ The background image will be of the sun with rays over a distant mountain range 
 
 * User profile pages containing optionally entered name, location and contact info.  Users able to choose what information other users are able to see. 
 
+* Keep the collapsible body for comments open once a comment has been made and the page reloaded so that the comment can be seen immediately.  Also automatically scroll down to where the new comment is rendering if it is off the bottom of the page, again so that it can immediately be seen.
+
 * Functionality to reply to specific comments.
 
 
@@ -296,6 +298,29 @@ The background image will be of the sun with rays over a distant mountain range 
 ### Manual Testing
 **Bugs and fixes**
 
+* Collapsible header would only allow one line of content so not all the information for a quote could be rendered.
+    * It was ovelayed with a card panel which could be formatted.
+
+* Whitespace being submitted to the database searched for as a search query.  Anywhere that there is a text input, it proved impossible using a pattern attribute to specify that special characters were allowed but just whitespace was not.
+    * Fixed in python by making a variable of the text input, using .replace(" ", "") on the variable, which replaced all whitespace with no space.  A check was then run to see if the variable then had a value of "" (no space) and if it did, flashing a message to the user that the input had not value and returning to where the input came from.
+
+* Search for theme was accepting key words for searching with instead of an exact phrase.  
+    a variable had to be made of the phrase wrapped in escaped quotes and then made into an f string.  This vriable was then used for the theme search.
+
+* Quotes text was being rendered on the template enclosed in quotes.  If the user then inputted their quote text wrapped in quotes, the quote would render wrapped in double quotes.
+    * It would be possible to remove all quotes added by a user for quote text using .replace(). However if single quotes were replaced (which would be necessary to avoid the issue) then apostrophes would also be removed.  Therefore the quotes were removed from the template and quotes are not shown wrapped in them unless the user submits them so.
+
+* If an admin user was editing a quote for a mistake, when the edit was submitted then they would be updated as the user that added the quote as they are the current session user. 
+    * Change the "added_by" field in the new object that will update the quote to be the quote itself's own added by, using "added_by" = quote["added_by"] in the new object so that added_by does not get changed.
+
+* If a user chose to add a new theme when adding or editing a quote but then manually entered a theme that already existed, a duplicate theme got added to the database.
+    * Before submitting the new theme, find a list of quotes form the database that have that new theme for their theme.  If that list length is zero then the added new theme genuinely is new.
+
+* Allowing a password to contain special characters but not whitespace.
+    * again .replace had to be used romoving any whitespace but then checking agains the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
+
+* There was no check against a user adding a quote more than once, leading to duplicate quotes in the data base by that user.
+
 
 **Functionality**
 1. All the features were tested on the following and were confirmed to be functioning correctly, following the bug fixes detailed above: 
@@ -338,6 +363,8 @@ The background image will be of the sun with rays over a distant mountain range 
 * If an Admin user edits a quote from their Admin page, the route for edit comment will reroute back to My Quotes page, as it would do for a regular user after editing a quote, not back to the admin page.  It is not possible to redirect the edit quote view back to the page that it was called from because a POST methed is necessarily being used to send an updated quote object to the database.   It is only possible to implement this functionality if the only method used in the route is GET.  Thus an admin user must manually navigate themselves back to their Admin page from My Quotes if they wish to return there.
     * Credit: My Code Institute mentor, Sandeep Aggarwal, for assistance with making this functionality work for other routes and identifying the reason for it not working here.
 
+* There is still no defense against 2 different users adding the same quote for the same theme.  They will be differnt objects because the session user adding them will be different so the database will accept them.
+    * This could be addressed with more time available.
 
 ### User Stories
 

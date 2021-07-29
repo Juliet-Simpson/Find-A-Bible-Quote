@@ -352,65 +352,81 @@ Each user story was tested individually and consideration given to how it may be
 
 
 * A user would like to see what themes Bible quotes have been added for and associated quotes for those.
+    * The homepage dropdown shows themes that exist in the database
 
  ![User Story 2.1](static/assets/images/readme/userstories/us2.png "User Story 2 Screen shot 1")
+    
+    * Selecting one of these themes will show quotes associated with it
 
   ![User Story 2.2](static/assets/images/readme/userstories/us2a.png "User Story 2 Screen shot 2")
 
 
 * A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
+    * There is a form on the Add a Quote page to fill in the details of a bible quote and choose a theme for it, either a pre existing theme or a new one added.
 
  ![User Story 3](static/assets/images/readme/userstories/us3.png "User Story 3 Screen shot")
 
 
 * On finding quotes for a theme, a user wishes to comment on a quote that another has added.  They therefore need to register.
+    * There is a modal to submit a registration form, triggered from any of the links that say Register
 
  ![User Story 4](static/assets/images/readme/userstories/us4.png "User Story 4 Screen shot")
 
 
 * A user is worried obout online abuse so is cautious about registering.
+    * The terms and conditions modal clearly stated that abusive comments are not tolerated by this site and will be deleted by admin.  This should reassure this user.
 
  ![User Story 5](static/assets/images/readme/userstories/us5.png "User Story 5 Screen shot")
 
 
 * A returning user would like to login.
+    * There is a modal to submit a login form triggered by any of the links that say Login.
 
  ![User Story 6](static/assets/images/readme/userstories/us6.png "User Story 6 Screen shot")
 
 
 * A returning user would like to use the search by theme feature and comment on the quotes obtained as results.
+    * They can enter their theme in the search bar
 
  ![User Story 7](static/assets/images/readme/userstories/us7.png "User Story 7 Screen shot 1")
+
+    * The resulting comments rendered have the option to comment on them for a logged in user
 
 ![User Story 7](static/assets/images/readme/userstories/us7a.png "User Story 7 Screen shot 2")
 
 
 * A logged in user wants to review all the quotes they have added as they use the app as a collection for their favourites.   They would also like to see if others have commented on their quotes and have the option to reply to comments by commenting further.
+    * All the quotes the session user has added are shown together on the My Quotes page, with their associated comments in the collapsible body for each quote.
 
  ![User Story 8](static/assets/images/readme/userstories/us8.png "User Story 8 Screen shot")
 
 
 * On reviewing the quotes that they have added a user thinks that they would like to update the theme they have given a quote.
+    * A new theme can be changed on the Edit Quote form
 
  ![User Story 9](static/assets/images/readme/userstories/us9.png "User Story 9 Screen shot")
 
 
 * A user enters a quote then realises that they have made a mistake in the quoting of the text or attribution.
+    * They can reach the Edit Quote form where they can correct this by using the comment icon button next to a quote on the My Quotes page.
 
  ![User Story 10](static/assets/images/readme/userstories/us10.png "User Story 10 Screen shot")
 
 
 * A user recalls commenting on a quote they particularly liked and would like to look at it again.
+    * A user can view all the quotes they have commented on on the My Comments page.
 
  ![User Story 11](static/assets/images/readme/userstories/us11.png "User Story 11 Screen shot")
 
 
 * A user looking at their recent commenting activity sees a spelling mistake in one of their comments and would like to correct it.
+    * Next to the user's comments on the my comments page there is an icon button to raise a modal with a form to edit the comment on.
 
  ![User Story 12](static/assets/images/readme/userstories/us12.png "User Story 12 Screen shot")
 
 
 * One of a user's comments has received negaive comments back.   They have thought about it again and now wish to delete their comment.
+    * Next to each of their own comments on the My Comments page there is an icon trash button which raises a modal to confirm deleting the comment.
 
  ![User Story 13.1](static/assets/images/readme/userstories/us13.png "User Story 13 Screen shot 1")
 
@@ -418,12 +434,14 @@ Each user story was tested individually and consideration given to how it may be
 
 
  * A user no longer wants to use the app and wishes to delete the quotes they have added.
+    * User's quotes can be delted from My Quotes page using the trash icon button next to the quote which raises the confirm delete modal.
 
 ![User Story 14.1](static/assets/images/readme/userstories/us16.png "User Story 14 Screen shot 1")
 
 ![User Story 14.2](static/assets/images/readme/userstories/us16a.png "User Story 14 Screen shot 2")
 
-* Admin needs a page where they can monitor all site activity and delete false quotes, correct errors in quotes where possible and monitor comments for breaches of site standards, with the functionality to delete comments if necessary.   
+* Admin needs a page where they can monitor all site activity and delete false quotes, correct errors in quotes where possible and monitor comments for breaches of site standards, with the functionality to delete comments if necessary. 
+    * All quotes with all comments are shown on the admin page to which only a user logged in as admin has access.  Here there are icon buttons to edit or delete quotes and delete comments.
 
  ![User Story 15](static/assets/images/readme/userstories/us15.png "User Story 15 Screen shot")
 
@@ -432,38 +450,81 @@ Each user story was tested individually and consideration given to how it may be
 
 ### Deployment to Heroku:
 
-1. Log into GitHub and locate the repository [Juliet-Simpson/js-to-do-list](https://github.com/Juliet-Simpson/js-to-do-list)
+The site was deployed to Heroku following these steps:
 
-2. At the top of the list of files, below the repository name there is a horizontal menu.  Select "settings" from this menu.
-    ![Settings](assets/images/readme-scrshts/dep-settings.png "Settings Button")
+1.  Open the workspace in Gitpod for Find-A-Bible-Quote from the Gitpod dashboard [Juliet-Simpson/Find-A-Bible-Quote - main](https://gitpod.io/workspaces)
 
-3.  Scroll down the settings page until the "GitHub Pages" section is located.  
+2. In the terminal of the running workspace type (without quotes): "pip3 freeze --local > requirements.txt" then press enter.
 
-4. Click the link to open the GitHub Pages tab.
-    ![Pages tab link](assets/images/readme-scrshts/gh-pages-scrsht.png "Pages tab link")
+    ![Requirements.txt](static/assets/images/readme/deployment/dp1a.png "Requirements.txt")
 
-5. From the "Select branch" dropdown, select "master"
+3.  Then type in the terminal: "echo web: python app.py > Procfile" and press enter
 
-6. From the "Select folder" dropdown, select "root"
+    ![Procfile](static/assets/images/readme/deployment/dp1.png "Procfile")
 
-7. Press the "Save" button
-    ![Save to pages](assets/images/readme-scrshts/save-to-pages.png "Save to pages")
+4. Open the Procfile and the delete blank line at the end
 
-8. The adress of the deployed site can now be viewed in the green box as a link.
+     ![Procfile2](static/assets/images/readme/deployment/dp3.png "Procfile 2")
 
-9. Test this link.
+5. Navaigate to [Heroku](https://id.heroku.com/login) and login
 
-### To make a clone in your chosen editor:
+    ![Heroku login](static/assets/images/readme/deployment/dp4.png "Heroku login")
 
-1. Log into GitHub and locate the repository [Juliet-Simpson/js-to-do-list](https://github.com/Juliet-Simpson/js-to-do-list)
+6. In the Heroku dashboard click the New button in the top right corner, then select 'Create New App'
 
-2. Select the clone dropdown and then click the clipboard icon to copy the link.
-    ![Copy clone link](assets/images/readme-scrshts/clone.png "Copy clone link")
+    ![Create New App](static/assets/images/readme/deployment/dp5.png "Create New App")
 
-3. Type git clone and then paste this link into the terminal of your chosen editor and press enter:
-`git clone https://github.com/Juliet-Simpson/js-to-do-list.git`
+7. Enter the name 'Find-A-Bible-Quote' for App Name and select the region as Europe
 
-4. To cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
+    ![Name App](static/assets/images/readme/deployment/dp6.png "Name App")
+
+8. On the next page in the section 'Deploy' select 'Connect to GitHub' as the Deployment method
+
+    ![Select GitHub](static/assets/images/readme/deployment/dp7.png "Select GitHub")
+
+9. Then type the name of this GitHub repository ('find-a-bible-quote') in the search box to locate it
+
+10. Once the repository is located, click the connect button on the right to connect to it
+
+    ![Connect to Repository](static/assets/images/readme/deployment/dp8.png "Connect to Repository")
+
+11. Click on the Settings tab for the app
+
+     ![Settings tab](static/assets/images/readme/deployment/dp9.png "Settings tab")
+
+12. Then click 'Reveal Config Vars'
+
+    ![Reveal config vars](static/assets/images/readme/deployment/dp10.png "Reveal config vars")
+
+13. Manually enter the following config vars shown in the screenshot below, taking care not to add any quotes to the keys or values.  The SECRET_KEY must be copied over from the env.py file in the workspace.  The MONGO_URI is currently left blank
+
+    ![Enter config vars](static/assets/images/readme/deployment/dp11.png "Enter config vars")
+
+14. Go back to the workspace terminal and type 'git status' to confirm that requirements.txt and Procfile are the only 2 new files.  
+
+15. Type "git add ." to add these new files to the staging area. 
+
+16. Type "git commit -m "Add requirements.txt and Procfile" and press enter to commit those files to the repository. 
+
+17. Then type "git push" to push these files to GitHub
+
+    ![Push new files to GitHub](static/assets/images/readme/deployment/dp12.png "Push new files to GitHub")
+
+18. Go back to Heroku and under the Deploy tab click 'Enable Automatic Deploys'. The project's only branch is 'main' so this will be selected.
+
+    ![Deply tab](static/assets/images/readme/deployment/dp13.png "Deploy tab")
+
+    ![Enable Automatic Deploys](static/assets/images/readme/deployment/dp14.png "Enable Automatic Deploys")
+
+
+ 19. Then for Manual deploy click 'Deploy Branch', again 'main' will be selected
+
+    ![Deploy Branch](static/assets/images/readme/deployment/dp16.png "Deploy Branch")
+
+20. Wait a few minutes for the app to build and then the following message will appear.  Click 'View' to open the new app.
+
+    ![Success](static/assets/images/readme/deployment/dp17.png "Success")
+
 
 ## Credits
 

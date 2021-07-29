@@ -358,7 +358,7 @@ def delete_quote(quote_id, delete_theme):
 def my_comments():
 
     all_quotes = list(mongo.db.quotes.find())
-    my_comments = list(mongo.db.comments.find())
+    my_comments = list(mongo.db.comments.find({"comment_by": session["user"]}))
 
     commented_quotes = []
 

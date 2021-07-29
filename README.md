@@ -189,10 +189,12 @@ The background image will be of the sun with rays over a distant mountain range 
 * Requirement of secondary confirmation of deletion of a quote or comment before it is actually deleted.
 
 * Validation of inputs:
-    * Whitespace will not be accepted
-    * Correct formats for quote book, chapter and verses.
+    * Whitespace only will not be accepted
+    * Whitespace will not be accepted at all in usernames and passwords.
+    * Only alphanumeric characters may be used for usernames.
+    * Correct formats for quote book, chapter and verses will be required.
 
-* Flash messages giving user feedback for their actions.
+* Flash messages giving users feedback for their actions.
 
 
 ### Left to implement
@@ -285,7 +287,7 @@ The background image will be of the sun with rays over a distant mountain range 
 
 - [Chrome Lighthouse Extension](https://developers.google.com/web/tools/lighthouse/): Used to audit the site:   
     * Some improvements and changes were needed to improve lighthouse scores.  These are summarised in this table:
-    
+
     ![Lighthouse Improvements](static/assets/images/readme/lh-imprv.png "Lighthouse Improvements")
 
     * A summary of the subsequent lighthouse results are shown here:
@@ -335,48 +337,49 @@ A summary of the bugs and fixes is shown below:
 
 **Pending Issues**
 
-* None known
+* If an Admin user edits a quote from their Admin page, the route for edit comment will reroute back to My Quotes page, as it would do for a regular user after editing a quote, not back to the admin page.  It is not possible to redirect the edit quote view back to the page that it was called from because a POST methed is necessarily being used to send an updated quote object to the database.   It is only possible to implement this functionality if the only method used in the route is GET.  Thus an admin user must manually navigate themselves back to their Admin page from My Quotes if they wish to return there.
+    * Credit: My Code Institute mentor, Sandeep Aggarwal, for assistance with making this functionality work for other routes and identifying the reason for it not working here.
 
 
 ### User Stories
 
-Each user story was tested individually and consideration given to how it may be satisfied by this app.
+Each user story was tested individually and consideration given to how it may be satisfied by this site.
 
-* A user who struggles with keeping multiple manually written to-do lists is looking for an automated alternative on their devices.
-    * The app supports multiple named lists of things to do, to which items can be easily added and removed:
+* A user is experiencing a certain emotion or situation and would like to read Bible verses that could help them to understand and deal with that emotion or situation.
+
+* A user would like to see what themes Bible quotes have been added for and associated quotes for those.
+
+* A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
+
+* On finding quotes for a theme, a user wishes to comment on a quote that another has added.  They therefore need to register.
+
+* A user is worried obout online abuse so is cautious about registering.
+
+* A returning user would like to login.
+
+* A returning user would like to use the search by theme feature and comment on the quotes obtained as results.
+
+* A logged in user wants to review all the quotes they have added as they use the app as a collection for their favourites.   They would also like to see if others have commented on their quotes and have the option to reply to comments by commenting further.
+
+* On reviewing the quotes that they have added a user thinks that they would like to update the theme they have given a quote.
+
+* A user enters a quote then realises that they have made a mistake in the quoting of the text or attribution.
+
+* A user recalls commenting on a quote they particularly liked and would like to look at it again.
+
+* A user looking at their recent commenting activity sees a spelling mistake in one of their comments and would like to correct it.
+
+* One of a user's comments has received negaive comments back.   They have thought about it again and now wish to delete their comment.
+
+* A user no longer wants to use the app and wishes to delete the quotes they have added.
+
+* Admin needs a page where they can monitor all site activity and delete false quotes, correct errors in quotes where possible and monitor comments for breaches of site standards, with the functionality to delete comments if necessary.   
+
+
+
 
     ![User Story 1](assets/images/readme-scrshts/us-1.png "User Story 1 Screen shot")
 
-* A user who is struggling with organisation wants to keep a record of tasks they need to do that can be easily updated with new items, urgent ones highlighted and finished ones checked or deleted.
-    * A New item to do can be easily added by entering text into the 'Add Something To Do' text input field.
-    * Urgent items can be highlighted in red by clicking the adjacent exclamation icon.
-    * Completed items can be ticked off and stuck through by clicking the circle to the left of the item.
-
-    ![User Story 2](assets/images/readme-scrshts/us-2.png "User Story 2 Screen shot")
-
-* A user who is struggling with motivation wants an attractive interface to encourage them to engage with the tasks they must perform.
-    * Either of the 'fun' themes, Fun Light or Fun Dark may encourage the user to use the app.
-
-    ![User Story 3.1](assets/images/readme-scrshts/us-3.1.png "User Story 3 Screen shot 1")
-    ![User Story 3.2](assets/images/readme-scrshts/us-3.2.png "User Story 3 Screen shot 2")
-
-* A user wants to be able to return to the app after closing it and review lists that they have written at an earlier date.
-    * On closing the app, closing the browser, shutting down the device and then reopening it, the previously entered lists and their associated to dos will still be present as when it was closed.
-    * Further organisation could be achieved by giving a list the date on which it was written as a title.  Similarly a day on which things must be done could be used as a title:
-
-    ![User Story 4](assets/images/readme-scrshts/us-4.png "User Story 4")
-
-* A user would like to obtain information about the weather in their location at the same time as reviewing their things-to-do.
-    * Provided that their browser has geolocation enabled in their browser and they allow the app to know their location on the first visit, the user can see weather information for their location on the left of the screen on larger screens and by scrolling to the bottom of the app on smaller screens.
-    * Colour effects have been added to the icons if needed to make sure they all visible on all backgrounds:
-
-    ![User Story 5.1](assets/images/readme-scrshts/us-5.1.png "User Story 5 Screen shot 1")
-    ![User Story 5.2](assets/images/readme-scrshts/us-5.2.png "User Story 5 Screen shot 2")
-    ![User Story 5.3](assets/images/readme-scrshts/us-5.3.png "User Story 5 Screen shot 3")
-    ![User Story 5.4](assets/images/readme-scrshts/us-5.4.png "User Story 5 Screen shot 4")
-
-* Two users wish to use the app from the same device and would like to each be able to access their own list.
-    * Each person requiring a list can name it for themselves and keep their own things to do in that list, while another person using the same device can also do this.  For example:
 
     ![User Story 6.1](assets/images/readme-scrshts/us-6.1.png "User Story 6 Screen shot 1")
     ![User Story 2.2](assets/images/readme-scrshts/us-6.2.png "User Story 6 Screen shot 2")
@@ -384,7 +387,7 @@ Each user story was tested individually and consideration given to how it may be
 
 ## Deployment
 
-### Deployment to GitHub Pages:
+### Deployment to Heroku:
 
 1. Log into GitHub and locate the repository [Juliet-Simpson/js-to-do-list](https://github.com/Juliet-Simpson/js-to-do-list)
 

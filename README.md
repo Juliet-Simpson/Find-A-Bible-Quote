@@ -27,7 +27,7 @@ Previews of the homepage on different devices can be viewed here:
 
 * On finding quotes for a theme, a user wishes to comment on a quote that another has added.  They therefore need to register.
 
-* A user is worried obout online abuse so is cautious about registering.
+* A user is worried about online abuse so is cautious about registering.
 
 * A returning user would like to use the search by theme feature and comment on the quotes obtained as results. They need to log in to do this.
 
@@ -317,9 +317,10 @@ The background image will be of the sun with rays over a distant mountain range 
     * Before submitting the new theme, find a list of quotes form the database that have that new theme for their theme.  If that list length is zero then the added new theme genuinely is new.
 
 * Allowing a password to contain special characters but not whitespace.
-    * again .replace had to be used romoving any whitespace but then checking agains the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
+    * again .replace had to be used romoving any whitespace but then checking against the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
 
 * There was no check against a user adding a quote more than once, leading to duplicate quotes in the data base by that user.
+    Some python has been added in add quote to do a check in the database for quotes that match before adding a new quote. If there are any then flashing to the user that hey have already added this quote for this theme.  This same logic was used to prevent duplication of quotes in the database after a quote was edited.  It was then applied to adding and editing comments to also prevent those being duplicated
 
 
 **Functionality**
@@ -520,11 +521,6 @@ Each user story was tested individually and consideration given to how it may be
 
     * If a comment is deleted from pressing the delete icon button next to it either on the My Comments or Admin pages and then confirming the delete, the comment in the database with Object ID equal to that of the comment that the delete button was pressed from will get removed (deleted) from the comments collection in the database.
 
-
-
-
-
-
 ## Deployment
 
 ### Deployment to Heroku:
@@ -591,12 +587,12 @@ The site was deployed to Heroku following these steps:
 
 18. Go back to Heroku and under the Deploy tab click 'Enable Automatic Deploys'. The project's only branch is 'main' so this will be selected.
 
-    ![Deply tab](static/assets/images/readme/deployment/dp13.png "Deploy tab")
+    ![Deploy tab](static/assets/images/readme/deployment/dp13.png "Deploy tab")
 
     ![Enable Automatic Deploys](static/assets/images/readme/deployment/dp14.png "Enable Automatic Deploys")
 
 
- 19. Then for Manual deploy click 'Deploy Branch', again 'main' will be selected
+19. Then for Manual deploy click 'Deploy Branch', again 'main' will be selected
 
     ![Deploy Branch](static/assets/images/readme/deployment/dp16.png "Deploy Branch")
 
@@ -609,99 +605,46 @@ The site was deployed to Heroku following these steps:
 
 ### Concept
 
-* The idea for the app was coceived by me
+* The idea for the site was coceived by me
 
 ### Code
 
-* Button bar and modal:
+* Nav bar, side nav, card panels, drop down, collapsibles, input fields, buttons and modal:
 
-    * [Bootstrap (version 4.6.0](https://getbootstrap.com/docs/4.6/getting-started/introduction/)) 
+    * [Materialize (version 1.0.0):](https://materializecss.com/)  
 
-* Rainbow background for fun light theme:
+* Commented code taken or adapted from Code Institute Lessons.  
 
-    * This [Stack Overflow Post](https://stackoverflow.com/questions/56418763/creating-the-perfect-rainbow-gradient-in-css#answer-63302468) with the colors changed.
+* Commented code snippets written by named Code Institute tutors or mentor.
 
 * All other code was written by me.
 
 ### Sources
+#### Python
+* Flash messages
+    https://pythonprogramming.net/flash-flask-tutorial/
 
-#### JavaScript
+* .replace()
+    https://www.tutorialspoint.com/python/string_replace.htm
 
-* Changing themes
+* Searching for an exact phrase in MongoDB
+    https://docs.mongodb.com/manual/reference/operator/query/text/#std-label-text-operator-phrases
 
-    * https://www.youtube.com/watch?v=_XAQH41rjio
+#### jQery
+* Fading flash messages
 
-    * https://stackoverflow.com/questions/52920019/save-current-stylesheet-to-local-storage
-
-* Date and time
-
-    * https://www.youtube.com/watch?v=HyhVjHGb19k
-
-* Weather API 
-
-    * https://www.youtube.com/watch?v=KqZGuzrY9D4&list=RDCMUC8n8ftV94ZU_DJLOLtrpORA&index=3
-
-* To do lists
-
-    * https://www.youtube.com/watch?v=b8sUhU_eq3g&t=2315s
-
-
-    * https://blog.logrocket.com/localstorage-javascript-complete-guide/#setitem
-
-    * https://blog.logrocket.com/localstorage-javascript-complete-guide/#getitem
-
-
-    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-
-
-    * https://stackoverflow.com/questions/16626735/how-to-loop-through-an-array-containing-objects-and-access-their-properties
-
-    * https://flaviocopes.com/insertadjacenthtml/
-
-    * https://medium.com/@deniscangemi/remove-element-from-array-in-javascript-bf2d2428733
-
-    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-
-    * https://stackoverflow.com/questions/11715646/scroll-automatically-to-the-bottom-of-the-page
-
-    * https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo
-
-    * https://www.w3schools.com/jsref/met_element_getelementsbytagname.asp
-
-#### CSS
-
-* Layout
-
-    * https://stackoverflow.com/questions/7425665/switching-the-order-of-block-elements-with-css
-
-    * https://css-tricks.com/a-complete-guide-to-calc-in-css/
-
-    * https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-properties
-
-    * https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp
-
-* Weather Images
-
-    * https://codepen.io/sosuke/pen/Pjoqqp 
+    https://stackoverflow.com/questions/24278586/fade-not-working-for-flash-message-in-rails
 
 ### Images
 
-* Background Images
+* Background Image
 
-    * https://wallpapersafari.com/
+    * https://www.pixelstalk.net/
 
-    * https://www.teahub.io/
-
-    * https://cutewallpaper.org/
-
-* Weather Icons
-
-    * https://github.com/manifestinteractive/weather-underground-icons
 
 ### Acknowledgements
 
-* My Code Institute Mentor
+* Code Institute Tutor Support: Michael, John, Johann, Jo but over and above them all, Sean, without whose patience and brainwaves this project would have floundered completely.
 
-* Code Institute Tutor Support
+* My Code Institute Mentor, Sandeep Aggarwal, for writing some of the more complicated code that I didn't foresee being needed when I undertook this project,.
 
-* My friend Yassine Ait Mensour for advice on saving the JavaScript lists object

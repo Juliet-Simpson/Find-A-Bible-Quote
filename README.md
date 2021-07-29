@@ -371,6 +371,9 @@ The background image will be of the sun with rays over a distant mountain range 
 * There is still no defence against 2 different users adding the same quote for the same theme.  They will be different objects because the session user adding them will be different so the database will accept them.
     * This could be addressed with more time available.
 
+* There is occasionally an issue with inputs failing to focus when clicked-on or touched on a touch screen. There is no logic to where or when it may occur.  It is inexplicable, possibly to do with materialize.
+    * This issue can be overcome on a computer by using the tab key to move into the unresponsive field instead on the mouse.
+
 ### User Stories
 
 Each user story was tested individually and consideration given to how it may be satisfied by this site.

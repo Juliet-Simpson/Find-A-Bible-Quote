@@ -1,3 +1,4 @@
+# Code from code institute lesson until line 28
 import os
 from flask import (
     Flask,
@@ -359,7 +360,7 @@ def my_comments():
 
     all_quotes = list(mongo.db.quotes.find())
     my_comments = list(mongo.db.comments.find({"comment_by": session["user"]}))
-
+    # Code below by CI tutor sean
     commented_quotes = []
 
     for quote in all_quotes:
@@ -371,7 +372,7 @@ def my_comments():
 
         if len(d["comments"]) > 0:
             commented_quotes.append(d)
-
+    # end
     return render_template(
         "my_comments.html",
         commented_quotes=commented_quotes,
@@ -404,7 +405,7 @@ def edit_comment(quote_id, comment_id):
                   for this quote previously"""
             )
             return redirect(url_for("my_comments"))
-
+        
         mongo.db.comments.update({"_id": ObjectId(comment_id)}, submit)
         flash("Comment successfully edited")
 
@@ -435,7 +436,7 @@ def admin():
         next_page=request.full_path,
     )
 
-
+# Code from code institute lesson
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"), port=int(os.environ.get("PORT")),

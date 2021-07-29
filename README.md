@@ -320,7 +320,11 @@ The background image will be of the sun with rays over a distant mountain range 
     * again .replace had to be used romoving any whitespace but then checking against the original input.  If they still matched then the input did not have any whitespace and the function could continue.  Otherwise a message is flashed to the user and the function returned.
 
 * There was no check against a user adding a quote more than once, leading to duplicate quotes in the data base by that user.
-    Some python has been added in add quote to do a check in the database for quotes that match before adding a new quote. If there are any then flashing to the user that hey have already added this quote for this theme.  This same logic was used to prevent duplication of quotes in the database after a quote was edited.  It was then applied to adding and editing comments to also prevent those being duplicated
+    Some python has been added in add quote to do a check in the database for quotes that match before adding a new quote. If there are any then flashing to the user that hey have already added this quote for this theme.  This same logic was used to prevent duplication of quotes in the database after a quote was edited.  It was then applied to adding and editing comments to also prevent those being duplicated.
+
+* There was no option to return to the current page after commenting (which could come from search_results.html, browse_themes.html, My Quotes, My Comments or Admin).  
+    Thanks to my mentor for inventing code for this which works for returning to any page if it was the previous page after commenting.  The POST method had to be removed from the Search view, but only GET is in fact needed for searching.
+    I then implemented this logic so that delete quote and delete comment can either return to My Quotes or My Comments respectively or to the Admin page where both are needed.  As explained in pending issues it will not work for Edit quote because of the necessary POST method.
 
 
 **Functionality**
@@ -613,9 +617,13 @@ The site was deployed to Heroku following these steps:
 
     * [Materialize (version 1.0.0):](https://materializecss.com/)  
 
-* Commented code taken or adapted from Code Institute Lessons.  
+* Commented code in app.py taken or adapted from Code Institute Lessons.  
 
-* Commented code snippets written by named Code Institute tutors or mentor.
+* Commented code snippet written by named Code Institute tutor Sean.
+
+* Code for return redirect(redirect_url) conceived by my Code Institute mentor, some implemented with his help, some by me independently.
+
+* Creation of env.py, import of dependencies, creation of Procfile and requirements.txt and deployment proceedure were all taken from Code Institute lesson.
 
 * All other code was written by me.
 
@@ -646,5 +654,5 @@ The site was deployed to Heroku following these steps:
 
 * Code Institute Tutor Support: Michael, John, Johann, Jo but over and above them all, Sean, without whose patience and brainwaves this project would have floundered completely.
 
-* My Code Institute Mentor, Sandeep Aggarwal, for writing some of the more complicated code that I didn't foresee being needed when I undertook this project,.
+* My Code Institute Mentor, Sandeep Aggarwal, for writing some of the more complicated code that I didn't foresee being needed when I undertook this project.
 

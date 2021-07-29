@@ -1,6 +1,6 @@
 # Bible Quotes 4U
 
-A web-based data-base app using MongoDB Atlas for Code Institute's Fullstack Software Development Diploma Milestone 3 project.
+A web-based data-base app using MongoDB and Flask templating for Code Institute's Fullstack Software Development Diploma Milestone 3 project.
 
 ## **Preview** 
 
@@ -35,7 +35,7 @@ Previews of the homepage on different devices can be viewed here:
 
 * On reviewing the quotes that they have added a user thinks that they would like to update the theme they have given a quote.
 
-* A user enters a quote then realises that they have made a mistake in the quoting of the text or attribution.
+* A user enters a quote then realises that they have made a mistake in the quoting of the text. They would like to correct this.
 
 * A user recalls commenting on a quote they particularly liked and would like to look at it again.
 
@@ -295,9 +295,7 @@ The background image will be of the sun with rays over a distant mountain range 
 
 ### Manual Testing
 **Bugs and fixes**
-A summary of the bugs and fixes is shown below:
 
-![Bug Fixes Table](assets/images/readme-scrshts/bug-fixes.png "Bug Fixes Table")
 
 **Functionality**
 1. All the features were tested on the following and were confirmed to be functioning correctly, following the bug fixes detailed above: 
@@ -353,10 +351,10 @@ Each user story was tested individually and consideration given to how it may be
 
 * A user would like to see what themes Bible quotes have been added for and associated quotes for those.
     * The homepage dropdown shows themes that exist in the database
+    * Selecting one of these themes will show quotes associated with it
 
  ![User Story 2.1](static/assets/images/readme/userstories/us2.png "User Story 2 Screen shot 1")
     
-    * Selecting one of these themes will show quotes associated with it
 
   ![User Story 2.2](static/assets/images/readme/userstories/us2a.png "User Story 2 Screen shot 2")
 
@@ -387,10 +385,10 @@ Each user story was tested individually and consideration given to how it may be
 
 * A returning user would like to use the search by theme feature and comment on the quotes obtained as results.
     * They can enter their theme in the search bar
+    * The resulting comments rendered have the option to comment on them for a logged in user
 
  ![User Story 7](static/assets/images/readme/userstories/us7.png "User Story 7 Screen shot 1")
 
-    * The resulting comments rendered have the option to comment on them for a logged in user
 
 ![User Story 7](static/assets/images/readme/userstories/us7a.png "User Story 7 Screen shot 2")
 
@@ -445,6 +443,60 @@ Each user story was tested individually and consideration given to how it may be
 
  ![User Story 15](static/assets/images/readme/userstories/us15.png "User Story 15 Screen shot")
 
+ ### CRUD testing
+
+ The site meets the requirement to Create, Read, Update and Delete data from a database in the following ways:
+
+ #### Create
+
+ * Entries can be created in the database for this site by:
+    * Registering a user adds a user document to the 'Users' collection
+
+    * Posting a bible quote using the 'Post a Quote form' adds a quote object document to the Quotes coleection in the database
+
+    * If a new theme is entered on the 'Post a Quote' or 'Edit Quote' form, a theme document gets added to the themes collection.
+
+    * If a quote is commented on, a comment object document is added to the comments collection.
+
+#### Read
+
+* Data is retrieved from the database and dispalyed to the user in the following ways:
+
+    * The Browse Themes dropdown on the homepage displays all the themese in the themes collection
+
+    * browse_themes.html and search_results.html display the following information for quotes that have the theme as a key value that has been selected from the browse dropdown or searched for in the search bar: Theme, Book, Chapter, Start verse, end verse (if quote is more than one verse), quote text, and the username of the user that added the quote.
+
+    * The My Quotes page displays the same information for a quote as above, except not user, for all the quotes from the quotes collection that have the key "added_by" value of the session user's username.  User name need not be displayed here as it is always the session user for this page.
+
+    * Comments made about quotes, and the username of the user that made the comment, are retrieved and displayed for all quotes displayed on the site, in the format of a list in a collapsible body underneath the relevant quote they are for. The quote_id field value of the comment from the comments collection matches the string of the Object ID of the quote in the quotes collection that they are for.  In this way quotes and associated comments can be dispalyed together.
+    Once the object id of the quote was made a string in python, the jinja map filter was used on the templates to map the actual quote id to the quote_id field of the comment.   The exception to this was the My Comments page.
+
+    * The My Comments page retrieves from the database and then displays the same information as above for (theme, book, chapter, verses, text and added by) quotes that have a stringified Object ID equal to the value of the quote_id field of comments in the comments collection, but only for comments that also have a commented_by value equal to the username of the current session user.  In this way, The My Comments page renders all quotes on which the current session user has commented.   As with all other quotes displayed on the site, all the comments for each quote, and the user that commented, are then displayed with each quote (not just the comments made by the session user, these were only used as the starting point for filtering the quotes).  
+    It was not possible to use Jinja map on the template to obtain the correct quotes for this page, due to the 2 steps filtering.  Instead a list of commented quotes was first built in python before being passed to the template.  See credits regarding this.
+
+    * The Admin page retrieves all quotes from the database and then again displays the same information as other pages for them.  Comments relevant to quotes and the user that made the comment are again also retrieved and displayed.
+
+#### Update
+
+* The database is updated in the following ways:
+
+    * If a quote is edited using the Edit quote page, a new quote object is built in the edit_comment view with values from the edit quote form. The quote with Object Id that matched the quote_id parameter that was passed into the view is then updated with the new object.
+
+    * If a comment is edited using the single input form raised from the My Comments page by pressing the edit icon button next to the comment, in the view for edit comment a new object is built for the comment with comment text from the form, the same quote id that the comment was originally for and commented by as the session user (the original user that made the comment is the only one that has the option to edit it).  The comment in the comments collection in the database is then located by having Object ID the same as the one that is passed into the view is then updated with the new object that has been built in the view.
+
+#### Delete
+* Data is deleted from the database in the following ways:
+
+    * If the theme for a quote is changed on the edit quote form, a check is run to see if there are any quotes left which have the edited quote's original theme as their theme value.  If there are no more quotes with that theme value, that theme gets removed (deleted) from the database.
+
+    * If the delete quote button for a quote is pressed and then confirmed from either the My quotes page or Admin page, that quote gets deleted from the comments collection.  A check is again run to see if there are any other quotes left with theme the same as the quote that was deleted.  If there are not, the deleted quote's theme is also deleted from the themes collection.  Comments for the deleted quote, which have a value of their quote_id field equal to the string of the Object ID of the deleted quote, are also deleted from the comments collection.
+
+    * If a comment is deleted from pressing the delete icon button next to it either on the My Comments or Admin pages and then confirming the delete, the comment in the database with Object ID equal to that of the comment that the delete button was pressed from will get removed (deleted) from the comments collection in the database.
+
+
+
+
+
 
 ## Deployment
 
@@ -452,7 +504,7 @@ Each user story was tested individually and consideration given to how it may be
 
 The site was deployed to Heroku following these steps:
 
-1.  Open the workspace in Gitpod for Find-A-Bible-Quote from the Gitpod dashboard [Juliet-Simpson/Find-A-Bible-Quote - main](https://gitpod.io/workspaces)
+1.  Open the workspace in Gitpod for Find-A-Bible-Quote from the Gitpod dashboard 
 
 2. In the terminal of the running workspace type (without quotes): "pip3 freeze --local > requirements.txt" then press enter.
 

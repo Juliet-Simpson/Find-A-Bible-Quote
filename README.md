@@ -350,27 +350,33 @@ Each user story was tested individually and consideration given to how it may be
 
  ![User Story 1](static/assets/images/readme/userstories/us1.png "User Story 1 Screen shot")
 
+
 * A user would like to see what themes Bible quotes have been added for and associated quotes for those.
 
  ![User Story 2.1](static/assets/images/readme/userstories/us2.png "User Story 2 Screen shot 1")
 
   ![User Story 2.2](static/assets/images/readme/userstories/us2a.png "User Story 2 Screen shot 2")
 
+
 * A user would like to add a bible quote that they have found particularly useful in helping them to deal with a certain emotion or situation.
 
  ![User Story 3](static/assets/images/readme/userstories/us3.png "User Story 3 Screen shot")
+
 
 * On finding quotes for a theme, a user wishes to comment on a quote that another has added.  They therefore need to register.
 
  ![User Story 4](static/assets/images/readme/userstories/us4.png "User Story 4 Screen shot")
 
+
 * A user is worried obout online abuse so is cautious about registering.
 
  ![User Story 5](static/assets/images/readme/userstories/us5.png "User Story 5 Screen shot")
 
+
 * A returning user would like to login.
 
  ![User Story 6](static/assets/images/readme/userstories/us6.png "User Story 6 Screen shot")
+
 
 * A returning user would like to use the search by theme feature and comment on the quotes obtained as results.
 
@@ -378,45 +384,48 @@ Each user story was tested individually and consideration given to how it may be
 
 ![User Story 7](static/assets/images/readme/userstories/us7a.png "User Story 7 Screen shot 2")
 
+
 * A logged in user wants to review all the quotes they have added as they use the app as a collection for their favourites.   They would also like to see if others have commented on their quotes and have the option to reply to comments by commenting further.
 
  ![User Story 8](static/assets/images/readme/userstories/us8.png "User Story 8 Screen shot")
+
 
 * On reviewing the quotes that they have added a user thinks that they would like to update the theme they have given a quote.
 
  ![User Story 9](static/assets/images/readme/userstories/us9.png "User Story 9 Screen shot")
 
+
 * A user enters a quote then realises that they have made a mistake in the quoting of the text or attribution.
 
  ![User Story 10](static/assets/images/readme/userstories/us10.png "User Story 10 Screen shot")
+
 
 * A user recalls commenting on a quote they particularly liked and would like to look at it again.
 
  ![User Story 11](static/assets/images/readme/userstories/us11.png "User Story 11 Screen shot")
 
+
 * A user looking at their recent commenting activity sees a spelling mistake in one of their comments and would like to correct it.
 
  ![User Story 12](static/assets/images/readme/userstories/us12.png "User Story 12 Screen shot")
 
+
 * One of a user's comments has received negaive comments back.   They have thought about it again and now wish to delete their comment.
 
- ![User Story 13](static/assets/images/readme/userstories/us13.png "User Story 13 Screen shot")
+ ![User Story 13.1](static/assets/images/readme/userstories/us13.png "User Story 13 Screen shot 1")
 
-* A user no longer wants to use the app and wishes to delete the quotes they have added.
+ ![User Story 13.2](static/assets/images/readme/userstories/us14.png "User Story 13 Screen shot 2")
 
- ![User Story 14](static/assets/images/readme/userstories/us14.png "User Story 14 Screen shot")
+
+ * A user no longer wants to use the app and wishes to delete the quotes they have added.
+
+![User Story 14.1](static/assets/images/readme/userstories/us16.png "User Story 14 Screen shot 1")
+
+![User Story 14.2](static/assets/images/readme/userstories/us16a.png "User Story 14 Screen shot 2")
 
 * Admin needs a page where they can monitor all site activity and delete false quotes, correct errors in quotes where possible and monitor comments for breaches of site standards, with the functionality to delete comments if necessary.   
 
  ![User Story 15](static/assets/images/readme/userstories/us15.png "User Story 15 Screen shot")
-
-
-
-   
-
-
-    ![User Story 6.1](assets/images/readme-scrshts/us-6.1.png "User Story 6 Screen shot 1")
-    ![User Story 2.2](assets/images/readme-scrshts/us-6.2.png "User Story 6 Screen shot 2")
 
 
 ## Deployment

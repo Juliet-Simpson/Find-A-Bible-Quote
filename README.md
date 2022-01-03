@@ -2,6 +2,16 @@
 
 A web-based data-base app using MongoDB and Flask templating for Code Institute's Fullstack Software Development Diploma Milestone 3 project.
 
+## **Rationale** 
+
+A web-application platform designed for users to share and comment on favourite or personnally meaningful bible quotes. Quotes are assigned a new or existing theme and can be searched up by theme. Users can register and log in order to add or comment on quotes. They can view all the quotes they have added on a page and all the quotes they have previously commented on on another. A user can edit or delete the comments or quotes that they have added.
+
+The site is built on the Flask micro-framework and is written in HTML, CSS and Python with a small amount of JavaScript. It uses the Jinja templating engine in the HTML templates.
+
+Data is stored in a non-relational database using MongoDB.
+
+It is hoped that in the future functionality could be added for users to have a profile visible to other users if they wished, through which users could connect with one another and a bible discussion community be built up.
+
 ## **Preview** 
 
 The site deployed to Heroku can be viewed [here.](https://find-a-bible-quote.herokuapp.com/)
